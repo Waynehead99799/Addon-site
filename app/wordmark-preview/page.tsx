@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { Logo } from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 type Variant = {
   id: number;

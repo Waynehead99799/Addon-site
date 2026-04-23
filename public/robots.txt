@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /theme-preview
+Disallow: /carousel-preview
+Disallow: /wordmark-preview

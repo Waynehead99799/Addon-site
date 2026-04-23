@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import ThemeToggle from "@/components/ThemeToggle";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const OPTIONS = [
   { id: 1,  name: "Linen (current)",    top: "#EDE6D6", bot: "#E4DCC9", bloom: "rgba(30,168,116,0.10)", ink: "#0E0C0A", note: "warm, editorial, safe" },

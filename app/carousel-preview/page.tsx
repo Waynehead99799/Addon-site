@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import ThemeToggle from "@/components/ThemeToggle";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const ITEMS = [
   "Fleet telemetry running since 2016",

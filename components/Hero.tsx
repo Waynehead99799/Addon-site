@@ -4,23 +4,25 @@ import { Icon } from "./icons";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 md:pt-32 pb-16 md:pb-20">
-      <div className="absolute inset-0 z-0">
-        <FlowField />
+    <section className="relative overflow-hidden min-h-[100svh] flex flex-col">
+      {/* Base wash + vignette — paints first so the canvas sits above it */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 hero-vignette" />
         <div
-          className="absolute inset-0 pointer-events-none hero-vignette"
+          className="absolute inset-x-0 bottom-0 h-48"
+          style={{ background: "linear-gradient(180deg, transparent, var(--bg))" }}
         />
-        <div className="absolute inset-x-0 bottom-0 h-48 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent, var(--bg))" }} />
       </div>
-      <div className="absolute inset-0 noise opacity-[0.3] pointer-events-none z-[1]" />
+      {/* Flow-field particles sit above the wash so they read on light + dark */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        <FlowField />
+      </div>
+      {/* Noise grain on top of everything but under content */}
+      <div className="absolute inset-0 noise opacity-[0.3] pointer-events-none z-[2]" />
 
-      {/* top editorial bar */}
-      {/* <div className="relative z-20 max-w-6xl mx-auto px-6 flex items-center justify-center text-[11px] eyebrow mb-10 md:mb-14">
-        <div>A custom software agency · est. 2011</div>
-      </div> */}
-
-      {/* centered display — no marginalia clutter */}
-      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
+      {/* centered display — flex-1 vertically centers the content within the viewport */}
+      <div className="relative z-20 flex-1 flex items-center justify-center pt-28 md:pt-32 pb-8">
+        <div className="max-w-5xl mx-auto px-6 text-center">
         <Reveal delay={0} y={14}>
           <div className="inline-flex items-center gap-2.5 pl-2 pr-4 py-1.5 rounded-full hero-pill backdrop-blur-md">
             <span className="relative w-6 h-6 rounded-md accent-grad grid place-items-center glow-brand">
@@ -64,10 +66,11 @@ export default function Hero() {
             See a decade of work
           </a>
         </Reveal>
+        </div>
       </div>
 
-      {/* bottom ticker — brand gradient wash */}
-      <div className="relative z-20 mt-16 md:mt-24 ticker-band">
+      {/* bottom ticker — brand gradient wash, pinned to the foot of the hero */}
+      <div className="relative z-20 ticker-band">
         <div className="overflow-hidden marquee-mask py-3">
           <div className="flex items-center gap-10 ticker w-max whitespace-nowrap text-white/90 text-[13.5px]">
             {Array.from({ length: 2 }).flatMap((_, k) =>

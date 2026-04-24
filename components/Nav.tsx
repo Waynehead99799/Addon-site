@@ -1,12 +1,42 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Logo } from "./Logo";
 import { Icon } from "./icons";
-import { NAV } from "./data";
+import { AI_SERVICES, SERVICES_DATA, INDUSTRIES } from "./pagesData";
+
+type NavItem =
+  | { label: string; href: string }
+  | { label: string; href: string; children: { label: string; href: string }[] };
+
+const NAV: NavItem[] = [
+  {
+    label: "AddonAI",
+    href: "/addonai",
+    children: AI_SERVICES.map((s) => ({ label: s.title, href: `/addonai/${s.slug}` })),
+  },
+  {
+    label: "Services",
+    href: "/services",
+    children: SERVICES_DATA.map((s) => ({ label: s.title, href: `/services/${s.slug}` })),
+  },
+  {
+    label: "Industries",
+    href: "/industries",
+    children: INDUSTRIES.map((i) => ({ label: i.title, href: `/industries/${i.slug}` })),
+  },
+  { label: "Work", href: "/case-studies" },
+  { label: "Hire", href: "/hire-dedicated-developers" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState<string | null>(null);
+
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 20);
     on();
@@ -16,51 +46,115 @@ export default function Nav() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
-      <div className={`pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-3xl" : "max-w-6xl"} w-full`}>
-        <div className={`glass rounded-full pl-4 pr-2 py-2 flex items-center gap-4 lg:gap-6 transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "nav-scrolled" : ""}`}>
+      <div
+        className={`pointer-events-auto transition-all duration-500 ${
+          scrolled ? "max-w-4xl" : "max-w-6xl"
+        } w-full`}
+      >
+        <div
+          className={`glass rounded-full pl-4 pr-2 py-2 flex items-center gap-4 lg:gap-6 transition-[background,border-color,box-shadow] duration-500 ${
+            scrolled ? "nav-scrolled" : ""
+          }`}
+        >
           {/* logo */}
-          <a href="#" className="flex items-center gap-3 flex-shrink-0 group">
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
             <span className="logo-mount inline-flex">
               <Logo size={56} />
             </span>
             <span className="wordmark-mount hidden sm:inline-flex flex-col leading-none">
-              <span className="font-semibold tracking-[-0.02em] text-[20px] whitespace-nowrap">Addon Web</span>
-              <span className="flex justify-between w-full mt-[5px] text-[10px] font-mono uppercase" style={{ color: "var(--ink-dim)" }} aria-label="solutions">
+              <span className="font-semibold tracking-[-0.02em] text-[20px] whitespace-nowrap">
+                Addon Web
+              </span>
+              <span
+                className="flex justify-between w-full mt-[5px] text-[10px] font-mono uppercase"
+                style={{ color: "var(--ink-dim)" }}
+                aria-label="solutions"
+              >
                 {"SOLUTIONS".split("").map((c, i) => (
                   <span key={i}>{c}</span>
                 ))}
               </span>
             </span>
-          </a>
+          </Link>
 
           {/* desktop links */}
           <nav className="hidden lg:flex items-center gap-0.5 flex-1 min-w-0">
-            {NAV.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                className="px-3 py-1.5 rounded-full text-[13px] text-white/60 hover:text-white hover:bg-white/5 transition whitespace-nowrap"
-              >
-                {n.label}
-              </a>
-            ))}
+            {NAV.map((n) => {
+              const hasChildren = "children" in n;
+              return (
+                <div
+                  key={n.href}
+                  className="relative"
+                  onMouseEnter={() => hasChildren && setActiveDropdown(n.label)}
+                  onMouseLeave={() => hasChildren && setActiveDropdown(null)}
+                >
+                  <Link
+                    href={n.href}
+                    className="px-3 py-1.5 rounded-full text-[13px] text-white/60 hover:text-white hover:bg-white/5 transition whitespace-nowrap flex items-center gap-1"
+                  >
+                    {n.label}
+                    {hasChildren && (
+                      <svg
+                        width={9}
+                        height={9}
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        className="opacity-50"
+                      >
+                        <path
+                          d="m2 4 4 4 4-4"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </Link>
+                  {hasChildren && activeDropdown === n.label && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[280px] z-50">
+                      <div className="glass rounded-2xl p-2 max-h-[70vh] overflow-y-auto">
+                        <Link
+                          href={n.href}
+                          className="flex items-center justify-between px-3 py-2 rounded-xl text-[12.5px] font-semibold text-white/90 hover:bg-white/5 transition"
+                        >
+                          <span className="serif-italic font-normal">All {n.label}</span>
+                          <Icon.ArrowUpRight width={12} height={12} className="text-white/50" />
+                        </Link>
+                        <div className="mt-1 border-t border-white/10 pt-1">
+                          {n.children.map((c) => (
+                            <Link
+                              key={c.href}
+                              href={c.href}
+                              className="block px-3 py-2 rounded-xl text-[13px] text-white/60 hover:text-white hover:bg-white/5 transition"
+                            >
+                              {c.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
-          {/* right cluster — collapses responsively */}
+          {/* right cluster */}
           <div className="hidden lg:flex items-center gap-3 ml-auto flex-shrink-0">
-            <a href="#contact" className="nav-cta group relative rounded-full accent-grad p-[1.5px]">
+            <Link href="/contact" className="nav-cta group relative rounded-full accent-grad p-[1.5px]">
               <span
                 className="nav-cta-inner block rounded-full px-4 py-1.5 text-[13px] font-medium whitespace-nowrap"
                 style={{ background: "var(--bg)", color: "var(--ink)" }}
               >
                 Start a project
               </span>
-            </a>
+            </Link>
           </div>
 
-          {/* tablet (md) — only CTA, no links, no booking chip */}
-          <a
-            href="#contact"
+          {/* tablet — only CTA */}
+          <Link
+            href="/contact"
             className="nav-cta hidden md:inline-flex lg:hidden ml-auto rounded-full accent-grad p-[1.5px] flex-shrink-0"
           >
             <span
@@ -69,7 +163,7 @@ export default function Nav() {
             >
               Start a project
             </span>
-          </a>
+          </Link>
 
           {/* mobile burger */}
           <button
@@ -83,21 +177,65 @@ export default function Nav() {
 
         {/* mobile + tablet drawer */}
         {open && (
-          <div className="lg:hidden mt-2 glass rounded-2xl p-3 flex flex-col gap-1">
-            {NAV.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                onClick={() => setOpen(false)}
-                className="px-3 py-2 rounded-xl text-sm text-white/70 hover:bg-white/5"
-              >
-                {n.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
+          <div className="lg:hidden mt-2 glass rounded-2xl p-3 flex flex-col gap-0.5 max-h-[80vh] overflow-y-auto">
+            {NAV.map((n) => {
+              const hasChildren = "children" in n;
+              const isOpen = mobileOpen === n.label;
+              return (
+                <div key={n.href}>
+                  <div className="flex items-center">
+                    <Link
+                      href={n.href}
+                      onClick={() => setOpen(false)}
+                      className="flex-1 px-3 py-2 rounded-xl text-sm text-white/80 hover:bg-white/5"
+                    >
+                      {n.label}
+                    </Link>
+                    {hasChildren && (
+                      <button
+                        onClick={() => setMobileOpen(isOpen ? null : n.label)}
+                        className="w-9 h-9 rounded-xl hover:bg-white/5 grid place-items-center"
+                        aria-label={`Toggle ${n.label} sub-menu`}
+                      >
+                        <svg
+                          width={11}
+                          height={11}
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          className={`text-white/60 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                        >
+                          <path
+                            d="m2 4 4 4 4-4"
+                            stroke="currentColor"
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  {hasChildren && isOpen && (
+                    <div className="pl-3 pb-2 space-y-0.5 border-l border-white/10 ml-4 mt-1">
+                      {n.children.map((c) => (
+                        <Link
+                          key={c.href}
+                          href={c.href}
+                          onClick={() => setOpen(false)}
+                          className="block px-3 py-1.5 rounded-lg text-[13px] text-white/55 hover:text-white hover:bg-white/5"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <Link
+              href="/contact"
               onClick={() => setOpen(false)}
-              className="nav-cta mt-1 rounded-xl accent-grad p-[1.5px]"
+              className="nav-cta mt-2 rounded-xl accent-grad p-[1.5px]"
             >
               <span
                 className="nav-cta-inner block rounded-[10px] px-3 py-2 text-sm font-medium text-center"
@@ -105,7 +243,7 @@ export default function Nav() {
               >
                 Start a project
               </span>
-            </a>
+            </Link>
           </div>
         )}
       </div>

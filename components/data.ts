@@ -48,9 +48,11 @@ export const TESTIMONIALS = [
 ] as const;
 
 export const NAV = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
+  { label: "AddonAI", href: "/addonai" },
+  { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "Work", href: "/case-studies" },
+  { label: "Hire", href: "/hire-dedicated-developers" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "#contact" },
 ] as const;

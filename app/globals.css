@@ -206,10 +206,11 @@ html[data-theme="light"] .bg-black\/30 { background-color: rgba(14,12,10,0.03) !
 /* Hero vignette */
 .hero-vignette { background: radial-gradient(70% 55% at 50% 38%, rgba(1,1,1,0) 0%, rgba(1,1,1,0.55) 65%, var(--bg) 100%); }
 html[data-theme="light"] .hero-vignette {
-  /* Sky-wash vignette — clean top fade, soft bottom anchor */
+  /* Sky-wash vignette — keep it light so the flow-field particles read across the whole hero.
+     Top fade is subtle (was hiding the upper half of the canvas); bottom anchor fades into --bg. */
   background:
-    radial-gradient(120% 80% at 50% 10%, rgba(228,237,243,0.60) 0%, rgba(228,237,243,0) 45%),
-    radial-gradient(100% 100% at 50% 120%, rgba(228,237,243,0) 30%, var(--bg) 100%);
+    radial-gradient(140% 60% at 50% -20%, rgba(228,237,243,0.22) 0%, rgba(228,237,243,0) 55%),
+    radial-gradient(100% 100% at 50% 120%, rgba(228,237,243,0) 35%, var(--bg) 100%);
 }
 /* Canvas uses multiply so dark lines bake into the cream paper — reads crisp on light */
 html[data-theme="light"] .wave-enter { mix-blend-mode: multiply; }
@@ -279,6 +280,9 @@ html[data-theme="light"] .ticker-band {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+/* In light theme the particles are drawn in dark ink colours — multiply bakes them into the
+   sky-wash paper so they read crisply instead of floating on top of an opaque canvas. */
+html[data-theme="light"] .flow-enter { mix-blend-mode: multiply; }
 
 /* ========== Hero aurora background — drifting gradient blobs ========== */
 .aurora-bg {

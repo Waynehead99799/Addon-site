@@ -73,18 +73,20 @@ export default function FlowField() {
     for (let i = 0; i < COUNT; i++) particles.push(spawn());
 
     // Brand palette lookup: azure → teal → shamrock → emerald
-    // Used for dark theme. Light theme uses deeper equivalents so multiply reads well.
     const darkStops = [
       [83, 146, 223],
       [45, 188, 210],
       [52, 203, 150],
       [62, 193, 112],
     ];
+    // Light-theme particles use mid-saturation brand colours. The canvas is composited with
+    // mix-blend-mode: multiply over the sky wash, so these read as soft brand tints on paper
+    // instead of harsh black ink.
     const lightStops = [
-      [8, 18, 42],     // near-black navy
-      [10, 45, 70],    // deep teal-navy
-      [12, 60, 50],    // deep forest
-      [15, 22, 30],    // ink slate
+      [65, 120, 195], // azure
+      [45, 150, 175], // teal
+      [50, 160, 120], // shamrock
+      [65, 155, 100], // emerald
     ];
     const sampleColor = (hue: number, isLight: boolean) => {
       const stops = isLight ? lightStops : darkStops;
@@ -131,12 +133,12 @@ export default function FlowField() {
         const [r, g, b] = sampleColor(p.hue, isLight);
         const lifeT = p.life / p.maxLife;
         const envelope = Math.sin(lifeT * Math.PI); // 0 → 1 → 0
-        // Envelope ramps up fast in light mode so particles pop the moment they appear
-        const alpha = isLight ? Math.min(1, envelope * 1.25) : envelope * 0.95;
+        // Softer alpha on paper so the multiply blend doesn't crush the particles to ink
+        const alpha = isLight ? envelope * 0.9 : envelope * 0.95;
 
         // Draw a short comet — segment from previous to current, then a head dot
         ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-        ctx.lineWidth = isLight ? 1.8 : 1.1;
+        ctx.lineWidth = isLight ? 1.2 : 1.1;
         ctx.beginPath();
         ctx.moveTo(p.px, p.py);
         ctx.lineTo(p.x, p.y);
@@ -144,7 +146,7 @@ export default function FlowField() {
 
         ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, isLight ? 1.8 : 1.0, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, isLight ? 1.2 : 1.0, 0, Math.PI * 2);
         ctx.fill();
       }
 

@@ -1,172 +1,190 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
-import { CASE_STUDIES } from "./data";
+import { useState } from "react";
+import { CASE_STUDIES, type CaseStudy } from "./data";
 import { Icon, ProjectIcon } from "./icons";
 
-/**
- * Home portfolio section — scroll-animated grid of case study cards backed by
- * framer-motion's `whileInView`. Each card lazily animates in once it enters
- * the viewport (set `once: true` so we don't replay on scroll-back).
- *
- * Image field on CASE_STUDIES is a placeholder URL — swap in real screenshots
- * when ready (1200×750 recommended). Cards link to /case-studies/{slug}.
- */
 export default function CaseStudies() {
-  const reduced = useReducedMotion();
-
-  // Card entrance — fade + slight slide + scale settle
-  const cardVariants = {
-    hidden: { opacity: 0, y: reduced ? 0 : 36, scale: reduced ? 1 : 0.985 },
-    visible: { opacity: 1, y: 0, scale: 1 },
-  };
+  const [active, setActive] = useState(0);
+  const cs = CASE_STUDIES[active];
+  const [c1] = cs.palette;
+  const IconC = ProjectIcon[cs.icon];
 
   return (
-    <section id="work" className="relative py-20 md:py-28 border-t border-white/5">
+    <section id="work" className="section-reveal relative section-py border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Editorial header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
-          className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-16"
-        >
+        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
           <div className="col-span-12 md:col-span-3">
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-              className="eyebrow"
-            >
-              03 / Selected work
-            </motion.div>
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-              className="mt-3 serif-italic text-white/55 text-[15px]"
-            >
-              Six worlds, one team.
-            </motion.div>
+            <div className="eyebrow">Selected work</div>
           </div>
-          <div className="col-span-12 md:col-span-9 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <motion.h2
-              variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-              className="text-[40px] md:text-[56px] lg:text-[68px] font-semibold tracking-[-0.02em] leading-[1.02]"
-            >
-              Six shipped products,{" "}
-              <span className="serif-italic font-normal text-white/70">six worlds</span>.
-            </motion.h2>
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-            >
-              <Link
-                href="/case-studies"
-                className="group inline-flex items-center gap-2 text-[13px] text-white/60 hover:text-white whitespace-nowrap"
+          <div className="col-span-12 md:col-span-9">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05]">
+                Six shipped products.<br />
+                <span style={{ color: c1 }} className="case-headline-accent">
+                  Six different worlds.
+                </span>
+              </h2>
+              <a
+                href="#"
+                className="group text-[13px] text-white/60 hover:text-white inline-flex items-center gap-2 shrink-0"
               >
-                See full portfolio
+                See full portfolio{" "}
                 <Icon.ArrowUpRight
                   width={13}
                   height={13}
                   className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
-              </Link>
-            </motion.div>
+              </a>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Card grid — staggered scroll-in */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "0px 0px -120px 0px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-        >
-          {CASE_STUDIES.map((cs, i) => {
-            const [c1] = cs.palette;
-            const IconC = ProjectIcon[cs.icon];
-            return (
-              <motion.div
-                key={cs.id}
-                variants={cardVariants}
-                transition={{ duration: 0.65, ease: [0.2, 0.8, 0.2, 1] }}
-              >
-                <Link
-                  href={`/case-studies/${cs.slug}`}
-                  className="group block relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.015] hover:border-white/20 transition-colors"
-                >
-                  {/* Screenshot */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={cs.image}
-                      alt={cs.title}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.04]"
+        <div className="grid grid-cols-12 gap-6 md:gap-10">
+          {/* Index list (sticky scrub) */}
+          <ul className="col-span-12 md:col-span-5 border-t border-white/10">
+            {CASE_STUDIES.map((c, i) => {
+              const isActive = active === i;
+              return (
+                <li key={c.id} className="border-b border-white/10">
+                  <button
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    onClick={() => setActive(i)}
+                    className={`case-row w-full text-left flex items-center gap-4 py-5 px-2 transition-colors ${
+                      isActive ? "is-active text-white" : "text-white/55 hover:text-white/85"
+                    }`}
+                    style={{ ["--accent" as string]: c.palette[0] }}
+                  >
+                    <span className="case-row-bar" aria-hidden />
+                    <span
+                      className="case-row-num text-[10.5px] font-mono uppercase tracking-[0.2em] w-10 shrink-0"
+                      style={isActive ? { color: c.palette[0] } : undefined}
+                    >
+                      / 0{i + 1}
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="case-row-title block text-[19px] md:text-[22px] font-semibold tracking-[-0.01em] leading-[1.2]">
+                        {c.title}
+                      </span>
+                      <span className="block mt-0.5 text-[11.5px] text-white/45 font-mono uppercase tracking-[0.14em]">
+                        {c.tag}
+                      </span>
+                    </span>
+                    <Icon.ArrowUpRight
+                      width={14}
+                      height={14}
+                      className="case-row-arrow text-white/35 shrink-0"
                     />
-                    {/* Gradient veil so text below the image stays readable */}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Sticky detail panel */}
+          <div className="col-span-12 md:col-span-7">
+            <div
+              key={cs.id}
+              className="case-panel md:sticky md:top-24 rounded-3xl border bg-white/[0.02] overflow-hidden"
+              style={{ borderColor: c1 + "33" }}
+            >
+              {/* artwork */}
+              <Artwork cs={cs} />
+
+              {/* details */}
+              <div className="p-6 md:p-8">
+                <div className="case-panel-fade flex items-center justify-between">
+                  <div className="flex items-center gap-3">
                     <div
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(14,11,10,0) 35%, rgba(14,11,10,0.55) 100%)",
-                      }}
-                    />
-                    {/* Tag chip */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
-                      <span
-                        className="w-7 h-7 rounded-lg grid place-items-center backdrop-blur-md"
-                        style={{ background: c1 + "33", border: `1px solid ${c1}55`, color: c1 }}
-                      >
-                        <IconC width={13} height={13} />
-                      </span>
-                      <span className="text-[10.5px] font-mono uppercase tracking-[0.2em] text-white/85 px-2.5 py-1 rounded-full glass-lite">
+                      className="w-12 h-12 rounded-xl grid place-items-center"
+                      style={{ background: c1 + "22", color: c1, border: `1px solid ${c1}55` }}
+                    >
+                      <IconC width={20} height={20} />
+                    </div>
+                    <div>
+                      <div className="text-[10.5px] font-mono uppercase tracking-[0.18em] text-white/55">
                         {cs.tag}
-                      </span>
-                    </div>
-                    {/* Hover arrow */}
-                    <div className="absolute top-4 right-4 w-9 h-9 rounded-full glass grid place-items-center opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                      <Icon.ArrowUpRight width={14} height={14} className="text-white/90" />
+                      </div>
+                      <div className="text-[14.5px] font-medium" style={{ color: c1 }}>
+                        {cs.kpi}
+                      </div>
                     </div>
                   </div>
+                  <div className="text-[10.5px] font-mono text-white/40">
+                    {String(active + 1).padStart(2, "0")} / {String(CASE_STUDIES.length).padStart(2, "0")}
+                  </div>
+                </div>
 
-                  {/* Body */}
-                  <div className="p-6 md:p-7">
-                    <h3 className="text-[20px] md:text-[22px] font-semibold tracking-[-0.01em] leading-[1.2] group-hover:text-white transition-colors">
-                      {cs.title.split(" ").slice(0, -1).join(" ")}{" "}
-                      <span className="serif-italic font-normal text-white/75">
-                        {cs.title.split(" ").slice(-1)}
-                      </span>
-                      .
-                    </h3>
-                    <p className="mt-3 text-[13.5px] text-white/55 leading-relaxed line-clamp-3">
-                      {cs.desc}
-                    </p>
-                    <div className="mt-5 pt-4 border-t border-white/10 flex items-baseline justify-between gap-3">
-                      <div>
-                        <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-white/35">
-                          Outcome
-                        </div>
-                        <div
-                          className="mt-1 text-[15px] font-semibold tracking-[-0.005em]"
-                          style={{ color: c1 }}
-                        >
-                          {cs.kpi}
-                        </div>
-                      </div>
-                      <div className="text-[11px] font-mono text-white/30">
-                        {String(i + 1).padStart(2, "0")} / {String(CASE_STUDIES.length).padStart(2, "0")}
-                      </div>
-                    </div>
+                <h3 className="case-panel-fade mt-6 text-[26px] md:text-[32px] font-semibold tracking-[-0.01em] leading-[1.08]">
+                  {cs.title}
+                </h3>
+                <p className="case-panel-fade mt-3 text-[14.5px] md:text-[15.5px] text-white/65 leading-[1.6]">
+                  {cs.desc}
+                </p>
+
+                <div className="case-panel-fade mt-7 flex items-center gap-4">
+                  <a
+                    href="#"
+                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13.5px] font-medium transition"
+                    style={{
+                      background: c1 + "1A",
+                      color: c1,
+                      border: `1px solid ${c1}55`,
+                    }}
+                  >
+                    Read the case study
+                    <Icon.ArrowUpRight
+                      width={13}
+                      height={13}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </a>
+                  <div className="flex gap-1.5">
+                    {cs.palette.map((p) => (
+                      <span key={p} className="w-3 h-3 rounded-sm" style={{ background: p }} />
+                    ))}
                   </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function Artwork({ cs }: { cs: CaseStudy }) {
+  const [c1, c2, c3] = cs.palette;
+  const Icon = ProjectIcon[cs.icon];
+  return (
+    <div
+      className="case-art relative h-56 md:h-72 overflow-hidden"
+      style={{ background: c3 }}
+    >
+      <div
+        className="absolute inset-0 case-art-wash"
+        style={{ background: `linear-gradient(135deg, ${c1} 0%, ${c2} 50%, ${c3} 100%)` }}
+      />
+      <div
+        className="absolute inset-0 opacity-25"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1.5px)",
+          backgroundSize: "18px 18px",
+        }}
+      />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4) 100%)" }} />
+      <div
+        className="absolute bottom-5 left-5 w-14 h-14 rounded-2xl grid place-items-center backdrop-blur-sm case-art-icon"
+        style={{ background: c3 + "BB", border: `1px solid ${c1}55`, color: c1 }}
+      >
+        <Icon width={26} height={26} />
+      </div>
+      <div className="absolute top-5 right-5 flex gap-1.5">
+        {cs.palette.map((c) => (
+          <span key={c} className="w-3 h-3 rounded-sm" style={{ background: c }} />
+        ))}
+      </div>
+    </div>
   );
 }

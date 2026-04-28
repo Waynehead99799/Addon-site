@@ -8,14 +8,12 @@ fs.mkdirSync(outDir, { recursive: true });
 const specs = [
   { name: 'hero',         sel: 'section:nth-of-type(1)' },
   { name: 'logos',        sel: 'section:nth-of-type(2)' },
-  { name: 'manifesto',    sel: 'section:nth-of-type(3)' },
-  { name: 'services',     sel: 'section:nth-of-type(4)' },
-  { name: 'stats',        sel: 'section:nth-of-type(5)' },
-  { name: 'casestudies',  sel: 'section:nth-of-type(6)' },
-  { name: 'about',        sel: 'section:nth-of-type(7)' },
-  { name: 'process',      sel: 'section:nth-of-type(8)' },
-  { name: 'testimonials', sel: 'section:nth-of-type(9)' },
-  { name: 'cta',          sel: 'section:nth-of-type(10)' },
+  { name: 'services',     sel: 'section:nth-of-type(3)' },
+  { name: 'stats',        sel: 'section:nth-of-type(4)' },
+  { name: 'casestudies',  sel: 'section:nth-of-type(5)' },
+  { name: 'about',        sel: 'section:nth-of-type(6)' },
+  { name: 'testimonials', sel: 'section:nth-of-type(7)' },
+  { name: 'cta',          sel: 'section:nth-of-type(8)' },
   { name: 'footer',       sel: 'footer' },
 ];
 

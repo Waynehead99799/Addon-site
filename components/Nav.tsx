@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { Icon } from "./icons";
 import { AI_SERVICES, SERVICES_DATA, INDUSTRIES } from "./pagesData";
@@ -36,6 +37,9 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<string | null>(null);
+  const pathname = usePathname() || "/";
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 20);
@@ -48,7 +52,7 @@ export default function Nav() {
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
       <div
         className={`pointer-events-auto transition-all duration-500 ${
-          scrolled ? "max-w-4xl" : "max-w-6xl"
+          scrolled ? "max-w-5xl" : "max-w-7xl"
         } w-full`}
       >
         <div
@@ -78,9 +82,10 @@ export default function Nav() {
           </Link>
 
           {/* desktop links */}
-          <nav className="hidden lg:flex items-center gap-0.5 flex-1 min-w-0">
+          <nav className="hidden lg:flex items-center gap-1 flex-1 min-w-0">
             {NAV.map((n) => {
               const hasChildren = "children" in n;
+              const active = isActive(n.href);
               return (
                 <div
                   key={n.href}
@@ -90,21 +95,24 @@ export default function Nav() {
                 >
                   <Link
                     href={n.href}
-                    className="px-3 py-1.5 rounded-full text-[13px] text-white/60 hover:text-white hover:bg-white/5 transition whitespace-nowrap flex items-center gap-1"
+                    aria-current={active ? "page" : undefined}
+                    className={`nav-tab px-3 py-2 rounded-full text-[13.5px] font-medium tracking-[-0.005em] whitespace-nowrap flex items-center gap-1 ${
+                      active ? "is-active" : ""
+                    }`}
                   >
                     {n.label}
                     {hasChildren && (
                       <svg
-                        width={9}
-                        height={9}
+                        width={10}
+                        height={10}
                         viewBox="0 0 12 12"
                         fill="none"
-                        className="opacity-50"
+                        className="nav-tab-caret"
                       >
                         <path
                           d="m2 4 4 4 4-4"
                           stroke="currentColor"
-                          strokeWidth={1.5}
+                          strokeWidth={1.7}
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
@@ -112,23 +120,27 @@ export default function Nav() {
                     )}
                   </Link>
                   {hasChildren && activeDropdown === n.label && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[280px] z-50">
-                      <div className="glass rounded-2xl p-2 max-h-[70vh] overflow-y-auto">
+                    <div className="nav-dropdown absolute top-full left-0 -translate-x-2 pt-3 w-[280px] z-50">
+                      <div className="nav-dropdown-panel rounded-2xl p-2 max-h-[70vh] overflow-y-auto">
                         <Link
                           href={n.href}
-                          className="flex items-center justify-between px-3 py-2 rounded-xl text-[12.5px] font-semibold text-white/90 hover:bg-white/5 transition"
+                          className="nav-sub-all flex items-center justify-between px-3 py-2.5 rounded-xl text-[13px] font-semibold text-white/95"
                         >
                           <span className="serif-italic font-normal">All {n.label}</span>
-                          <Icon.ArrowUpRight width={12} height={12} className="text-white/50" />
+                          <Icon.ArrowUpRight width={13} height={13} className="nav-sub-arrow shrink-0" />
                         </Link>
                         <div className="mt-1 border-t border-white/10 pt-1">
                           {n.children.map((c) => (
                             <Link
                               key={c.href}
                               href={c.href}
-                              className="block px-3 py-2 rounded-xl text-[13px] text-white/60 hover:text-white hover:bg-white/5 transition"
+                              className="nav-sub group/sub flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-[13px] text-white/70"
                             >
-                              {c.label}
+                              <span className="nav-sub-label inline-flex items-center gap-2">
+                                <span className="nav-sub-dot" aria-hidden />
+                                {c.label}
+                              </span>
+                              <Icon.ArrowUpRight width={11} height={11} className="nav-sub-arrow shrink-0" />
                             </Link>
                           ))}
                         </div>

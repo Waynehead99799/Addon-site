@@ -1,4 +1,4 @@
-import FlowField from "./FlowField";
+import WaveMesh from "./WaveMesh";
 import { Reveal } from "./Reveal";
 import { Icon } from "./icons";
 
@@ -13,9 +13,9 @@ export default function Hero() {
           style={{ background: "linear-gradient(180deg, transparent, var(--bg))" }}
         />
       </div>
-      {/* Flow-field particles sit above the wash so they read on light + dark */}
+      {/* Background animation — swap component to preview options */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
-        <FlowField />
+        <WaveMesh />
       </div>
       {/* Noise grain on top of everything but under content */}
       <div className="absolute inset-0 noise opacity-[0.3] pointer-events-none z-[2]" />

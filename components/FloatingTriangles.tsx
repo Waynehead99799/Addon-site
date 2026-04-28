@@ -17,11 +17,10 @@ type Tri = {
 };
 
 const TRIS: Tri[] = [
-  { id: "t1", size: 520, x: 6,  y: 8,  blur: 32, opacity: 0.42, rotate: -12, parallax: 22, dur: 18, delay: 0,   face: "left" },
-  { id: "t2", size: 420, x: 72, y: 20, blur: 24, opacity: 0.48, rotate: 18,  parallax: 34, dur: 22, delay: -6,  face: "right" },
-  { id: "t3", size: 260, x: 58, y: 62, blur: 12, opacity: 0.55, rotate: -22, parallax: 46, dur: 14, delay: -3,  face: "left", flip: true },
-  { id: "t4", size: 180, x: 18, y: 58, blur: 8,  opacity: 0.6,  rotate: 26,  parallax: 58, dur: 16, delay: -9,  face: "inner" },
-  { id: "t5", size: 130, x: 86, y: 76, blur: 5,  opacity: 0.65, rotate: -6,  parallax: 72, dur: 11, delay: -2,  face: "right", flip: true },
+  { id: "t1", size: 560, x: -12, y: 6,  blur: 48, opacity: 0.30, rotate: -12, parallax: 14, dur: 42, delay: 0,   face: "left" },
+  { id: "t2", size: 480, x: 80,  y: 14, blur: 40, opacity: 0.32, rotate: 18,  parallax: 18, dur: 52, delay: -12, face: "right" },
+  { id: "t3", size: 320, x: -8,  y: 58, blur: 24, opacity: 0.30, rotate: 22,  parallax: 22, dur: 46, delay: -6,  face: "left", flip: true },
+  { id: "t4", size: 300, x: 82,  y: 62, blur: 22, opacity: 0.30, rotate: -18, parallax: 22, dur: 38, delay: -3,  face: "right" },
 ];
 
 // Paths are normalized to a 512-viewBox — the same geometry as the logo faces.
@@ -49,8 +48,8 @@ export default function FloatingTriangles() {
 
     const tick = () => {
       // easing toward target so parallax feels buttery, not snappy
-      cx += (tx - cx) * 0.06;
-      cy += (ty - cy) * 0.06;
+      cx += (tx - cx) * 0.022;
+      cy += (ty - cy) * 0.022;
       const nodes = root.querySelectorAll<HTMLElement>("[data-parallax]");
       nodes.forEach((n) => {
         const p = parseFloat(n.dataset.parallax || "0");

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
+import { Inter, JetBrains_Mono, Spectral } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Inter({
@@ -12,7 +12,7 @@ const geistMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
 });
-const instrumentSerif = Fraunces({
+const instrumentSerif = Spectral({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600"],

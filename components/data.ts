@@ -16,90 +16,22 @@ export const STATS = [
 
 export type CaseStudy = {
   id: string;
-  slug: string;
   title: string;
   tag: string;
   kpi: string;
   desc: string;
-  image: string;
   icon: "Truck" | "Gauge" | "Sparkle" | "Route" | "Bowl" | "Wrench";
   palette: [string, string, string];
   board: "map" | "chat" | "grid" | "gauge" | "ride" | "order";
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
-  {
-    id: "fleet",
-    slug: "camera-telematics",
-    title: "Fleet Telematics with Live Video",
-    tag: "IoT · Enterprise",
-    kpi: "4,000 vehicles · 150M events/day",
-    desc: "Real-time GPS, video, and driver scoring for a leading EU fleet operator. Running since 2016.",
-    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=1200&h=750&fit=crop",
-    icon: "Truck",
-    palette: ["#F4A261", "#E76F51", "#264653"],
-    board: "map",
-  },
-  {
-    id: "ai",
-    slug: "ai-motherhood-app",
-    title: "AI-Driven Maternal Health",
-    tag: "AI · Healthcare",
-    kpi: "150K users · ML-personalized",
-    desc: "Symptom tracking, wearable integration, and personalized care plans powered by on-device ML.",
-    image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1200&h=750&fit=crop",
-    icon: "Sparkle",
-    palette: ["#FFE5A0", "#F4A261", "#7B2D26"],
-    board: "chat",
-  },
-  {
-    id: "handy",
-    slug: "cleaning-marketplace",
-    title: "On-Demand Cleaning Marketplace",
-    tag: "Marketplace",
-    kpi: "5,000+ vetted pros",
-    desc: "Booking, dispatch, and real-time tracking connecting homeowners to a vetted service network.",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=750&fit=crop",
-    icon: "Wrench",
-    palette: ["#D4E09B", "#A7C957", "#386641"],
-    board: "grid",
-  },
-  {
-    id: "obd",
-    slug: "obd2-telematics",
-    title: "OBD-II Diagnostics Suite",
-    tag: "IoT · Consumer",
-    kpi: "4.8★ App Store",
-    desc: "Bluetooth dongle + companion app with live engine telemetry, DTCs, and trip reports.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=750&fit=crop",
-    icon: "Gauge",
-    palette: ["#B5E48C", "#52B788", "#1B4332"],
-    board: "gauge",
-  },
-  {
-    id: "cab",
-    slug: "automotive-crm",
-    title: "Automotive Services CRM",
-    tag: "Automotive · CRM",
-    kpi: "25+ service centres",
-    desc: "End-to-end CRM for service centres with intelligent scheduling and parts ordering.",
-    image: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1200&h=750&fit=crop",
-    icon: "Route",
-    palette: ["#FFD166", "#EF476F", "#073B4C"],
-    board: "ride",
-  },
-  {
-    id: "food",
-    slug: "food-ordering",
-    title: "Multi-Vendor Food Platform",
-    tag: "Marketplace",
-    kpi: "200+ restaurants · 28 min avg",
-    desc: "Customer, restaurant and driver apps over a shared marketplace core with real-time tracking.",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&h=750&fit=crop",
-    icon: "Bowl",
-    palette: ["#F7B267", "#F4845F", "#5E3023"],
-    board: "order",
-  },
+  { id: "fleet", title: "Fleet Telematics with Live Video", tag: "IoT · Enterprise", kpi: "4,000 vehicles · 150M events/day", desc: "Real-time GPS, video, and driver scoring for a leading EU fleet operator. Running since 2016.", icon: "Truck", palette: ["#F4A261", "#E76F51", "#264653"], board: "map" },
+  { id: "ai", title: "AI-Driven Maternal Health", tag: "AI · Healthcare", kpi: "150K users · ML-personalized", desc: "Symptom tracking, wearable integration, and personalized care plans powered by on-device ML.", icon: "Sparkle", palette: ["#FFE5A0", "#F4A261", "#7B2D26"], board: "chat" },
+  { id: "handy", title: "On-Demand Cleaning Marketplace", tag: "Marketplace", kpi: "5,000+ vetted pros", desc: "Booking, dispatch, and real-time tracking connecting homeowners to a vetted service network.", icon: "Wrench", palette: ["#D4E09B", "#A7C957", "#386641"], board: "grid" },
+  { id: "obd", title: "OBD-II Diagnostics Suite", tag: "IoT · Consumer", kpi: "4.8★ App Store", desc: "Bluetooth dongle + companion app with live engine telemetry, DTCs, and trip reports.", icon: "Gauge", palette: ["#B5E48C", "#52B788", "#1B4332"], board: "gauge" },
+  { id: "cab", title: "On-Demand Mobility", tag: "Marketplace", kpi: "3.2M rides", desc: "Rider, driver, and ops apps with dynamic dispatch, surge, and multi-currency settlement.", icon: "Route", palette: ["#FFD166", "#EF476F", "#073B4C"], board: "ride" },
+  { id: "food", title: "Multi-Vendor Food Platform", tag: "Marketplace", kpi: "12-city rollout", desc: "Storefront, POS, rider, and partner console — one shared domain core.", icon: "Bowl", palette: ["#F7B267", "#F4845F", "#5E3023"], board: "order" },
 ];
 
 export const PROCESS = [

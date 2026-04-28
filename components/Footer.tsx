@@ -51,20 +51,6 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 mt-8">
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
-        {/* masthead row */}
-        <div className="flex items-start justify-between border-b border-white/10 pb-10 mb-12">
-          <div>
-            <div className="eyebrow">Colophon</div>
-            <div className="mt-2 serif-italic text-white/80 text-[22px] md:text-[26px] leading-tight max-w-md">
-              A custom software &amp; AI agency, set in Inter &amp; Fraunces. Written and shipped by humans since 2011.
-            </div>
-          </div>
-          <div className="hidden md:block text-right">
-            <div className="eyebrow">Vol.</div>
-            <div className="mt-2 serif-italic text-[40px] leading-none text-white/80">XIV</div>
-          </div>
-        </div>
-
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
             <Link href="/" className="flex items-center gap-2.5">

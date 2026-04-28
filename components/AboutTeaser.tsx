@@ -3,13 +3,10 @@ import { Reveal } from "./Reveal";
 
 export default function AboutTeaser() {
   return (
-    <section id="about" className="relative py-20 md:py-28 border-t border-white/5">
+    <section id="about" className="section-reveal relative py-20 md:py-28 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
         <div className="col-span-12 md:col-span-3">
-          <div className="eyebrow">04 / About us</div>
-          <div className="mt-3 serif-italic text-white/55 text-[15px] leading-snug">
-            A quick introduction.
-          </div>
+          <div className="eyebrow">About us</div>
         </div>
 
         <div className="col-span-12 md:col-span-9">
@@ -29,21 +26,21 @@ export default function AboutTeaser() {
           <Reveal delay={200} y={18}>
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/40 font-mono mb-3">Founded</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-mono mb-3">Founded</div>
                 <div className="text-[40px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-none num-grad">2011</div>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/40 font-mono mb-3">Team</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-mono mb-3">Team</div>
                 <div className="text-[40px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-none num-grad">35+</div>
                 <div className="mt-2 text-[12px] text-white/45 serif-italic">engineers</div>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/40 font-mono mb-3">Reach</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-mono mb-3">Reach</div>
                 <div className="text-[40px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-none num-grad">3</div>
                 <div className="mt-2 text-[12px] text-white/45 serif-italic">continents · India · Canada · USA</div>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/40 font-mono mb-3">Certified</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-mono mb-3">Certified</div>
                 <div className="text-[40px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-none num-grad">ISO</div>
                 <div className="mt-2 text-[12px] text-white/45 serif-italic">9001 quality standard</div>
               </div>

@@ -3,6 +3,7 @@ import { getFeatureIcon } from "../featureIcons";
 import type { CaseStudyDetail as CS } from "../pagesData";
 
 export default function CaseStudyDetail({ cs }: { cs: CS }) {
+  const g = cs.gallery;
   return (
     <>
       {/* Meta + results strip */}
@@ -40,6 +41,29 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
           </div>
         </div>
       </section>
+
+      {/* Hero cover image — full-width, 16:10. Recommended source: 1920×1200. */}
+      {g?.hero && (
+        <section className="relative pt-2 pb-10 md:pb-14">
+          <div className="max-w-7xl mx-auto px-6">
+            <Reveal y={18}>
+              <figure className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={g.hero}
+                  alt={`${cs.title} — cover`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </figure>
+              {g.heroCaption && (
+                <figcaption className="mt-3 text-[13px] text-white/55 max-w-3xl">
+                  {g.heroCaption}
+                </figcaption>
+              )}
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* Overview */}
       <section className="relative py-20 md:py-28 border-t border-white/5">
@@ -80,12 +104,61 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
         </div>
       </section>
 
+      {/* Web screenshots gallery — 1920×1200 sources, rendered 1-up on mobile,
+          2-up on lg+. Sits between Solution and the Key-Features build out. */}
+      {g?.web && g.web.length > 0 && (
+        <section className="relative py-20 md:py-28 border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
+              <div className="col-span-12 md:col-span-3">
+                <div className="eyebrow">04 / Showcase · Web</div>
+                <div className="mt-3 serif-italic text-white/55 text-[15px]">In production.</div>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-semibold tracking-[-0.02em] leading-[1.06]">
+                  Built for the desk —{" "}
+                  <span className="serif-italic font-normal text-white/70">
+                    every day operations
+                  </span>
+                  .
+                </h2>
+              </div>
+            </div>
+
+            <div
+              className={`grid gap-6 md:gap-8 ${
+                g.web.length === 1 ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-2"
+              }`}
+            >
+              {g.web.map((src, i) => (
+                <Reveal key={src} delay={i * 80} y={20}>
+                  <figure className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={`${cs.title} — web screenshot ${i + 1}`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </figure>
+                  {g.webCaptions?.[i] && (
+                    <figcaption className="mt-3 text-[13px] text-white/55 max-w-2xl">
+                      {g.webCaptions[i]}
+                    </figcaption>
+                  )}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Key features */}
       <section className="relative py-20 md:py-28 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
             <div className="col-span-12 md:col-span-3">
-              <div className="eyebrow">04 / Build</div>
+              <div className="eyebrow">{g?.web?.length ? "05" : "04"} / Build</div>
               <div className="mt-3 serif-italic text-white/55 text-[15px]">What shipped.</div>
             </div>
             <div className="col-span-12 md:col-span-9">
@@ -124,11 +197,67 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
         </div>
       </section>
 
+      {/* Mobile screenshots gallery — 1080×2340 portrait sources. Renders 1
+          phone on small screens, 2 on tablet, 3 on desktop. Wraps if more. */}
+      {g?.mobile && g.mobile.length > 0 && (
+        <section className="relative py-20 md:py-28 border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
+              <div className="col-span-12 md:col-span-3">
+                <div className="eyebrow">
+                  {g?.web?.length ? "06" : "05"} / Showcase · Mobile
+                </div>
+                <div className="mt-3 serif-italic text-white/55 text-[15px]">In the pocket.</div>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-semibold tracking-[-0.02em] leading-[1.06]">
+                  Native on iOS &amp;{" "}
+                  <span className="serif-italic font-normal text-white/70">Android</span>.
+                </h2>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+              {g.mobile.map((src, i) => (
+                <Reveal
+                  key={src}
+                  delay={i * 80}
+                  y={24}
+                  className="w-[220px] sm:w-[240px] md:w-[260px] flex-shrink-0"
+                >
+                  <figure className="relative aspect-[9/19.5] rounded-[2.25rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={`${cs.title} — mobile screenshot ${i + 1}`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </figure>
+                  {g.mobileCaptions?.[i] && (
+                    <figcaption className="mt-3 text-[12.5px] text-white/55 text-center px-1">
+                      {g.mobileCaptions[i]}
+                    </figcaption>
+                  )}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Tech */}
       <section className="relative py-16 md:py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
-            <div className="eyebrow">05 / Stack</div>
+            <div className="eyebrow">
+              {[g?.web?.length, g?.mobile?.length].filter(Boolean).length === 2
+                ? "07"
+                : [g?.web?.length, g?.mobile?.length].filter(Boolean).length === 1
+                ? "06"
+                : "05"}{" "}
+              / Stack
+            </div>
             <div className="mt-3 serif-italic text-white/55 text-[15px]">Tools on the bench.</div>
           </div>
           <div className="col-span-12 md:col-span-9">

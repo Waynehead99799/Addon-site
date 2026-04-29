@@ -445,6 +445,24 @@ export const INDUSTRIES: Industry[] = [
 ];
 
 // -------------------- CASE STUDIES -------------------- //
+/** Optional set of project screenshots rendered on the detail page.
+ *  All images live under public/case-studies/<slug>/<filename>.
+ *
+ *  Recommended dimensions (use @2x for retina if you can):
+ *   - hero    : 1920×1200 (16:10), full-bleed cover image (max 400KB)
+ *   - web[]   : 1920×1200 (16:10), web/desktop UI screenshots (~200KB each)
+ *   - mobile[]: 1080×2340  (9:19.5), portrait phone screenshots (~150KB each)
+ *   - caption[]: per-image one-line description, same length as the array
+ */
+export type CaseStudyGallery = {
+  hero?: string;
+  heroCaption?: string;
+  web?: string[];
+  webCaptions?: string[];
+  mobile?: string[];
+  mobileCaptions?: string[];
+};
+
 export type CaseStudyDetail = {
   slug: string;
   title: string;
@@ -458,6 +476,7 @@ export type CaseStudyDetail = {
   keyFeatures: Feature[];
   results: Stat[];
   techStack: string[];
+  gallery?: CaseStudyGallery;
 };
 
 export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
@@ -572,6 +591,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "24/7", label: "Real-time monitoring" },
     ],
     techStack: ["Java", "Hibernate", "Socket programming", "Jersey", "Swift", "MySQL", "Azure", "OpenStreetMap", "REST APIs"],
+    gallery: {
+      hero: "/case-studies/camera-telematics/hero.png",
+      heroCaption: "Live fleet operations dashboard — real-time tracking, video evidence, driver scoring.",
+      web: [
+        "/case-studies/camera-telematics/web-1.png",
+        "/case-studies/camera-telematics/image.png",
+      ],
+      webCaptions: [
+        "Map-led tracking with route playback and FNOL evidence.",
+        "Driver scoring and event review across the fleet.",
+      ],
+      mobile: [
+        "/case-studies/camera-telematics/2.png",
+        "/case-studies/camera-telematics/3.png",
+        "/case-studies/camera-telematics/image1.png",
+      ],
+      mobileCaptions: [
+        "Driver dashboard — events and trends at a glance.",
+        "Per-trip telemetry and scoring on the go.",
+        "Vehicle status and quick alerts.",
+      ],
+    },
   },
   {
     slug: "morbidelli-connected",

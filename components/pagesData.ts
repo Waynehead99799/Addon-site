@@ -519,7 +519,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
   },
   {
     slug: "texas-cleaning-service",
-    title: "Statewide Cleaning Marketplace",
+    title: "Nationwide Cleaning Marketplace",
     client: "Confidential",
     industry: "Marketplace · Local Services",
     categories: ["Marketplace"],
@@ -538,7 +538,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { icon: "Chart", title: "Operations dashboard", desc: "Coverage heatmap, dispatch metrics, customer LTV, cleaner utilisation, and dispute queue." },
     ],
     results: [
-      { value: "Statewide", label: "Service coverage" },
+      { value: "Nationwide", label: "Service coverage" },
       { value: "< 30 sec", label: "Booking time" },
       { value: "Recurring", label: "Schedule support" },
       { value: "Stripe", label: "Card-on-file payments" },

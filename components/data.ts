@@ -58,9 +58,9 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "tx-cleaning",
     slug: "texas-cleaning-service",
-    title: "Statewide Cleaning Marketplace",
+    title: "Nationwide Cleaning Marketplace",
     tag: "Marketplace · Local",
-    kpi: "Statewide · homes & offices",
+    kpi: "Nationwide · homes & offices",
     desc: "Reliable, professional cleaning across an entire US state — homes and offices, on-demand booking, dispatch, and recurring schedules under one app.",
     image: "/case-studies/texas-cleaning-service/image.png",
     icon: "Wrench",

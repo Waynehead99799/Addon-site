@@ -49,8 +49,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative border-t border-white/10 mt-8">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+    <footer className="relative border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 pt-10 md:pt-14 pb-12 md:pb-14">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
             <Link href="/" className="flex items-center gap-2.5">

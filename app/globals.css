@@ -43,8 +43,8 @@ html[data-theme="light"] {
   --paper-hi: #FFFFFF;     /* highest surface */
   --ink: #0B1218;          /* deep blue-black */
   --ink-dim: #4A5660;      /* cool slate */
-  --hairline: rgba(11,18,24,0.10);
-  --hairline-strong: rgba(11,18,24,0.18);
+  --hairline: rgba(11,18,24,0.18);
+  --hairline-strong: rgba(11,18,24,0.28);
   --brand-azure-deep: #1F5FAE;
   --brand-teal-deep:  #1E8FA2;
   --brand-green-deep: #1EA874;
@@ -172,24 +172,42 @@ html[data-theme="light"] ::-webkit-scrollbar-track { background: #EFE9DF; }
 html[data-theme="light"] ::-webkit-scrollbar-thumb { background: #C9BFAF; border-radius: 10px; }
 html[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #A89C89; }
 
-/* Tailwind `text-white/NN`, `bg-white/NN`, `border-white/NN` → ink variants */
+/* Tailwind `text-white/NN`, `bg-white/NN`, `border-white/NN` → ink variants.
+   Light-theme alpha bumped up across the board: dim text was hard to read on
+   the sky-wash, and hairline borders were so faint they disappeared on most
+   monitors. Each tier is now a bit denser without crossing into solid black. */
 html[data-theme="light"] .text-white { color: var(--ink); }
-html[data-theme="light"] .text-white\/45 { color: rgb(11 18 24 / 0.52); }
-html[data-theme="light"] .text-white\/50 { color: rgb(11 18 24 / 0.56); }
-html[data-theme="light"] .text-white\/55 { color: rgb(11 18 24 / 0.60); }
-html[data-theme="light"] .text-white\/60 { color: rgb(11 18 24 / 0.64); }
-html[data-theme="light"] .text-white\/65 { color: rgb(11 18 24 / 0.68); }
-html[data-theme="light"] .text-white\/70 { color: rgb(11 18 24 / 0.72); }
-html[data-theme="light"] .text-white\/75 { color: rgb(11 18 24 / 0.76); }
-html[data-theme="light"] .text-white\/80 { color: rgb(11 18 24 / 0.80); }
-html[data-theme="light"] .text-white\/85 { color: rgb(11 18 24 / 0.84); }
-html[data-theme="light"] .text-white\/90 { color: rgb(11 18 24 / 0.90); }
-html[data-theme="light"] .bg-white\/5  { background-color: rgb(11 18 24 / 0.035); }
-html[data-theme="light"] .bg-white\/10 { background-color: rgb(11 18 24 / 0.06); }
-html[data-theme="light"] .border-white\/5  { border-color: rgb(11 18 24 / 0.06); }
-html[data-theme="light"] .border-white\/10 { border-color: rgb(11 18 24 / 0.09); }
-html[data-theme="light"] .border-white\/14 { border-color: rgb(11 18 24 / 0.11); }
-html[data-theme="light"] .border-white\/20 { border-color: rgb(11 18 24 / 0.16); }
+html[data-theme="light"] .text-white\/45 { color: rgb(11 18 24 / 0.66); }
+html[data-theme="light"] .text-white\/50 { color: rgb(11 18 24 / 0.70); }
+html[data-theme="light"] .text-white\/55 { color: rgb(11 18 24 / 0.74); }
+html[data-theme="light"] .text-white\/60 { color: rgb(11 18 24 / 0.78); }
+html[data-theme="light"] .text-white\/65 { color: rgb(11 18 24 / 0.82); }
+html[data-theme="light"] .text-white\/70 { color: rgb(11 18 24 / 0.86); }
+html[data-theme="light"] .text-white\/75 { color: rgb(11 18 24 / 0.88); }
+html[data-theme="light"] .text-white\/80 { color: rgb(11 18 24 / 0.90); }
+html[data-theme="light"] .text-white\/85 { color: rgb(11 18 24 / 0.92); }
+html[data-theme="light"] .text-white\/90 { color: rgb(11 18 24 / 0.94); }
+html[data-theme="light"] .bg-white\/5  { background-color: rgb(11 18 24 / 0.045); }
+html[data-theme="light"] .bg-white\/10 { background-color: rgb(11 18 24 / 0.075); }
+
+/* Arbitrary `bg-white/[0.0X]` Tailwind values aren't covered by the tier
+   utilities above — Tailwind emits literal `rgb(255 255 255 / 0.0X)`. On the
+   sky-wash light bg those low-alpha whites read as either invisible or as a
+   washed-out spot that kills text contrast. Remap each commonly-used arbitrary
+   value to a real paper surface — opaque enough to lift the card off the page
+   and give the dark ink text clear contrast to land on. */
+html[data-theme="light"] .bg-white\/\[0\.015\] { background-color: rgba(255, 255, 255, 0.55) !important; }
+html[data-theme="light"] .bg-white\/\[0\.02\]  { background-color: rgba(255, 255, 255, 0.62) !important; }
+html[data-theme="light"] .bg-white\/\[0\.025\] { background-color: rgba(255, 255, 255, 0.66) !important; }
+html[data-theme="light"] .bg-white\/\[0\.03\]  { background-color: rgba(255, 255, 255, 0.70) !important; }
+html[data-theme="light"] .bg-white\/\[0\.04\]  { background-color: rgba(255, 255, 255, 0.74) !important; }
+html[data-theme="light"] .bg-white\/\[0\.05\]  { background-color: rgba(255, 255, 255, 0.78) !important; }
+html[data-theme="light"] .bg-white\/\[0\.06\]  { background-color: rgba(255, 255, 255, 0.82) !important; }
+html[data-theme="light"] .bg-white\/\[0\.08\]  { background-color: rgba(255, 255, 255, 0.86) !important; }
+html[data-theme="light"] .border-white\/5  { border-color: rgb(11 18 24 / 0.12); }
+html[data-theme="light"] .border-white\/10 { border-color: rgb(11 18 24 / 0.18); }
+html[data-theme="light"] .border-white\/14 { border-color: rgb(11 18 24 / 0.22); }
+html[data-theme="light"] .border-white\/20 { border-color: rgb(11 18 24 / 0.28); }
 
 /* Hero primary CTA — flip white pill to ink pill */
 html[data-theme="light"] .cta-pulse .bg-white { background-color: #0E0C0A !important; color: #F8F4EC !important; }
@@ -1034,17 +1052,24 @@ html[data-theme="light"] .nav-sub-all:hover { background-color: rgba(11, 18, 24,
   content: "";
   position: absolute;
   inset: 0;
+  /* Sit above the Artwork image and any other panel children so the ring
+     traces the entire panel, not just the text body. pointer-events: none
+     keeps clicks/hovers passing through to the inner content. */
+  z-index: 2;
   border-radius: inherit;
   padding: 1px;
+  /* Mostly-transparent base ring so the bottom edge never reads as a hard
+     horizontal line. The bright sweep is the conic gradient's brand-coloured
+     wedge — narrow and rotating, not a continuous border. */
   background: conic-gradient(
     from var(--case-glow-angle, 0deg),
-    transparent 0deg,
-    rgba(var(--case-glow-rgb, 83,146,223), 0.0) 30deg,
-    rgba(var(--case-glow-rgb, 83,146,223), 0.85) 90deg,
-    rgba(255,255,255,0.95) 120deg,
-    rgba(var(--case-glow-rgb, 83,146,223), 0.85) 150deg,
-    rgba(var(--case-glow-rgb, 83,146,223), 0.0) 210deg,
-    transparent 360deg
+    rgba(var(--case-glow-rgb, 83,146,223), 0.18) 0deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.18) 60deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.95) 95deg,
+    rgba(255,255,255,0.85) 110deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.95) 125deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.18) 160deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.18) 360deg
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -1056,7 +1081,7 @@ html[data-theme="light"] .nav-sub-all:hover { background-color: rgba(11, 18, 24,
   mask-composite: exclude;
   pointer-events: none;
   animation: caseGlowSpin 6s linear infinite;
-  opacity: 0.85;
+  opacity: 0.7;
 }
 @property --case-glow-angle {
   syntax: "<angle>";

@@ -30,7 +30,7 @@ const SPANS = [
 
 export default function Services() {
   return (
-    <section id="services" className="section-reveal relative py-20 md:py-28 border-t border-white/10">
+    <section id="services" className="section-reveal relative py-20 md:py-28 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
           <div className="col-span-12 md:col-span-3">

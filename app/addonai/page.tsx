@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { AI_SERVICES } from "@/components/pagesData";
 
 export const metadata: Metadata = {
@@ -34,14 +34,7 @@ export default function AddonAIHub() {
         italicWord="AI service lines."
         rows={rows}
       />
-      <PageCTA
-        eyebrow="Next step"
-        title="Start your AI journey today."
-        italicWord="AI journey today."
-        body="Book a free 30-minute AI strategy session with our experts. We'll assess your use case, recommend an approach, and outline a clear path to production."
-        primaryLabel="Book AI consultation"
-        primaryHref="/contact"
-      />
+      <CTA />
     </PageShell>
   );
 }

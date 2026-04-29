@@ -32,7 +32,7 @@ Inner routes under `app/`:
 - `/case-studies`, `/blog`, `/addonai` — index + dynamic content
 - Internal design previews (excluded from indexing via `robots.txt` / `noindex`): `/theme-preview`, `/carousel-preview`, `/wordmark-preview`
 
-Inner pages render through reusable templates in [components/templates/](components/templates/): `PageShell`, `PageHero`, `PageCTA`, `IndexList`, `ServiceDetail`, `IndustryDetail`, `ArticleDetail`, `CaseStudyDetail`.
+Inner pages render through reusable templates in [components/templates/](components/templates/): `PageShell`, `PageHero`, `IndexList`, `ServiceDetail`, `IndustryDetail`, `ArticleDetail`, `CaseStudyDetail`. Every page closes with the canonical [components/CTA.tsx](components/CTA.tsx) (full editorial headline + 2-col contact form + offices/expectations sidebar) — there is no smaller page-level CTA variant any more, and `/contact` is just `<PageShell><CTA /></PageShell>`.
 
 ### Content vs. presentation
 

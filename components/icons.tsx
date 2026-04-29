@@ -86,6 +86,26 @@ export const ProjectIcon = {
       <path d="M14.7 6.3a4 4 0 0 1 5 5L11 20l-4 1 1-4 7.7-10.7Z" /><path d="m14 8 2 2" />
     </svg>
   ),
+  Bike: (p: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <circle cx={5.5} cy={17} r={3.5} />
+      <circle cx={18.5} cy={17} r={3.5} />
+      <path d="M5.5 17 9 9h4l3 4M13 9h3M9 6h3" />
+    </svg>
+  ),
+  Camera: (p: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M3 8a2 2 0 0 1 2-2h2.5l1.5-2h6l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <circle cx={12} cy={13} r={3.5} />
+    </svg>
+  ),
+  School: (p: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+      <path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5" />
+      <path d="M22 8v6" />
+    </svg>
+  ),
 };
 
 export type ProjectIconName = keyof typeof ProjectIcon;

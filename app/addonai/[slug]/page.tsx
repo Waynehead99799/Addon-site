@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import ServiceDetail from "@/components/templates/ServiceDetail";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { AI_SERVICES } from "@/components/pagesData";
 
 export function generateStaticParams() {
@@ -46,14 +46,7 @@ export default function AIServicePage({ params }: { params: { slug: string } }) 
         featuresTitle={`What production ${s.title.toLowerCase()} requires.`}
         featuresItalic="requires."
       />
-      <PageCTA
-        eyebrow="Next step"
-        title={`Ship ${s.title.toLowerCase()}, for real.`}
-        italicWord="for real."
-        body="A real engineer on the call. Fifteen minutes, no slides."
-        primaryLabel="Book a 15-min call"
-        primaryHref="/contact"
-      />
+      <CTA />
     </PageShell>
   );
 }

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import ArticleDetail from "@/components/templates/ArticleDetail";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { ARTICLES } from "@/components/pagesData";
 
 export function generateStaticParams() {
@@ -37,16 +37,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         ]}
       />
       <ArticleDetail article={a} />
-      <PageCTA
-        eyebrow="Next step"
-        title="Want to learn more?"
-        italicWord="more?"
-        body="Our team can help you implement these ideas for your business."
-        primaryLabel="Talk to an expert"
-        primaryHref="/contact"
-        secondaryLabel="or read more articles"
-        secondaryHref="/blog"
-      />
+      <CTA />
     </PageShell>
   );
 }

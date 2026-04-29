@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 
 export default function AboutTeaser() {
   return (
-    <section id="about" className="section-reveal relative py-20 md:py-28 border-t border-white/10">
+    <section id="about" className="section-reveal relative py-20 md:py-28 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
         <div className="col-span-12 md:col-span-3">
           <div className="eyebrow">About us</div>

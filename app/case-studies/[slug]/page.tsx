@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import CaseStudyDetail from "@/components/templates/CaseStudyDetail";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { CASE_STUDIES_DATA } from "@/components/pagesData";
 
 export function generateStaticParams() {
@@ -44,16 +44,7 @@ export default function CaseStudyPage({
         ]}
       />
       <CaseStudyDetail cs={c} />
-      <PageCTA
-        eyebrow="Next step"
-        title="Want similar results?"
-        italicWord="similar results?"
-        body="Every project starts with understanding your unique challenges. Let's build something great together."
-        primaryLabel="Start your project"
-        primaryHref="/contact"
-        secondaryLabel="or browse more work"
-        secondaryHref="/case-studies"
-      />
+      <CTA />
     </PageShell>
   );
 }

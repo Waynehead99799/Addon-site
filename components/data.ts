@@ -16,22 +16,105 @@ export const STATS = [
 
 export type CaseStudy = {
   id: string;
+  /** Slug of the matching case-study detail page under /case-studies/[slug] */
+  slug: string;
   title: string;
   tag: string;
   kpi: string;
   desc: string;
-  icon: "Truck" | "Gauge" | "Sparkle" | "Route" | "Bowl" | "Wrench";
+  /** Cover image. Drop the file in public/case-studies/<slug>/ and point here.
+   *  Falls back to the synthetic gradient `Artwork` if image is empty. */
+  image?: string;
+  icon: "Truck" | "Gauge" | "Sparkle" | "Route" | "Bowl" | "Wrench" | "Bike" | "Camera" | "School";
   palette: [string, string, string];
   board: "map" | "chat" | "grid" | "gauge" | "ride" | "order";
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
-  { id: "fleet", title: "Fleet Telematics with Live Video", tag: "IoT · Enterprise", kpi: "4,000 vehicles · 150M events/day", desc: "Real-time GPS, video, and driver scoring for a leading EU fleet operator. Running since 2016.", icon: "Truck", palette: ["#F4A261", "#E76F51", "#264653"], board: "map" },
-  { id: "ai", title: "AI-Driven Maternal Health", tag: "AI · Healthcare", kpi: "150K users · ML-personalized", desc: "Symptom tracking, wearable integration, and personalized care plans powered by on-device ML.", icon: "Sparkle", palette: ["#FFE5A0", "#F4A261", "#7B2D26"], board: "chat" },
-  { id: "handy", title: "On-Demand Cleaning Marketplace", tag: "Marketplace", kpi: "5,000+ vetted pros", desc: "Booking, dispatch, and real-time tracking connecting homeowners to a vetted service network.", icon: "Wrench", palette: ["#D4E09B", "#A7C957", "#386641"], board: "grid" },
-  { id: "obd", title: "OBD-II Diagnostics Suite", tag: "IoT · Consumer", kpi: "4.8★ App Store", desc: "Bluetooth dongle + companion app with live engine telemetry, DTCs, and trip reports.", icon: "Gauge", palette: ["#B5E48C", "#52B788", "#1B4332"], board: "gauge" },
-  { id: "cab", title: "On-Demand Mobility", tag: "Marketplace", kpi: "3.2M rides", desc: "Rider, driver, and ops apps with dynamic dispatch, surge, and multi-currency settlement.", icon: "Route", palette: ["#FFD166", "#EF476F", "#073B4C"], board: "ride" },
-  { id: "food", title: "Multi-Vendor Food Platform", tag: "Marketplace", kpi: "12-city rollout", desc: "Storefront, POS, rider, and partner console — one shared domain core.", icon: "Bowl", palette: ["#F7B267", "#F4845F", "#5E3023"], board: "order" },
+  {
+    id: "road-devil",
+    slug: "road-devil",
+    title: "Vehicle Intelligence Platform",
+    tag: "AI · Hardware · IP",
+    kpi: "Vertically integrated · trade-mark protected",
+    desc: "A vertically integrated vehicle intelligence platform — proprietary AI algorithms, real-time notifications, and owned hardware IP turning video and driver data into action.",
+    image: "/case-studies/road-devil/image.png",
+    icon: "Camera",
+    palette: ["#FF5A36", "#D6FF5C", "#0E0B0A"],
+    board: "gauge",
+  },
+  {
+    id: "pe-platform",
+    slug: "pe-assessment-platform",
+    title: "Standards-Based PE Assessment",
+    tag: "Education · Health",
+    kpi: "Standards-aligned · district reports",
+    desc: "Ditch paper grids. Turn mandatory PE testing into personalized goals, SEL journals, and standards-based workouts — clear growth reports without administrative burnout.",
+    image: "/case-studies/pe-assessment-platform/image.png",
+    icon: "School",
+    palette: ["#5dd5ab", "#2dbcd2", "#0E0B0A"],
+    board: "chat",
+  },
+  {
+    id: "tx-cleaning",
+    slug: "texas-cleaning-service",
+    title: "Statewide Cleaning Marketplace",
+    tag: "Marketplace · Local",
+    kpi: "Statewide · homes & offices",
+    desc: "Reliable, professional cleaning across an entire US state — homes and offices, on-demand booking, dispatch, and recurring schedules under one app.",
+    image: "/case-studies/texas-cleaning-service/image.png",
+    icon: "Wrench",
+    palette: ["#D4E09B", "#A7C957", "#1B4332"],
+    board: "grid",
+  },
+  {
+    id: "camera-telematics",
+    slug: "camera-telematics",
+    title: "Fleet Telematics & Asset Safety",
+    tag: "IoT · Telematics",
+    kpi: "40+ years of camera engineering · multi-sector",
+    desc: "Premier telematics for safeguarding assets and mitigating risk — seaports, airports, roadside maintenance, haulage, motor fleets. Built on four decades of camera engineering.",
+    image: "/case-studies/camera-telematics/image.png",
+    icon: "Truck",
+    palette: ["#5392df", "#2dbcd2", "#0E0B0A"],
+    board: "map",
+  },
+  {
+    id: "morbidelli",
+    slug: "morbidelli-connected",
+    title: "Connected Motorcycle Companion App",
+    tag: "Connected Vehicle · iOS · Android",
+    kpi: "Real-time diagnostics · SOS · ride community",
+    desc: "Native iOS and Android companion app for connected motorcycles — live diagnostics, smart navigation, panic SOS, remote engine immobilization, and rider community radar.",
+    image: "/case-studies/morbidelli-connected/image.png",
+    icon: "Bike",
+    palette: ["#EF476F", "#FFD166", "#073B4C"],
+    board: "ride",
+  },
+  {
+    id: "motwi",
+    slug: "motwi-platform",
+    title: "Multi-Region Brand & Product Platform",
+    tag: "Brand · Web · International",
+    kpi: "Multi-locale · EN · CN",
+    desc: "Multi-language brand and product platform for an international lifestyle motorcycle brand — global product showcases, distributor program, and editorial content.",
+    image: "/case-studies/motwi-platform/image.png",
+    icon: "Sparkle",
+    palette: ["#2877d7", "#34cb96", "#0E0B0A"],
+    board: "order",
+  },
+  {
+    id: "keeway",
+    slug: "keeway-global",
+    title: "Global Motorcycle Brand Platform",
+    tag: "Brand · Global · Multi-region",
+    kpi: "International distribution · full lineup",
+    desc: "Global web platform for an international motorcycle brand — immersive product pages, store locator, distributor recruitment, and embedded video across multiple regions.",
+    image: "/case-studies/keeway-global/image.png",
+    icon: "Bike",
+    palette: ["#F4A261", "#E76F51", "#264653"],
+    board: "ride",
+  },
 ];
 
 export const PROCESS = [

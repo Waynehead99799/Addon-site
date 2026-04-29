@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { Reveal } from "@/components/Reveal";
 import { getFeatureIcon } from "@/components/featureIcons";
 
@@ -84,14 +84,7 @@ export default function WhyUsPage() {
         </div>
       </section>
 
-      <PageCTA
-        eyebrow="Next step"
-        title="Ready to experience the difference?"
-        italicWord="the difference?"
-        body="Businesses across 10+ countries trust Addon Web Solutions to build their most critical technology."
-        primaryLabel="Start a conversation"
-        primaryHref="/contact"
-      />
+      <CTA />
     </PageShell>
   );
 }

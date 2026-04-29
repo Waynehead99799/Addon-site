@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { INDUSTRIES } from "@/components/pagesData";
 
 export const metadata: Metadata = {
@@ -34,16 +34,7 @@ export default function IndustriesHub() {
         italicWord="one operating method."
         rows={rows}
       />
-      <PageCTA
-        eyebrow="Next step"
-        title="Transform your industry."
-        italicWord="your industry."
-        body="Tell us which vertical you're in. We'll share patterns, pitfalls, and prior work that map to your problem."
-        primaryLabel="Start a conversation"
-        primaryHref="/contact"
-        secondaryLabel="or browse case studies"
-        secondaryHref="/case-studies"
-      />
+      <CTA />
     </PageShell>
   );
 }

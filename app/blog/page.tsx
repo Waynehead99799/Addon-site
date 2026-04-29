@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { ARTICLES } from "@/components/pagesData";
 
 export const metadata: Metadata = {
@@ -33,14 +33,7 @@ export default function BlogHub() {
         italicWord="from the team."
         rows={rows}
       />
-      <PageCTA
-        eyebrow="Next step"
-        title="Want to discuss any of this?"
-        italicWord="any of this?"
-        body="We're always up for a conversation about AI, architecture, or whatever is keeping you up at night."
-        primaryLabel="Get in touch"
-        primaryHref="/contact"
-      />
+      <CTA />
     </PageShell>
   );
 }

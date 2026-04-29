@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { Reveal } from "@/components/Reveal";
 import { getFeatureIcon } from "@/components/featureIcons";
 
@@ -108,14 +108,7 @@ export default function HireDevelopersPage() {
         </div>
       </section>
 
-      <PageCTA
-        eyebrow="Next step"
-        title="Scale your team today."
-        italicWord="your team today."
-        body="Tell us what you need. We'll match you with the right engineers inside 48 hours."
-        primaryLabel="Hire developers"
-        primaryHref="/contact"
-      />
+      <CTA />
     </PageShell>
   );
 }

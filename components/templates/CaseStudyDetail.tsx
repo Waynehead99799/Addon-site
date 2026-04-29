@@ -17,9 +17,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                 {c}
               </span>
             ))}
-            <span className="text-[13px] text-white/40 ml-1 serif-italic">
-              for {cs.client}
-            </span>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 border-t border-white/10">

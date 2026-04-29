@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { CASE_STUDIES_DATA } from "@/components/pagesData";
 
 export const metadata: Metadata = {
@@ -33,14 +33,7 @@ export default function CaseStudiesHub() {
         italicWord="measurable outcomes."
         rows={rows}
       />
-      <PageCTA
-        eyebrow="Next step"
-        title="Want similar results?"
-        italicWord="similar results?"
-        body="Every project starts with understanding your unique challenges. Let's build something great together."
-        primaryLabel="Start your project"
-        primaryHref="/contact"
-      />
+      <CTA />
     </PageShell>
   );
 }

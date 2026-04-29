@@ -372,9 +372,30 @@ For new routes, reach for the templates in [components/templates/](components/te
 - `PageHero` — standard top hero with optional breadcrumbs
 - `ServiceDetail` / `IndustryDetail` / `CaseStudyDetail` / `ArticleDetail`
 - `IndexList` — 12-column editorial row list (used for `/services`, `/industries`, `/case-studies`, `/blog` hubs)
-- `PageCTA` — final call-to-action block
+- The closing CTA on every page is the home-page [components/CTA.tsx](components/CTA.tsx) — full editorial display headline ("Let's build / something worth shipping."), 2-column contact form, plus the offices / email / "what to expect" sidebar. Always import that, never write a smaller variant.
 
 Don't build a new page layout from scratch — extend one of these.
+
+### UI primitive library
+
+For sections, headlines, eyebrows, kickers, big numerics, tags, cards, and buttons — use the centralised primitives in [components/ui/](components/ui/) instead of re-declaring inline class strings. Single barrel import:
+
+```tsx
+import { Section, SectionHeader, Headline, StatNumeric, Tag, TagRow, Card, Button } from "@/components/ui";
+```
+
+| Primitive | Replaces |
+|---|---|
+| `Section` | `<section className="relative py-20 md:py-28 border-t border-white/5">` + `<div className="max-w-7xl mx-auto px-6">` wrapper |
+| `SectionHeader` | The 3/9 grid eyebrow + serif-italic kicker + display headline |
+| `Headline` (+ `HeadlineAccent`) | Display headlines with the split italic accent |
+| `Eyebrow`, `Kicker` | Standalone versions when only one is needed |
+| `StatNumeric` | Big rose-gold gradient numbers ("150+", "01", "99.7%") |
+| `Tag` (+ `TagRow`) | Mono-uppercase chips, tech-stack pills, brand-tinted badges |
+| `Card` | Surface cards with the four hover patterns (default / bordered / manifesto / image-led) |
+| `Button` | All four CTA families (primary / accent / ghost / secondary) |
+
+Full usage docs live in [.claude/skills/ui-primitives/SKILL.md](.claude/skills/ui-primitives/SKILL.md) — that skill auto-loads on any UI work and covers signatures, props, examples, and the rule for promoting a new pattern to a primitive.
 
 ---
 

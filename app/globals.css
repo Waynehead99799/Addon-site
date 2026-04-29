@@ -1022,9 +1022,71 @@ html[data-theme="light"] .nav-sub-all:hover { background-color: rgba(11, 18, 24,
 /* Detail panel — fades + slides up on active change. The panel is keyed off
    active.id in JSX so this animation re-fires every switch. */
 .case-panel {
+  position: relative;
   animation: casePanelIn 380ms cubic-bezier(.2,.7,.2,1);
   transition: border-color 320ms ease;
+  /* Surface the brand-azure / accent gradient as a moving conic ring around
+     the panel. The ::before draws the conic, ::after masks the inner so only
+     the rim shows. --case-glow-rgb is set inline per-project. */
+  isolation: isolate;
 }
+.case-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--case-glow-angle, 0deg),
+    transparent 0deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.0) 30deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.85) 90deg,
+    rgba(255,255,255,0.95) 120deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.85) 150deg,
+    rgba(var(--case-glow-rgb, 83,146,223), 0.0) 210deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: caseGlowSpin 6s linear infinite;
+  opacity: 0.85;
+}
+@property --case-glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes caseGlowSpin {
+  to { --case-glow-angle: 360deg; }
+}
+/* Browsers without @property fall back to a static gradient ring — still
+   distinct, just doesn't rotate. */
+@supports not (background: paint(spinner)) {
+  .case-panel::before { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-panel::before { animation: none; opacity: 0.55; }
+}
+
+/* Theme-aware fade & icon badge for the case-study artwork.
+   Use --bg so the fade ends in the page colour on both themes. */
+.case-art-fade {
+  background: linear-gradient(180deg, transparent 50%, var(--bg) 100%);
+}
+.case-art-icon {
+  background: rgba(20, 16, 14, 0.55);
+}
+html[data-theme="light"] .case-art-icon {
+  background: rgba(250, 253, 255, 0.85);
+}
+
 @keyframes casePanelIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }

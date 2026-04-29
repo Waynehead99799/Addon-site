@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { SERVICES_DATA } from "@/components/pagesData";
 
 export const metadata: Metadata = {
@@ -34,16 +34,7 @@ export default function ServicesHub() {
         italicWord="one seamless experience."
         rows={rows}
       />
-      <PageCTA
-        eyebrow="07 / Enquire"
-        title="Let's build your next digital product."
-        italicWord="next digital product."
-        body="Tell us about your project and receive a detailed technical proposal, timeline, and cost estimate within 48 hours — no commitment required."
-        primaryLabel="Request a proposal"
-        primaryHref="/contact"
-        secondaryLabel="or hire developers"
-        secondaryHref="/hire-dedicated-developers"
-      />
+      <CTA />
     </PageShell>
   );
 }

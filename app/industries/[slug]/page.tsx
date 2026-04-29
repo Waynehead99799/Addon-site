@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndustryDetail from "@/components/templates/IndustryDetail";
-import PageCTA from "@/components/templates/PageCTA";
+import CTA from "@/components/CTA";
 import { INDUSTRIES } from "@/components/pagesData";
 
 export function generateStaticParams() {
@@ -44,16 +44,7 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
         solutions={i.solutions}
         stats={i.stats}
       />
-      <PageCTA
-        eyebrow="Next step"
-        title={`Transform your ${i.title.toLowerCase()} business.`}
-        italicWord={`${i.title.toLowerCase()} business.`}
-        body="Let us show you how our technology solutions can address your specific industry challenges."
-        primaryLabel="Schedule consultation"
-        primaryHref="/contact"
-        secondaryLabel="or view case studies"
-        secondaryHref="/case-studies"
-      />
+      <CTA />
     </PageShell>
   );
 }

@@ -4,3 +4,7 @@ out
 .env*.local
 next-env.d.ts
 screenshots
+screenshots-audit
+screenshots-light-audit
+screenshots-after
+

@@ -27,7 +27,7 @@ const TECHS: Tech[] = [
 
 export default function Logos() {
   return (
-    <section className="section-reveal relative border-t border-b border-white/10 bg-black/30 backdrop-blur-sm">
+    <section className="logos-band section-reveal relative border-t border-b border-white/10 bg-black/30 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-8 md:py-10 grid md:grid-cols-12 gap-4 md:gap-10 items-center">
         <div className="md:col-span-3">
           <div className="eyebrow">Technologies</div>

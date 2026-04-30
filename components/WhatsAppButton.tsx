@@ -14,6 +14,7 @@ export default function WhatsAppButton() {
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
       className="whatsapp-fab fixed bottom-5 right-5 md:bottom-7 md:right-7 z-50 w-14 h-14 rounded-full grid place-items-center"
+      style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
       <span className="whatsapp-fab-pulse" aria-hidden />
       <svg

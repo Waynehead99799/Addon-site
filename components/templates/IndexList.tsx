@@ -1,4 +1,7 @@
+"use client";
 import Link from "next/link";
+import { useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { Icon } from "../icons";
 import { Reveal } from "../Reveal";
 
@@ -8,6 +11,7 @@ export type IndexRow = {
   desc: string;
   tags?: string[];
   meta?: string; // right-side meta (e.g. "4.8 · App store")
+  cover?: string; // optional image shown floating with the cursor on hover
 };
 
 export default function IndexList({
@@ -36,26 +40,53 @@ export default function IndexList({
     }
     return title;
   };
+
+  const hasCovers = rows.some((r) => r.cover);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+  // Cursor position relative to the rows container — sprung for a soft trailing feel.
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 220, damping: 28, mass: 0.6 });
+  const sy = useSpring(y, { stiffness: 220, damping: 28, mass: 0.6 });
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    x.set(e.clientX - rect.left);
+    y.set(e.clientY - rect.top);
+  };
+
+  const activeCover = activeIdx != null ? rows[activeIdx]?.cover : undefined;
+
   return (
-    <section className="relative py-16 md:py-24 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative py-14 md:py-20 lg:py-24 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">{eyebrow}</div>
             <div className="mt-3 serif-italic text-white/55 text-[15px]">{kicker}</div>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="text-[34px] md:text-[48px] lg:text-[56px] font-semibold tracking-[-0.02em] leading-[1.04]">
+            <h2 className="text-[28px] sm:text-[32px] md:text-[48px] lg:text-[56px] font-semibold tracking-[-0.02em] leading-[1.04]">
               {renderTitle()}
             </h2>
           </div>
         </div>
 
-        <div className="border-t border-white/10">
+        <div
+          ref={containerRef}
+          onMouseMove={hasCovers ? onMove : undefined}
+          onMouseLeave={hasCovers ? () => setActiveIdx(null) : undefined}
+          className="relative border-t border-white/10"
+        >
           {rows.map((r, i) => (
             <Reveal key={r.href} delay={i * 30} y={14}>
               <Link
                 href={r.href}
+                onMouseEnter={() => r.cover && setActiveIdx(i)}
+                onMouseLeave={() => setActiveIdx((cur) => (cur === i ? null : cur))}
                 className="index-row group block border-b border-white/10 px-2 md:px-4 py-6 md:py-7"
               >
                 <div className="grid grid-cols-12 gap-4 md:gap-8 items-start md:items-center">
@@ -97,6 +128,34 @@ export default function IndexList({
               </Link>
             </Reveal>
           ))}
+
+          {hasCovers && (
+            <motion.div
+              aria-hidden
+              className="hidden md:block pointer-events-none absolute top-0 left-0 z-20 -translate-x-1/2 -translate-y-1/2 will-change-transform"
+              style={{ x: sx, y: sy }}
+            >
+              <AnimatePresence mode="wait">
+                {activeCover && (
+                  <motion.div
+                    key={activeCover}
+                    initial={{ opacity: 0, scale: 0.92, y: 8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 4 }}
+                    transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+                    className="relative w-[320px] lg:w-[380px] aspect-[4/3] rounded-2xl overflow-hidden border border-white/15 bg-black/60 backdrop-blur-md shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={activeCover}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-contain p-3"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

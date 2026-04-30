@@ -30,23 +30,23 @@ const SPANS = [
 
 export default function Services() {
   return (
-    <section id="services" className="section-reveal relative py-20 md:py-28 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
+    <section id="services" className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">Services</div>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="text-[40px] md:text-[56px] lg:text-[68px] font-semibold tracking-[-0.02em] leading-[1.02]">
+            <h2 className="text-[32px] sm:text-[40px] md:text-[56px] lg:text-[68px] font-semibold tracking-[-0.02em] leading-[1.02]">
               One partner, <span className="serif-italic font-normal text-white/70">six ways</span> to ship.
             </h2>
-            <p className="mt-5 max-w-lg text-white/60 text-[15px] leading-relaxed">
+            <p className="mt-5 max-w-lg text-white/60 text-[14px] md:text-[15px] leading-relaxed">
               From the first prototype to a platform at scale. Pick the brief that fits — we&apos;ve run every one of these more than once.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 md:auto-rows-[220px] gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:auto-rows-[220px] gap-4">
           {SERVICES.map((s, i) => {
             const IconC = Icon[s.icon as IconName];
             const accent = SERVICE_ACCENTS[s.id] ?? SERVICE_ACCENTS.ai;
@@ -74,7 +74,7 @@ export default function Services() {
                   </div>
                   <h3
                     className={`relative mt-auto pt-6 font-semibold tracking-[-0.02em] leading-[1.02] ${
-                      isLarge ? "text-[42px] md:text-[52px]" : "text-[22px] md:text-[26px]"
+                      isLarge ? "text-[34px] sm:text-[42px] md:text-[52px]" : "text-[22px] md:text-[26px]"
                     }`}
                   >
                     {s.title.split(" ").slice(0, -1).join(" ")}{" "}

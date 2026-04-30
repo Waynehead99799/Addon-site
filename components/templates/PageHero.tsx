@@ -41,8 +41,8 @@ export default function PageHero({
   };
 
   return (
-    <section className="relative pt-36 md:pt-44 pb-16 md:pb-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative pt-28 md:pt-36 lg:pt-44 pb-12 md:pb-20 lg:pb-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         {crumbs && crumbs.length > 0 && (
           <Reveal y={10}>
             <nav className="flex items-center gap-2 text-[11.5px] font-mono uppercase tracking-[0.2em] text-white/40 mb-6">
@@ -61,13 +61,13 @@ export default function PageHero({
           <div className="eyebrow mb-6">{eyebrow}</div>
         </Reveal>
         <Reveal delay={80} y={20}>
-          <h1 className="font-semibold tracking-[-0.02em] leading-[0.98] text-[42px] sm:text-[56px] md:text-[72px] lg:text-[86px] max-w-5xl">
+          <h1 className="font-semibold tracking-[-0.02em] leading-[0.98] text-[36px] sm:text-[48px] md:text-[72px] lg:text-[86px] max-w-5xl">
             {renderTitle()}
           </h1>
         </Reveal>
         {subtitle && (
           <Reveal delay={160} y={18}>
-            <p className="mt-8 text-[16px] md:text-[18px] text-white/65 max-w-[44rem] leading-[1.55]">
+            <p className="mt-6 md:mt-8 text-[15px] md:text-[18px] text-white/65 max-w-[44rem] leading-[1.55]">
               {subtitle}
             </p>
           </Reveal>

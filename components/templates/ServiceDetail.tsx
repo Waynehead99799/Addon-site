@@ -36,15 +36,15 @@ export default function ServiceDetail({
   return (
     <>
       {/* CAPABILITIES */}
-      <section className="relative py-20 md:py-28 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-16">
+      <section className="relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-16">
             <div className="col-span-12 md:col-span-3">
               <div className="eyebrow">{featuresEyebrow}</div>
               <div className="mt-3 serif-italic text-white/55 text-[15px]">{featuresKicker}</div>
             </div>
             <div className="col-span-12 md:col-span-9">
-              <h2 className="text-[36px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.02em] leading-[1.04]">
+              <h2 className="text-[28px] sm:text-[32px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.02em] leading-[1.04]">
                 {renderHeader()}
               </h2>
             </div>
@@ -62,7 +62,7 @@ export default function ServiceDetail({
                     i % 3 !== 2 ? "lg:border-r" : ""
                   } ${i % 2 === 0 ? "md:border-r lg:border-r" : ""}`}
                 >
-                  <div className="p-7 md:p-8 h-full">
+                  <div className="p-6 md:p-8 h-full">
                     <div className="flex items-center justify-between">
                       <div className="w-11 h-11 rounded-xl glass-lite grid place-items-center">
                         <IconC width={18} height={18} className="text-white/80" />
@@ -86,8 +86,8 @@ export default function ServiceDetail({
       </section>
 
       {/* PROCESS + TECH */}
-      <section className="relative py-20 md:py-28 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
+      <section className="relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">02 / How we deliver</div>
             <div className="mt-3 serif-italic text-white/55 text-[15px]">Work that compounds.</div>
@@ -97,16 +97,16 @@ export default function ServiceDetail({
               {process.map((step, i) => (
                 <Reveal key={step} delay={i * 60} y={16}>
                   <div className="flex items-baseline gap-4 py-5 border-b border-white/10">
-                    <span className="serif-italic text-[28px] text-white/40 leading-none">
+                    <span className="serif-italic text-[24px] md:text-[28px] text-white/40 leading-none">
                       {String(i + 1).padStart(2, "0")}.
                     </span>
-                    <span className="text-[17px] md:text-[18px] font-medium">{step}</span>
+                    <span className="text-[16px] md:text-[18px] font-medium">{step}</span>
                   </div>
                 </Reveal>
               ))}
             </div>
 
-            <div className="mt-14">
+            <div className="mt-10 md:mt-14">
               <div className="eyebrow mb-5">Tools we reach for</div>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((t) => (

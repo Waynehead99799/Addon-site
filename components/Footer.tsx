@@ -50,9 +50,9 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 pt-10 md:pt-14 pb-12 md:pb-14">
-        <div className="grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-14 pb-12 md:pb-14">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10">
+          <div className="col-span-2 md:col-span-4">
             <Link href="/" className="flex items-center gap-2.5">
               <Logo size={36} />
               <span className="flex flex-col leading-none">
@@ -72,7 +72,7 @@ export default function Footer() {
             <div className="mt-6 text-[12.5px] text-white/45 font-mono">hello@addonweb.com</div>
           </div>
           {cols.map((c) => (
-            <div key={c.t} className="md:col-span-2">
+            <div key={c.t} className="col-span-1 md:col-span-2">
               <div className="eyebrow mb-5">{c.t}</div>
               <ul className="space-y-2.5">
                 {c.l.map((i) => (
@@ -90,11 +90,11 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="mt-12 md:mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="text-[12px] text-white/40 font-mono">
             © 2026 Addon Web Solutions · All rights reserved
           </div>
-          <div className="flex items-center gap-4 text-[12px] text-white/45">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-white/45">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> All systems operational
             </span>
@@ -113,7 +113,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 select-none">
+        <div className="mt-12 md:mt-16 select-none overflow-hidden">
           <div
             className="font-semibold tracking-[-0.05em] leading-[0.82] headline-grad opacity-[0.08] whitespace-nowrap"
             style={{ fontSize: "clamp(1.4rem, 7.2vw, 6.5rem)" }}

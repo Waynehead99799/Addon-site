@@ -17,14 +17,14 @@ export default function Testimonials() {
   const c = COMPANIES[active] ?? COMPANIES[0];
 
   return (
-    <section id="testimonials" className="section-reveal relative py-20 md:py-28 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12">
+    <section id="testimonials" className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-12">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">Trusted</div>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-semibold tracking-[-0.02em] leading-[1.05]">
+            <h2 className="text-[32px] sm:text-[36px] md:text-[48px] lg:text-[56px] font-semibold tracking-[-0.02em] leading-[1.05]">
               The kind of partner{" "}
               <span className="serif-italic font-normal text-white/70">you rehire</span>.
             </h2>
@@ -78,17 +78,17 @@ export default function Testimonials() {
           <div className="col-span-12 md:col-span-7">
             <div
               key={t.n}
-              className="test-panel rounded-2xl border bg-white/[0.02] p-8 md:p-10 h-full flex flex-col justify-center"
+              className="test-panel rounded-2xl border bg-white/[0.02] p-6 sm:p-8 md:p-10 h-full flex flex-col justify-center"
               style={{ borderColor: `rgba(${c.rgb}, 0.30)` }}
             >
               <span
-                className="test-quote-mark serif-italic text-[60px] md:text-[80px] leading-none mb-2"
+                className="test-quote-mark serif-italic text-[48px] sm:text-[60px] md:text-[80px] leading-none mb-2"
                 style={{ color: `rgba(${c.rgb}, 0.35)` }}
                 aria-hidden
               >
                 &ldquo;
               </span>
-              <blockquote className="test-quote serif-italic text-[24px] md:text-[34px] leading-[1.18] tracking-[-0.01em] text-white/90 -mt-4">
+              <blockquote className="test-quote serif-italic text-[20px] sm:text-[24px] md:text-[34px] leading-[1.22] md:leading-[1.18] tracking-[-0.01em] text-white/90 -mt-4">
                 {t.q}
               </blockquote>
               <div className="test-cite mt-7 flex items-center gap-3">

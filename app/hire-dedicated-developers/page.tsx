@@ -37,15 +37,15 @@ export default function HireDevelopersPage() {
       />
 
       {/* Roles */}
-      <section className="relative py-20 md:py-28 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12">
+      <section className="relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-12">
             <div className="col-span-12 md:col-span-3">
               <div className="eyebrow">01 / Roles</div>
               <div className="mt-3 serif-italic text-white/55 text-[15px]">On the bench.</div>
             </div>
             <div className="col-span-12 md:col-span-9">
-              <h2 className="text-[36px] md:text-[52px] font-semibold tracking-[-0.02em] leading-[1.04]">
+              <h2 className="text-[28px] sm:text-[32px] md:text-[52px] font-semibold tracking-[-0.02em] leading-[1.04]">
                 Six specialisations,{" "}
                 <span className="serif-italic font-normal text-white/70">one bench.</span>
               </h2>
@@ -63,7 +63,7 @@ export default function HireDevelopersPage() {
                     i % 3 !== 2 ? "lg:border-r" : ""
                   } ${i % 2 === 0 ? "md:border-r lg:border-r" : ""}`}
                 >
-                  <div className="p-7 md:p-8 h-full">
+                  <div className="p-6 md:p-8 h-full">
                     <div className="w-11 h-11 rounded-xl glass-lite grid place-items-center">
                       <IconC width={18} height={18} className="text-white/80" />
                     </div>
@@ -80,8 +80,8 @@ export default function HireDevelopersPage() {
       </section>
 
       {/* How it works */}
-      <section className="relative py-20 md:py-28 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
+      <section className="relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">02 / How it works</div>
             <div className="mt-3 serif-italic text-white/55 text-[15px]">Ramp in days.</div>
@@ -90,16 +90,16 @@ export default function HireDevelopersPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {STEPS.map((s, i) => (
                 <Reveal key={s.t} delay={i * 60} y={16}>
-                  <div className="py-6 border-b border-white/10">
-                    <div className="flex items-baseline gap-4 mb-2">
-                      <span className="serif-italic text-[28px] text-white/40 leading-none">
+                  <div className="py-5 md:py-6 border-b border-white/10">
+                    <div className="flex items-baseline gap-3 sm:gap-4 mb-2">
+                      <span className="serif-italic text-[24px] md:text-[28px] text-white/40 leading-none">
                         {String(i + 1).padStart(2, "0")}.
                       </span>
-                      <span className="text-[19px] font-medium">
+                      <span className="text-[17px] md:text-[19px] font-medium">
                         <span className="serif-italic font-normal text-white/90">{s.t}.</span>
                       </span>
                     </div>
-                    <p className="text-[14px] text-white/55 leading-relaxed ml-12">{s.d}</p>
+                    <p className="text-[13.5px] md:text-[14px] text-white/55 leading-relaxed ml-10 sm:ml-12">{s.d}</p>
                   </div>
                 </Reveal>
               ))}

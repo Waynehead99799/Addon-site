@@ -15,7 +15,7 @@ export function Field({
   helper?: string;
   size?: "default" | "lg";
 }) {
-  const padding = size === "lg" ? "px-4 py-3.5 text-[15px]" : "px-3.5 py-2.5 text-[14px]";
+  const padding = size === "lg" ? "px-4 py-3.5 text-[16px] md:text-[15px]" : "px-3.5 py-3 text-[16px] md:py-2.5 md:text-[14px]";
   return (
     <label className="block">
       <span className="block text-[10.5px] uppercase tracking-[0.18em] text-white/45 font-mono mb-1.5">{label}</span>
@@ -40,7 +40,7 @@ export function SelectField({
   helper?: string;
   size?: "default" | "lg";
 }) {
-  const padding = size === "lg" ? "px-4 py-3.5 text-[15px]" : "px-3.5 py-2.5 text-[14px]";
+  const padding = size === "lg" ? "px-4 py-3.5 text-[16px] md:text-[15px]" : "px-3.5 py-3 text-[16px] md:py-2.5 md:text-[14px]";
   return (
     <label className="block">
       <span className="block text-[10.5px] uppercase tracking-[0.18em] text-white/45 font-mono mb-1.5">{label}</span>
@@ -71,7 +71,7 @@ export function TextAreaField({
       <textarea
         rows={rows}
         placeholder={placeholder}
-        className="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 text-[14px] text-white placeholder-white/30 focus:outline-none focus:border-white/30 transition resize-none"
+        className="w-full px-3.5 py-3 md:py-2.5 rounded-lg bg-white/[0.04] border border-white/10 text-[16px] md:text-[14px] text-white placeholder-white/30 focus:outline-none focus:border-white/30 transition resize-none"
       />
       {helper && <span className="block mt-1.5 text-[11.5px] text-white/45">{helper}</span>}
     </label>

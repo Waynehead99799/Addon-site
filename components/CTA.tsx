@@ -16,8 +16,8 @@ const STATS = [
 
 export default function CTA() {
   return (
-    <section id="contact" className="section-reveal relative py-20 md:py-28 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="contact" className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">Enquire</div>
@@ -27,7 +27,7 @@ export default function CTA() {
               <span className="relative w-1.5 h-1.5 rounded-full bg-emerald-400 dot-pulse" />
               Accepting engagements — Q3 2026 · two slots remaining
             </div>
-            <h2 className="text-[44px] md:text-[68px] lg:text-[84px] font-semibold tracking-[-0.02em] leading-[0.98]">
+            <h2 className="text-[36px] sm:text-[44px] md:text-[68px] lg:text-[84px] font-semibold tracking-[-0.02em] leading-[0.98]">
               Let&apos;s build<br />
               <span className="serif-italic font-normal text-white/80">something worth shipping.</span>
             </h2>
@@ -38,7 +38,7 @@ export default function CTA() {
           {/* Form (compact 2-col) */}
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="col-span-12 md:col-span-7 rounded-2xl border border-white/10 bg-white/[0.02] p-7 md:p-8"
+            className="col-span-12 md:col-span-7 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-7 md:p-8"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
               <Field label="Name" placeholder="Your name" />

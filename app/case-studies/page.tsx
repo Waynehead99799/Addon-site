@@ -11,11 +11,19 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesHub() {
+  const COVER_OVERRIDES: Record<string, string> = {
+    "camera-telematics": "/case-studies/camera-telematics/image.png",
+  };
+
   const rows = CASE_STUDIES_DATA.map((c) => ({
     href: `/case-studies/${c.slug}`,
     title: c.title,
     desc: c.subtitle,
     tags: c.categories.slice(0, 2),
+    cover:
+      COVER_OVERRIDES[c.slug] ??
+      c.gallery?.hero ??
+      `/case-studies/${c.slug}/image.png`,
   }));
 
   return (

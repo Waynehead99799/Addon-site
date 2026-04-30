@@ -37,8 +37,8 @@ export default function WhyUsPage() {
       />
 
       {/* Differentiators */}
-      <section className="relative py-20 md:py-28 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
+      <section className="relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">01 / Differentiators</div>
             <div className="mt-3 serif-italic text-white/55 text-[15px]">What separates us.</div>
@@ -48,15 +48,15 @@ export default function WhyUsPage() {
               const IconC = getFeatureIcon(d.icon);
               return (
                 <Reveal key={d.t} delay={i * 60} y={16}>
-                  <div className="flex gap-6 pb-8 border-b border-white/10">
-                    <div className="w-12 h-12 rounded-xl glass-lite grid place-items-center shrink-0">
+                  <div className="flex gap-4 sm:gap-6 pb-7 md:pb-8 border-b border-white/10">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl glass-lite grid place-items-center shrink-0">
                       <IconC width={18} height={18} className="text-white/85" />
                     </div>
-                    <div>
-                      <h3 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.01em] mb-2">
+                    <div className="min-w-0">
+                      <h3 className="text-[19px] sm:text-[22px] md:text-[24px] font-semibold tracking-[-0.01em] mb-2">
                         <span className="serif-italic font-normal text-white/90">{d.t}.</span>
                       </h3>
-                      <p className="text-[15px] text-white/65 leading-relaxed max-w-2xl">{d.d}</p>
+                      <p className="text-[14px] md:text-[15px] text-white/65 leading-relaxed max-w-2xl">{d.d}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -67,12 +67,12 @@ export default function WhyUsPage() {
       </section>
 
       {/* Stats */}
-      <section className="relative py-16 md:py-20 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
+      <section className="relative py-12 md:py-20 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           {STATS.map((s, i) => (
             <Reveal key={s.l} delay={i * 60} y={18} className="col-span-6 md:col-span-3">
-              <div className="py-6 border-l-2 border-white/10 pl-6">
-                <div className="text-[48px] md:text-[60px] font-semibold tracking-[-0.03em] leading-none headline-grad">
+              <div className="py-5 md:py-6 border-l-2 border-white/10 pl-4 md:pl-6">
+                <div className="text-[34px] sm:text-[44px] md:text-[60px] font-semibold tracking-[-0.03em] leading-none headline-grad">
                   {s.v}
                 </div>
                 <div className="mt-3 text-[11.5px] font-mono uppercase tracking-[0.18em] text-white/50">

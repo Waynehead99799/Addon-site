@@ -49,7 +49,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-6 px-3 sm:px-6 md:px-8 pointer-events-none">
       <div
         className={`pointer-events-auto transition-all duration-500 ${
           scrolled ? "max-w-5xl" : "max-w-7xl"
@@ -65,7 +65,7 @@ export default function Nav() {
             <span className="logo-mount inline-flex">
               <Logo size={56} />
             </span>
-            <span className="wordmark-mount hidden sm:inline-flex flex-col leading-none">
+            <span className="wordmark-mount inline-flex flex-col leading-none">
               <span className="font-semibold tracking-[-0.02em] text-[20px] whitespace-nowrap">
                 Addon Web
               </span>
@@ -180,10 +180,10 @@ export default function Nav() {
           {/* mobile burger */}
           <button
             onClick={() => setOpen((o) => !o)}
-            className="md:hidden ml-auto w-9 h-9 rounded-full glass-lite grid place-items-center flex-shrink-0"
+            className="md:hidden ml-auto w-11 h-11 rounded-full glass-lite grid place-items-center flex-shrink-0"
             aria-label="Toggle menu"
           >
-            {open ? <Icon.X width={16} height={16} /> : <Icon.Menu width={16} height={16} />}
+            {open ? <Icon.X width={18} height={18} /> : <Icon.Menu width={18} height={18} />}
           </button>
         </div>
 
@@ -199,14 +199,14 @@ export default function Nav() {
                     <Link
                       href={n.href}
                       onClick={() => setOpen(false)}
-                      className="flex-1 px-3 py-2 rounded-xl text-sm text-white/80 hover:bg-white/5"
+                      className="flex-1 px-3 py-3 rounded-xl text-[15px] text-white/80 hover:bg-white/5"
                     >
                       {n.label}
                     </Link>
                     {hasChildren && (
                       <button
                         onClick={() => setMobileOpen(isOpen ? null : n.label)}
-                        className="w-9 h-9 rounded-xl hover:bg-white/5 grid place-items-center"
+                        className="w-11 h-11 rounded-xl hover:bg-white/5 grid place-items-center"
                         aria-label={`Toggle ${n.label} sub-menu`}
                       >
                         <svg
@@ -234,7 +234,7 @@ export default function Nav() {
                           key={c.href}
                           href={c.href}
                           onClick={() => setOpen(false)}
-                          className="block px-3 py-1.5 rounded-lg text-[13px] text-white/55 hover:text-white hover:bg-white/5"
+                          className="block px-3 py-2.5 rounded-lg text-[14px] text-white/55 hover:text-white hover:bg-white/5"
                         >
                           {c.label}
                         </Link>
@@ -250,7 +250,7 @@ export default function Nav() {
               className="nav-cta mt-2 rounded-xl accent-grad p-[1.5px]"
             >
               <span
-                className="nav-cta-inner block rounded-[10px] px-3 py-2 text-sm font-medium text-center"
+                className="nav-cta-inner block rounded-[10px] px-3 py-3 text-[15px] font-medium text-center"
                 style={{ background: "var(--bg)", color: "var(--ink)" }}
               >
                 Start a project

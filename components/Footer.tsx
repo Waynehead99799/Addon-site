@@ -6,13 +6,11 @@ export default function Footer() {
     {
       t: "AddonAI",
       l: [
-        { label: "AI Development", href: "/addonai/ai-development" },
         { label: "AI Consulting", href: "/addonai/ai-consulting" },
         { label: "Generative AI", href: "/addonai/generative-ai-development" },
         { label: "AI Chatbots", href: "/addonai/ai-chatbot-development" },
         { label: "AI Agents", href: "/addonai/ai-agents-development" },
         { label: "Machine Learning", href: "/addonai/machine-learning-development" },
-        { label: "Computer Vision", href: "/addonai/computer-vision" },
         { label: "RAG Development", href: "/addonai/rag-development" },
       ],
     },
@@ -22,7 +20,6 @@ export default function Footer() {
         { label: "Mobile Apps", href: "/services/mobile-app-development" },
         { label: "Web Development", href: "/services/web-development" },
         { label: "IoT Development", href: "/services/iot-development" },
-        { label: "Blockchain", href: "/services/blockchain-solutions" },
         { label: "Cloud Services", href: "/services/cloud-services" },
         { label: "Digital Transformation", href: "/services/digital-transformation" },
         { label: "Quality Assurance", href: "/services/quality-assurance" },
@@ -69,7 +66,7 @@ export default function Footer() {
               Engineering intelligent digital products.{" "}
               <span className="serif-italic text-white/75">Shipping since 2011.</span>
             </p>
-            <div className="mt-6 text-[12.5px] text-white/45 font-mono">hello@addonweb.com</div>
+            <div className="mt-6 text-[12.5px] text-white/45 font-mono">sales@addonwebsolutions.com</div>
           </div>
           {cols.map((c) => (
             <div key={c.t} className="col-span-1 md:col-span-2">
@@ -98,16 +95,28 @@ export default function Footer() {
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> All systems operational
             </span>
-            <a href="#" className="hover:text-white">
-              Status
-            </a>
-            <a href="#" className="hover:text-white">
+            <a
+              href="https://x.com/addonwebsol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               X / Twitter
             </a>
-            <a href="#" className="hover:text-white">
+            <a
+              href="https://www.linkedin.com/company/addon-web-solutions/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               LinkedIn
             </a>
-            <a href="#" className="hover:text-white">
+            <a
+              href="https://github.com/addonwebsolutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               GitHub
             </a>
           </div>

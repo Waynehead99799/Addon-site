@@ -125,9 +125,21 @@ export const PROCESS = [
 ] as const;
 
 export const TESTIMONIALS = [
-  { q: "They shipped in six weeks what our in-house team couldn't in six months.", n: "Priya Natarajan", r: "VP Product, Lumen Health" },
-  { q: "Took our IoT concept from a breadboard to a fleet of 20k devices. They own the full stack.", n: "Marcus Feld", r: "CTO, Veritrack" },
-  { q: "Felt like hiring a senior team — without the 9-month runway.", n: "Sofia Alvarez", r: "Founder, Handywise" },
+  {
+    q: "We've worked with Addon for over twelve years — the platform underpinning our camera systems is theirs. Stable, dependable, and proactive. A trusted long-term technology partner.",
+    n: "Stephen Kennedy",
+    r: "Chairman, Camera Telematics Ltd · UK & Ireland",
+  },
+  {
+    q: "They translated my vision into functional, user-friendly applications and offered valuable improvements along the way. Reliable, detail-oriented, and committed to outcomes.",
+    n: "Joseph Larnyoh",
+    r: "CEO, Nature Checkout Inc · USA",
+  },
+  {
+    q: "Every feature was developed on time and executed flawlessly. They understood the requirements and delivered exactly what was promised. The output exceeded my expectations.",
+    n: "Jerry Gupta",
+    r: "Nyaay-AI · USA",
+  },
 ] as const;
 
 export const NAV = [

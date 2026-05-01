@@ -46,7 +46,12 @@ export function SelectField({
       <span className="block text-[10.5px] uppercase tracking-[0.18em] text-white/45 font-mono mb-1.5">{label}</span>
       <select className={`w-full ${padding} rounded-lg bg-white/[0.04] border border-white/10 text-white focus:outline-none focus:border-white/30 transition`}>
         {options.map((o) => (
-          <option key={o} className="bg-[#0e0b0a]">{o}</option>
+          <option
+            key={o}
+            style={{ background: "var(--bg)", color: "var(--ink)" }}
+          >
+            {o}
+          </option>
         ))}
       </select>
       {helper && <span className="block mt-1.5 text-[11.5px] text-white/45">{helper}</span>}

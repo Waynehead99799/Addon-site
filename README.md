@@ -52,7 +52,7 @@ None required for the current site. If you add any (analytics, form backends, CM
 ### Things to verify before shipping to prod
 
 - **WhatsApp number** in [components/WhatsAppButton.tsx](components/WhatsAppButton.tsx) (`WHATSAPP_NUMBER` + `DEFAULT_MESSAGE`) — currently set to 91 9879003017.
-- **Footer email** in [components/Footer.tsx](components/Footer.tsx) (`hello@addonweb.com` placeholder).
+- **Footer email** in [components/Footer.tsx](components/Footer.tsx) (`sales@addonwebsolutions.com` placeholder).
 - **Nav "About" link** in [components/data.ts](components/data.ts) points to `/about`.
 - **Metadata** in [app/layout.tsx](app/layout.tsx) — title/description.
 - **Favicon / social OG image** — add to `public/` if desired (not present by default).

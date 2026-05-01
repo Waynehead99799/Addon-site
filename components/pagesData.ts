@@ -19,22 +19,6 @@ export type AIService = {
 
 export const AI_SERVICES: AIService[] = [
   {
-    slug: "ai-development",
-    title: "AI Development",
-    eyebrow: "Production-grade AI",
-    subtitle: "End-to-end AI application development from data pipelines to production deployment.",
-    features: [
-      { icon: "Database", title: "Data pipeline design", desc: "Scalable ETL pipelines that ingest, transform, and prepare data from any source for model training and inference." },
-      { icon: "Cpu", title: "Custom model training", desc: "Fine-tune models on your proprietary data using state-of-the-art architectures and hyperparameter optimization." },
-      { icon: "Server", title: "MLOps & deployment", desc: "Production-grade deployment with CI/CD pipelines, A/B testing, model versioning, and automated retraining." },
-      { icon: "Shield", title: "AI governance", desc: "Built-in bias detection, explainability layers, and compliance monitoring for responsible AI deployment." },
-      { icon: "Chart", title: "Performance monitoring", desc: "Real-time dashboards tracking model drift, accuracy metrics, latency, and business KPI impact." },
-      { icon: "Plug", title: "API-first architecture", desc: "RESTful and GraphQL APIs with auto-scaling, rate limiting, and comprehensive documentation." },
-    ],
-    process: ["Discovery & data audit", "Architecture design", "Model development", "Testing & validation", "Deployment & monitoring", "Continuous optimization"],
-    techStack: ["Python", "TensorFlow", "PyTorch", "AWS SageMaker", "MLflow", "Kubernetes", "Docker", "Apache Spark"],
-  },
-  {
     slug: "ai-consulting",
     title: "AI Consulting",
     eyebrow: "Strategy before stack",
@@ -115,38 +99,6 @@ export const AI_SERVICES: AIService[] = [
     techStack: ["scikit-learn", "XGBoost", "LightGBM", "TensorFlow", "Apache Spark", "MLflow", "Airflow", "AWS SageMaker"],
   },
   {
-    slug: "computer-vision",
-    title: "Computer Vision",
-    eyebrow: "Pixels to decisions",
-    subtitle: "Image recognition, object detection, and visual analytics solutions.",
-    features: [
-      { icon: "Target", title: "Object detection & tracking", desc: "Real-time detection and tracking of objects across video streams for surveillance, retail analytics, and autonomous systems." },
-      { icon: "Search", title: "Visual quality inspection", desc: "Automated defect detection for manufacturing, achieving sub-millimeter accuracy and replacing manual inspection workflows." },
-      { icon: "File", title: "OCR & document processing", desc: "Extract structured data from invoices, receipts, forms, and handwritten documents with intelligent field mapping." },
-      { icon: "Smile", title: "Facial recognition", desc: "Secure identity verification, emotion analysis, and demographic analytics for access control and customer experience." },
-      { icon: "Image", title: "Image segmentation", desc: "Pixel-level segmentation for medical imaging, satellite analysis, autonomous driving, and augmented reality." },
-      { icon: "Video", title: "Video analytics", desc: "Automated event detection, activity recognition, and behaviour analysis across multi-camera video surveillance systems." },
-    ],
-    process: ["Data collection & labelling", "Model architecture", "Training & augmentation", "Edge optimisation", "Integration & testing", "Deployment & monitoring"],
-    techStack: ["OpenCV", "YOLO", "TensorRT", "ONNX", "PyTorch", "NVIDIA Triton", "AWS Rekognition", "Edge TPU"],
-  },
-  {
-    slug: "rpa-development",
-    title: "RPA Development",
-    eyebrow: "Automating the boring",
-    subtitle: "Robotic process automation that eliminates repetitive manual tasks.",
-    features: [
-      { icon: "Bot", title: "Process automation bots", desc: "Software robots that handle data entry, file transfers, form filling, and repetitive tasks across any desktop or web application." },
-      { icon: "File", title: "Intelligent document processing", desc: "Combine OCR, NLP, and machine learning to extract, classify, and route information from unstructured documents." },
-      { icon: "Refresh", title: "Workflow orchestration", desc: "End-to-end orchestration of multi-system workflows with scheduling, error handling, and SLA monitoring." },
-      { icon: "Gauge", title: "Process mining", desc: "Discover and analyse existing business processes from system logs to identify automation candidates and bottlenecks." },
-      { icon: "People", title: "Attended automation", desc: "Digital assistants that work alongside employees, automating routine steps while humans handle exceptions and decisions." },
-      { icon: "Chart", title: "ROI analytics", desc: "Dashboards tracking bot performance, hours saved, error reduction, and cost savings per automated process." },
-    ],
-    process: ["Process discovery", "Feasibility assessment", "Bot development", "Testing & UAT", "Deployment & training", "Monitoring & optimisation"],
-    techStack: ["UiPath", "Automation Anywhere", "Power Automate", "Python", "Selenium", "API Integration", "OCR Engines", "Azure"],
-  },
-  {
     slug: "rag-development",
     title: "RAG Development",
     eyebrow: "Grounded generation",
@@ -223,22 +175,6 @@ export const SERVICES_DATA: Service[] = [
     ],
     process: ["Hardware assessment", "Architecture design", "Firmware development", "Cloud integration", "Security hardening", "Deployment & monitoring"],
     techStack: ["AWS IoT Core", "MQTT", "Raspberry Pi", "Arduino", "TensorFlow Lite", "InfluxDB", "Grafana", "Kubernetes"],
-  },
-  {
-    slug: "blockchain-solutions",
-    title: "Blockchain Solutions",
-    eyebrow: "Smart contracts · Web3",
-    subtitle: "Smart contracts, DeFi platforms, and decentralised applications.",
-    features: [
-      { icon: "File", title: "Smart contracts", desc: "Secure, audited smart contracts on Ethereum, Solana, and Polygon for DeFi, NFTs, governance, and supply chain." },
-      { icon: "Coin", title: "DeFi platforms", desc: "Decentralised exchanges, lending protocols, yield aggregators, and liquidity pools with robust security auditing." },
-      { icon: "Image", title: "NFT marketplaces", desc: "Custom NFT minting, marketplace, and auction platforms with royalty management and multi-chain support." },
-      { icon: "Network", title: "Supply chain tracking", desc: "Immutable ledger systems for end-to-end supply chain provenance, authentication, and compliance verification." },
-      { icon: "Wallet", title: "Wallet integration", desc: "Web3 wallet connections with MetaMask, WalletConnect, and custodial solutions for seamless user onboarding." },
-      { icon: "Shield", title: "Security auditing", desc: "Comprehensive smart contract audits covering reentrancy, overflow, access control, and economic exploit vectors." },
-    ],
-    process: ["Use case analysis", "Token economics", "Smart contract development", "Security audit", "Testnet deployment", "Mainnet launch"],
-    techStack: ["Solidity", "Rust", "Ethereum", "Solana", "Polygon", "Hardhat", "Web3.js", "IPFS"],
   },
   {
     slug: "product-consulting",
@@ -469,6 +405,10 @@ export type CaseStudyDetail = {
   client: string;
   industry: string;
   categories: string[];
+  /** Square thumbnail / client mark used in card grids and the cursor-preview
+   *  on the index page. Recommended 320×320 PNG with a transparent or solid
+   *  background. Falls back to `gallery.hero` if not set. */
+  profile?: string;
   subtitle: string;
   overview: string;
   challenge: string;
@@ -486,6 +426,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "AI & Connected Vehicle",
     categories: ["IoT & Telematics", "AI & ML"],
+    profile: "/case-studies/road-devil/profile.png",
     subtitle: "Vertically integrated vehicle intelligence — proprietary AI, real-time alerts, and owned hardware IP. UK trade-mark protected.",
     overview: "A complete vehicle intelligence stack — from in-vehicle hardware and embedded firmware through proprietary AI inference, real-time event notifications, fleet dashboards, and a managed licensing programme. Owned hardware IP, owned algorithms, owned go-to-market.",
     challenge: "Operators of high-value fleets — cash-in-transit, petroleum carriers, sensitive logistics — needed more than passive black-box recording. They needed cameras that recognised events as they happened, prioritised them by severity, and pushed verifiable evidence to insurers within minutes of an incident. Off-the-shelf telematics hardware shipped with closed firmware, no AI, and reactive workflows that couldn't survive a serious claim cycle.",
@@ -507,6 +448,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "Minutes", label: "FNOL packet delivery" },
     ],
     techStack: ["Java", "Python", "ONNX", "Edge inference", "Socket programming", "MySQL", "Azure", "REST APIs", "OBD-II"],
+    gallery: {
+      hero: "/case-studies/road-devil/hero.png",
+      heroCaption: "Vehicle intelligence dashboard — owned hardware, owned AI, owned IP.",
+      web: [
+        "/case-studies/road-devil/web-1.png",
+        "/case-studies/road-devil/web-2.png",
+      ],
+      webCaptions: [
+        "Live fleet view with severity-ranked events.",
+        "FNOL evidence packet builder with multi-camera playback.",
+      ],
+      mobile: [
+        "/case-studies/road-devil/mobile-1.png",
+        "/case-studies/road-devil/mobile-2.png",
+        "/case-studies/road-devil/mobile-3.png",
+      ],
+      mobileCaptions: [
+        "Driver app — alerts and trip review.",
+        "Severity-ranked event feed.",
+        "Vehicle health and OBD-II diagnostics.",
+      ],
+    },
   },
   {
     slug: "pe-assessment-platform",
@@ -514,6 +477,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "Education & Health",
     categories: ["Healthcare", "Education & Fitness"],
+    profile: "/case-studies/pe-assessment-platform/profile.png",
     subtitle: "The only platform that turns mandatory PE testing into student growth — national fitness protocols, presidential standards, and district tests, all in one place.",
     overview: "Ditch paper grids. Ditch the spreadsheet that lives on the gym teacher's laptop. The platform digitises national fitness testing, presidential youth-fitness programmes, and district-level tests, then converts the raw scores into personalised goals, SEL journals, and standards-based workouts — generating clear growth reports that admins and parents can read at a glance, without the burnout.",
     challenge: "Physical education teachers across the US still administer mandatory fitness testing on paper. Scores get re-entered into spreadsheets weeks later, longitudinal tracking across multiple academic years is essentially impossible, parents see nothing, and growth — the actual signal that should drive curriculum — gets lost in the administrative noise. The same teacher who designed thoughtful lessons spent half their week on data entry instead of teaching.",
@@ -535,6 +499,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "FERPA", label: "Compliant from day one" },
     ],
     techStack: ["React", "Node.js", "PostgreSQL", "AWS", "Docker", "Redis", "Chart.js", "PDF generation"],
+    gallery: {
+      hero: "/case-studies/pe-assessment-platform/hero.png",
+      heroCaption: "Standards-based PE assessment dashboard — district-wide growth at a glance.",
+      web: [
+        "/case-studies/pe-assessment-platform/web-1.png",
+        "/case-studies/pe-assessment-platform/web-2.png",
+      ],
+      webCaptions: [
+        "Class roster with live assessment capture and auto-scoring.",
+        "Multi-year growth report — student trajectory across grades.",
+      ],
+      mobile: [
+        "/case-studies/pe-assessment-platform/mobile-1.png",
+        "/case-studies/pe-assessment-platform/mobile-2.png",
+        "/case-studies/pe-assessment-platform/mobile-3.png",
+      ],
+      mobileCaptions: [
+        "Student SEL journal — effort and reflection alongside the data.",
+        "Standards-based workout recommendation per student.",
+        "Parent portal — read-only growth view.",
+      ],
+    },
   },
   {
     slug: "texas-cleaning-service",
@@ -542,6 +528,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "Marketplace · Local Services",
     categories: ["Marketplace"],
+    profile: "/case-studies/texas-cleaning-service/profile.png",
     subtitle: "Reliable, professional cleaning across an entire US state — homes and offices, on-demand booking, dispatch, and recurring schedules.",
     overview: "A statewide cleaning marketplace covering homes and offices. Customers book in seconds, see vetted cleaners with real reviews, get real-time arrival ETAs, and pay through a single saved card. Recurring schedules, last-minute availability, and a satisfaction guarantee bring customers back.",
     challenge: "A growing regional cleaning company was running their entire business on phone calls, SMS, and a paper schedule pinned to the office wall. Booking a clean took eight minutes on the phone. Cleaners would no-show or get the wrong address. Repeat customers had to re-explain their preferences every visit. Reviews lived only on Google. There was no path to scale without hiring three more dispatchers.",
@@ -563,6 +550,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "Stripe", label: "Card-on-file payments" },
     ],
     techStack: ["React", "Node.js", "PostgreSQL", "Stripe", "Google Maps API", "Redis", "AWS", "Socket.io"],
+    gallery: {
+      hero: "/case-studies/texas-cleaning-service/hero.png",
+      heroCaption: "Statewide cleaning marketplace — booking, dispatch, and recurring schedules.",
+      web: [
+        "/case-studies/texas-cleaning-service/web-1.png",
+        "/case-studies/texas-cleaning-service/web-2.png",
+      ],
+      webCaptions: [
+        "Customer booking flow — under thirty seconds end-to-end.",
+        "Operations dashboard — coverage map and dispute queue.",
+      ],
+      mobile: [
+        "/case-studies/texas-cleaning-service/mobile-1.png",
+        "/case-studies/texas-cleaning-service/mobile-2.png",
+        "/case-studies/texas-cleaning-service/mobile-3.png",
+      ],
+      mobileCaptions: [
+        "Cleaner app — one-tap job accept with directions.",
+        "In-app messaging with photo sharing.",
+        "Customer ride-tracking with live ETA.",
+      ],
+    },
   },
   {
     slug: "camera-telematics",
@@ -570,6 +579,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "IoT & Telematics",
     categories: ["IoT & Telematics", "Enterprise & CRM"],
+    profile: "/case-studies/camera-telematics/profile.png",
     subtitle: "Forty years of camera engineering, applied to fleet safety. Solutions safeguarding assets across seaports, airports, roadside maintenance, haulage, and motor fleets.",
     overview: "A long-established camera-systems specialist needed to evolve from a hardware-only business into a complete software platform. We built the modern software stack that pairs with their hardware — multi-tenant fleet dashboards, role-based admin, real-time vehicle tracking with OpenStreetMap, OBD-II vehicle diagnostics, driver scoring, and a complete REST API suite for vendor integrations. Running in production across thousands of vehicles since 2016.",
     challenge: "The client needed to evolve from a hardware-only business into a full software platform without disrupting their existing customer base. They needed to handle real-time video streaming from thousands of in-vehicle units, process 150M+ daily GPS data points, integrate OBD-II diagnostics over Bluetooth, surface configurable driver-behaviour scoring, and let vendors embed the system inside their own platforms via APIs — all while keeping the hardware-software pairing rock-solid.",
@@ -596,16 +606,16 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       heroCaption: "Live fleet operations dashboard — real-time tracking, video evidence, driver scoring.",
       web: [
         "/case-studies/camera-telematics/web-1.png",
-        "/case-studies/camera-telematics/image.png",
+        "/case-studies/camera-telematics/web-2.png",
       ],
       webCaptions: [
         "Map-led tracking with route playback and FNOL evidence.",
         "Driver scoring and event review across the fleet.",
       ],
       mobile: [
-        "/case-studies/camera-telematics/2.png",
-        "/case-studies/camera-telematics/3.png",
-        "/case-studies/camera-telematics/image1.png",
+        "/case-studies/camera-telematics/mobile-1.png",
+        "/case-studies/camera-telematics/mobile-2.png",
+        "/case-studies/camera-telematics/mobile-3.png",
       ],
       mobileCaptions: [
         "Driver dashboard — events and trends at a glance.",
@@ -620,6 +630,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "Connected Vehicle · Mobile",
     categories: ["IoT & Telematics", "Marketplace"],
+    profile: "/case-studies/morbidelli-connected/profile.png",
     subtitle: "Native iOS and Android companion app for connected motorcycles — real-time diagnostics, smart navigation, panic SOS, and a riding community radar.",
     overview: "The companion app pairs with the bike via QR-code activation and turns ownership into a connected experience — live engine diagnostics, turn-by-turn navigation, an emergency SOS panic mode that immobilises the engine below 20 km/h, ride statistics, and a community radar showing nearby riders of the same brand. iOS and Android, online with offline-capable ride logging, multiple bikes per account, 24/7 chat support.",
     challenge: "An international motorcycle brand wanted to extend the customer experience from showroom into the rider's everyday life. Riders increasingly expect the same connected-vehicle features they get from car platforms: live diagnostics, navigation, anti-theft, community. Off-the-shelf white-label apps couldn't speak the brand's design language or integrate with the manufacturer's specific telematics hardware, and a fragmented experience would dilute the brand at exactly the touchpoint that matters most.",
@@ -641,6 +652,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "Offline-capable", label: "Ride logging" },
     ],
     techStack: ["Swift", "Kotlin", "React Native", "Node.js", "PostgreSQL", "MQTT", "Firebase", "AWS"],
+    gallery: {
+      hero: "/case-studies/morbidelli-connected/hero.png",
+      heroCaption: "Connected motorcycle companion app — pair, ride, protect, connect.",
+      web: [
+        "/case-studies/morbidelli-connected/web-1.png",
+        "/case-studies/morbidelli-connected/web-2.png",
+      ],
+      webCaptions: [
+        "Owner web portal — fleet view across multiple bikes.",
+        "Service history and ownership transfer flow.",
+      ],
+      mobile: [
+        "/case-studies/morbidelli-connected/mobile-1.png",
+        "/case-studies/morbidelli-connected/mobile-2.png",
+        "/case-studies/morbidelli-connected/mobile-3.png",
+      ],
+      mobileCaptions: [
+        "QR pairing — zero-friction setup on first launch.",
+        "Live engine diagnostics streamed from the bike.",
+        "Community radar — nearby riders of the same brand.",
+      ],
+    },
   },
   {
     slug: "motwi-platform",
@@ -648,6 +681,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "Brand Web · International",
     categories: ["Marketplace", "Education & Fitness"],
+    profile: "/case-studies/motwi-platform/profile.png",
     subtitle: "Multi-language brand and product platform for an international lifestyle motorcycle brand — global product showcases, distributor program, and editorial content.",
     overview: "An international lifestyle motorcycle brand needed a unified global web presence — product pages, regional storefront variants (English and Chinese localisations), distributor recruitment, store finder, and editorial content — all rendered through a shared design system that can scale to additional regions without bespoke per-locale builds.",
     challenge: "The brand needed a single web platform that could serve multiple international markets simultaneously — different languages, different product lineups per region, different distributor programmes — without forking the codebase per locale. Their previous setup duplicated the same WordPress install per market, so every brand update required N parallel deploys, and the product catalogue drifted between regions within weeks.",
@@ -669,6 +703,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "Editor-led", label: "Content updates" },
     ],
     techStack: ["Next.js", "React", "TypeScript", "Headless CMS", "i18n routing", "Vercel", "Edge runtime"],
+    gallery: {
+      hero: "/case-studies/motwi-platform/hero.png",
+      heroCaption: "Multi-region brand and product platform — one engine, many markets.",
+      web: [
+        "/case-studies/motwi-platform/web-1.png",
+        "/case-studies/motwi-platform/web-2.png",
+      ],
+      webCaptions: [
+        "Global product page with localised spec table.",
+        "Distributor recruitment with country-routed lead capture.",
+      ],
+      mobile: [
+        "/case-studies/motwi-platform/mobile-1.png",
+        "/case-studies/motwi-platform/mobile-2.png",
+        "/case-studies/motwi-platform/mobile-3.png",
+      ],
+      mobileCaptions: [
+        "Locale-aware product browse on mobile.",
+        "Store locator with map integration.",
+        "Editorial story with shareable embeds.",
+      ],
+    },
   },
   {
     slug: "keeway-global",
@@ -676,6 +732,7 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "Brand Web · Global",
     categories: ["Marketplace"],
+    profile: "/case-studies/keeway-global/profile.png",
     subtitle: "Global web platform for an international motorcycle brand — immersive product pages for the 125–250cc lineup, store locator, distributor recruitment, and embedded video.",
     overview: "A flagship lightweight-motorcycle brand needed a unified international web platform. We delivered immersive product pages across the full lineup, supported international distribution via a store locator and distributor recruitment programme, and integrated social media for lifestyle marketing. Built on the same multi-locale platform powering the brand's sibling property, with its own design language layered on top.",
     challenge: "The brand sells across dozens of countries through independent distributors. The previous web presence was a static brochure that didn't reflect the brand's lifestyle positioning, couldn't easily add new product launches, and offered no clear path for prospective distributors to engage. Different regional sites used different visual languages, fragmenting the brand identity riders were supposed to recognise.",
@@ -697,6 +754,28 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
       { value: "Shared core", label: "Cross-brand platform" },
     ],
     techStack: ["Next.js", "React", "TypeScript", "Headless CMS", "Google Maps", "i18n routing", "YouTube API", "Vercel"],
+    gallery: {
+      hero: "/case-studies/keeway-global/hero.png",
+      heroCaption: "Global motorcycle brand platform — immersive product pages, store locator, distribution.",
+      web: [
+        "/case-studies/keeway-global/web-1.png",
+        "/case-studies/keeway-global/web-2.png",
+      ],
+      webCaptions: [
+        "Hero product page with embedded video and spec table.",
+        "Store locator with geolocation and contact links.",
+      ],
+      mobile: [
+        "/case-studies/keeway-global/mobile-1.png",
+        "/case-studies/keeway-global/mobile-2.png",
+        "/case-studies/keeway-global/mobile-3.png",
+      ],
+      mobileCaptions: [
+        "Lifestyle-led product browse on mobile.",
+        "Lineup gallery with quick spec compare.",
+        "Distributor sign-up form with regional routing.",
+      ],
+    },
   },
 ];
 

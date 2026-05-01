@@ -68,7 +68,7 @@ export default function CaseStudies() {
         {/* List + panel */}
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           {/* Index list — hover/focus/click sets active project */}
-          <ul className="col-span-12 md:col-span-5">
+          <ul className="col-span-12 md:col-span-4">
             {CASE_STUDIES.map((c, i) => {
               const isActive = active === i;
               return (
@@ -76,11 +76,10 @@ export default function CaseStudies() {
                   key={c.id}
                   className={i === N - 1 ? "" : "border-b border-white/10"}
                 >
-                  <button
+                  <div
                     onMouseEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    onClick={() => setActive(i)}
-                    className={`case-row w-full text-left flex items-center gap-4 py-4 md:py-5 px-2 transition-colors ${
+                    className={`case-row relative w-full flex items-center gap-4 py-4 md:py-5 px-2 transition-colors ${
                       isActive
                         ? "is-active text-white"
                         : "text-white/55 hover:text-white/85"
@@ -88,33 +87,53 @@ export default function CaseStudies() {
                     style={{ ["--accent" as string]: c.palette[0] }}
                   >
                     <span className="case-row-bar" aria-hidden />
-                    <span
-                      className="case-row-num text-[10.5px] font-mono uppercase tracking-[0.2em] w-10 shrink-0"
-                      style={isActive ? { color: c.palette[0] } : undefined}
+                    <button
+                      type="button"
+                      onClick={() => setActive(i)}
+                      className="flex-1 min-w-0 text-left flex items-center gap-4"
                     >
-                      / 0{i + 1}
-                    </span>
-                    <span className="flex-1 min-w-0">
-                      <span className="case-row-title block text-[17px] md:text-[20px] font-semibold tracking-[-0.01em] leading-[1.2]">
-                        {c.title}
+                      <span
+                        className="case-row-num text-[10.5px] font-mono uppercase tracking-[0.2em] w-10 shrink-0"
+                        style={isActive ? { color: c.palette[0] } : undefined}
+                      >
+                        / 0{i + 1}
                       </span>
-                      <span className="block mt-0.5 text-[11px] md:text-[11.5px] text-white/45 font-mono uppercase tracking-[0.14em]">
-                        {c.tag}
+                      <span className="flex-1 min-w-0">
+                        <span className="case-row-title block text-[17px] md:text-[20px] font-semibold tracking-[-0.01em] leading-[1.2]">
+                          {c.title}
+                        </span>
+                        <span className="block mt-0.5 text-[11px] md:text-[11.5px] text-white/45 font-mono uppercase tracking-[0.14em]">
+                          {c.tag}
+                        </span>
                       </span>
-                    </span>
-                    <Icon.ArrowUpRight
-                      width={14}
-                      height={14}
-                      className="case-row-arrow text-white/35 shrink-0"
-                    />
-                  </button>
+                    </button>
+                    <Link
+                      href={`/case-studies/${c.slug}`}
+                      aria-label={`Open ${c.title} case study`}
+                      className="group/arrow shrink-0 grid place-items-center w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/15 text-white/55 hover:text-white hover:border-white/40 transition-colors"
+                      style={
+                        isActive
+                          ? {
+                              borderColor: c.palette[0] + "66",
+                              color: c.palette[0],
+                            }
+                          : undefined
+                      }
+                    >
+                      <Icon.ArrowUpRight
+                        width={14}
+                        height={14}
+                        className="transition-transform group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5"
+                      />
+                    </Link>
+                  </div>
                 </li>
               );
             })}
           </ul>
 
           {/* Sticky panel that swaps as `active` changes */}
-          <div className="col-span-12 md:col-span-7">
+          <div className="col-span-12 md:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={cs.id}
@@ -159,10 +178,7 @@ export default function CaseStudies() {
                     </div>
                   </div>
 
-                  <h3 className="mt-6 text-[24px] md:text-[30px] lg:text-[34px] font-semibold tracking-[-0.01em] leading-[1.08]">
-                    {cs.title}
-                  </h3>
-                  <p className="mt-3 text-[14.5px] md:text-[15.5px] text-white/65 leading-[1.6]">
+                  <p className="mt-6 text-[14.5px] md:text-[15.5px] text-white/65 leading-[1.6]">
                     {cs.desc}
                   </p>
 
@@ -222,7 +238,7 @@ function Artwork({ cs }: { cs: CaseStudy }) {
   // Real screenshot path — drop the cover image at /case-studies/<slug>/<file>
   if (cs.image) {
     return (
-      <div className="case-art relative aspect-[16/10] md:h-[260px] lg:h-[300px] md:aspect-auto overflow-hidden bg-white/[0.02]">
+      <div className="case-art relative aspect-[16/10] md:h-[420px] lg:h-[500px] md:aspect-auto overflow-hidden bg-white/[0.02]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={cs.image}
@@ -252,7 +268,7 @@ function Artwork({ cs }: { cs: CaseStudy }) {
   // Fallback synthetic gradient — used while a project's screenshots are pending
   return (
     <div
-      className="case-art relative aspect-[16/10] md:h-[260px] lg:h-[300px] md:aspect-auto overflow-hidden"
+      className="case-art relative aspect-[16/10] md:h-[420px] lg:h-[500px] md:aspect-auto overflow-hidden"
       style={{ background: c3 }}
     >
       <div

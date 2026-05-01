@@ -4,12 +4,10 @@ import { Field, SelectField, TextAreaField } from "./cta-form-variants/Fields";
 
 const OFFICES = [
   { city: "Ahmedabad", region: "India · HQ", time: "GMT+5:30" },
-  { city: "Toronto", region: "Canada", time: "GMT-5" },
-  { city: "Atlanta", region: "USA", time: "GMT-5" },
 ];
 
 const STATS = [
-  { l: "Avg. first reply", v: "< 4 hours" },
+  { l: "Avg. first reply", v: "< 24 hours" },
   { l: "Discovery to kickoff", v: "7 days" },
   { l: "First working build", v: "2 weeks" },
 ];
@@ -69,11 +67,7 @@ export default function CTA() {
 
             <div className="mt-7 flex items-center justify-between gap-4 flex-wrap">
               <p className="text-[12.5px] text-white/45 max-w-xs">
-                By submitting you agree to our{" "}
-                <a href="#" className="text-white/70 hover:text-white underline underline-offset-2">
-                  privacy policy
-                </a>
-                .
+                We&apos;ll only use your details to reply about this enquiry.
               </p>
               <button type="submit" className="rounded-full glass-lite p-[2px]">
                 <span className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black">
@@ -91,10 +85,10 @@ export default function CTA() {
             <div>
               <div className="eyebrow mb-4">Or reach us</div>
               <a
-                href="mailto:hello@addonweb.com"
+                href="mailto:sales@addonwebsolutions.com"
                 className="block text-[18px] font-medium hover:text-white/85 transition"
               >
-                hello@addonweb.com
+                sales@addonwebsolutions.com
               </a>
               <a
                 href="https://wa.me/919879003017"

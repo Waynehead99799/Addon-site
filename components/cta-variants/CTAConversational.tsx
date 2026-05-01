@@ -66,8 +66,8 @@ export default function CTAConversational() {
             <span className="relative w-1.5 h-1.5 rounded-full bg-emerald-400 dot-pulse" />
             Q3 2026 · two slots open
             <span className="text-white/25">·</span>
-            <a href="mailto:hello@addonweb.com" className="hover:text-white/85 transition">
-              hello@addonweb.com
+            <a href="mailto:sales@addonwebsolutions.com" className="hover:text-white/85 transition">
+              sales@addonwebsolutions.com
             </a>
           </div>
         </form>

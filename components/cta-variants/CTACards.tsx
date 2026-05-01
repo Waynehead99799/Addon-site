@@ -19,7 +19,7 @@ const PATHS = [
   {
     title: "Email us",
     desc: "Slow-burn questions, intros, and references welcome.",
-    cta: "hello@addonweb.com",
+    cta: "sales@addonwebsolutions.com",
     accent: "#2dbcd2", rgb: "45,188,210",
     icon: "Globe" as const,
   },

@@ -63,6 +63,6 @@ Edit copy in `data.ts`/`pagesData.ts` rather than inlining strings in JSX.
 
 Per [README.md](README.md), verify before pointing a real domain at this:
 - `WHATSAPP_NUMBER` and `DEFAULT_MESSAGE` in [components/WhatsAppButton.tsx](components/WhatsAppButton.tsx) (currently `91 9879003017`).
-- Footer email in [components/Footer.tsx](components/Footer.tsx) (placeholder `hello@addonweb.com`).
+- Footer email in [components/Footer.tsx](components/Footer.tsx) (placeholder `sales@addonwebsolutions.com`).
 - Site metadata (title/description) in [app/layout.tsx](app/layout.tsx).
 - Favicon / OG image in `public/` (none by default).

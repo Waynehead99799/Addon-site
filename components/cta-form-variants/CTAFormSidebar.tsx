@@ -57,8 +57,8 @@ export default function CTAFormSidebar() {
           <aside className="col-span-12 md:col-span-5 space-y-7">
             <div>
               <div className="eyebrow mb-4">Or reach us</div>
-              <a href="mailto:hello@addonweb.com" className="block text-[18px] font-medium hover:text-white/80 transition">
-                hello@addonweb.com
+              <a href="mailto:sales@addonwebsolutions.com" className="block text-[18px] font-medium hover:text-white/80 transition">
+                sales@addonwebsolutions.com
               </a>
               <a href="#" className="block mt-1 text-[14.5px] text-white/65 serif-italic hover:text-white/85 transition">
                 +91 98790 03017 · WhatsApp →

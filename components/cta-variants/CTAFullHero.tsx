@@ -28,8 +28,8 @@ export default function CTAFullHero() {
               </div>
             </div>
           </a>
-          <a href="mailto:hello@addonweb.com" className="text-[14px] text-white/65 hover:text-white px-4 py-2.5">
-            or <span className="serif-italic text-white/85">hello@addonweb.com</span> →
+          <a href="mailto:sales@addonwebsolutions.com" className="text-[14px] text-white/65 hover:text-white px-4 py-2.5">
+            or <span className="serif-italic text-white/85">sales@addonwebsolutions.com</span> →
           </a>
         </div>
       </div>

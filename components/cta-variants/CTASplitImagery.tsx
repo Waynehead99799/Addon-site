@@ -34,8 +34,8 @@ export default function CTASplitImagery() {
                     </div>
                   </div>
                 </a>
-                <a href="mailto:hello@addonweb.com" className="text-[14px] text-white/70 hover:text-white px-3 py-2">
-                  hello@addonweb.com →
+                <a href="mailto:sales@addonwebsolutions.com" className="text-[14px] text-white/70 hover:text-white px-3 py-2">
+                  sales@addonwebsolutions.com →
                 </a>
               </div>
             </div>

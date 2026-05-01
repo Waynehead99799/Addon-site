@@ -6,9 +6,9 @@ import { TESTIMONIALS } from "./data";
 // a styled monogram tile rather than sourcing real client logos — drop in real
 // SVGs in `mark` if/when you have them.
 const COMPANIES = [
-  { short: "Lumen Health", color: "#5dd5ab", rgb: "93,213,171" },
-  { short: "Veritrack",    color: "#5392df", rgb: "83,146,223" },
-  { short: "Handywise",    color: "#3ec170", rgb: "62,193,112" },
+  { short: "Camera Telematics", color: "#5392df", rgb: "83,146,223" },
+  { short: "Nature Checkout",   color: "#5dd5ab", rgb: "93,213,171" },
+  { short: "Nyaay AI",          color: "#2dbcd2", rgb: "45,188,210" },
 ];
 
 export default function Testimonials() {

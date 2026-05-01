@@ -28,6 +28,17 @@ const SPANS = [
   "md:col-span-2 md:row-span-1",
 ];
 
+// Map home-bento ids → real detail-page routes. AI lands on /addonai (the
+// hub), the rest map to their /services/<slug> detail pages.
+const SERVICE_HREFS: Record<string, string> = {
+  ai: "/addonai",
+  web: "/services/web-development",
+  mobile: "/services/mobile-app-development",
+  cloud: "/services/cloud-services",
+  iot: "/services/iot-development",
+  product: "/services/product-consulting",
+};
+
 export default function Services() {
   return (
     <section id="services" className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
@@ -54,7 +65,7 @@ export default function Services() {
             return (
               <Reveal key={s.id} delay={i * 50} y={18} className={SPANS[i]}>
                 <a
-                  href="#contact"
+                  href={SERVICE_HREFS[s.id] ?? "/services"}
                   style={accentStyle(s.id)}
                   className={`svc-card relative h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6 flex flex-col overflow-hidden${isLarge ? " is-hero" : ""}`}
                 >

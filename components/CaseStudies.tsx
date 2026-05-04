@@ -43,8 +43,8 @@ export default function CaseStudies() {
               <h2 className="text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-semibold tracking-[-0.02em] leading-[1.04]">
                 Six shipped products,{" "}
                 <span
-                  className="serif-italic font-normal case-headline-accent"
-                  style={{ color: c1 }}
+                  className="serif-italic font-normal case-headline-accent case-accent-text"
+                  style={{ ["--accent-raw" as string]: c1 }}
                 >
                   six different worlds
                 </span>
@@ -84,7 +84,7 @@ export default function CaseStudies() {
                         ? "is-active text-white"
                         : "text-white/55 hover:text-white/85"
                     }`}
-                    style={{ ["--accent" as string]: c.palette[0] }}
+                    style={{ ["--accent-raw" as string]: c.palette[0] }}
                   >
                     <span className="case-row-bar" aria-hidden />
                     <button
@@ -93,8 +93,9 @@ export default function CaseStudies() {
                       className="flex-1 min-w-0 text-left flex items-center gap-4"
                     >
                       <span
-                        className="case-row-num text-[10.5px] font-mono uppercase tracking-[0.2em] w-10 shrink-0"
-                        style={isActive ? { color: c.palette[0] } : undefined}
+                        className={`case-row-num text-[10.5px] font-mono uppercase tracking-[0.2em] w-10 shrink-0 ${
+                          isActive ? "case-accent-text" : ""
+                        }`}
                       >
                         / 0{i + 1}
                       </span>
@@ -110,15 +111,9 @@ export default function CaseStudies() {
                     <Link
                       href={`/case-studies/${c.slug}`}
                       aria-label={`Open ${c.title} case study`}
-                      className="group/arrow shrink-0 grid place-items-center w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/15 text-white/55 hover:text-white hover:border-white/40 transition-colors"
-                      style={
-                        isActive
-                          ? {
-                              borderColor: c.palette[0] + "66",
-                              color: c.palette[0],
-                            }
-                          : undefined
-                      }
+                      className={`group/arrow shrink-0 grid place-items-center w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/15 text-white/55 hover:text-white hover:border-white/40 transition-colors ${
+                        isActive ? "case-accent-text case-accent-border" : ""
+                      }`}
                     >
                       <Icon.ArrowUpRight
                         width={14}
@@ -144,30 +139,21 @@ export default function CaseStudies() {
                 className="case-panel md:sticky md:top-24 rounded-3xl bg-white/[0.02] overflow-hidden"
                 style={{
                   ["--case-glow-rgb" as string]: c1rgb,
+                  ["--accent-raw" as string]: c1,
                 }}
               >
                 <Artwork cs={cs} />
                 <div className="p-5 md:p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div
-                        className="w-12 h-12 rounded-xl grid place-items-center shrink-0"
-                        style={{
-                          background: c1 + "22",
-                          color: c1,
-                          border: `1px solid ${c1}55`,
-                        }}
-                      >
+                      <div className="w-12 h-12 rounded-xl grid place-items-center shrink-0 case-accent-text case-accent-tint case-accent-border border">
                         <IconC width={20} height={20} />
                       </div>
                       <div className="min-w-0">
                         <div className="text-[10.5px] font-mono uppercase tracking-[0.18em] text-white/55 truncate">
                           {cs.tag}
                         </div>
-                        <div
-                          className="text-[14.5px] font-medium truncate"
-                          style={{ color: c1 }}
-                        >
+                        <div className="text-[14.5px] font-medium truncate case-accent-text">
                           {cs.kpi}
                         </div>
                       </div>
@@ -185,12 +171,7 @@ export default function CaseStudies() {
                   <div className="mt-7 flex items-center gap-4 flex-wrap">
                     <Link
                       href={`/case-studies/${cs.slug}`}
-                      className="group inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13.5px] font-medium transition"
-                      style={{
-                        background: c1 + "1A",
-                        color: c1,
-                        border: `1px solid ${c1}55`,
-                      }}
+                      className="group inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13.5px] font-medium transition case-accent-text case-accent-tint case-accent-border border"
                     >
                       Read the case study
                       <Icon.ArrowUpRight

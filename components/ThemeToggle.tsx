@@ -28,7 +28,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={`Switch to ${isLight ? "dark" : "light"} theme`}
-      className="theme-fab fixed bottom-5 left-5 md:bottom-7 md:left-7 z-50 w-12 h-12 rounded-full grid place-items-center"
+      className="theme-fab fixed bottom-5 right-5 md:bottom-7 md:right-7 z-50 w-14 h-14 rounded-full grid place-items-center"
       style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
       <span

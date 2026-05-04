@@ -50,7 +50,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
 
       {/* Hero cover image — full-width, 16:10. Recommended source: 1920×1200. */}
       {g?.hero && (
-        <section className="relative pt-2 pb-10 md:pb-14">
+        <section className="section-reveal relative pt-2 pb-10 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 md:px-8">
             <Reveal y={18}>
               <figure className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02]">

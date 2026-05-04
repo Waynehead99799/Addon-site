@@ -2,7 +2,6 @@ import CursorGlow from "@/components/CursorGlow";
 import HomeSectionReveal from "@/components/HomeSectionReveal";
 import Nav from "@/components/Nav";
 import ThemeToggle from "@/components/ThemeToggle";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import AboutTeaser from "@/components/AboutTeaser";
 import Hero from "@/components/Hero";
 import Logos from "@/components/Logos";
@@ -29,7 +28,6 @@ export default function Home() {
       <CTA />
       <Footer />
       <ThemeToggle />
-      <WhatsAppButton />
     </div>
   );
 }

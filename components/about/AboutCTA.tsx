@@ -3,7 +3,7 @@ import { Reveal } from "../Reveal";
 
 export default function AboutCTA() {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 border-t border-white/5">
+    <section className="section-reveal relative py-16 md:py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-5xl mx-auto px-6 md:px-8 text-center">
         <Reveal y={18}>
           <div className="eyebrow mb-6">Join the journey</div>

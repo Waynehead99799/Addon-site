@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import ThemeToggle from "@/components/ThemeToggle";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Footer from "@/components/Footer";
+import HomeSectionReveal from "@/components/HomeSectionReveal";
 import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import AboutValues from "@/components/about/AboutValues";
@@ -14,6 +15,7 @@ export default function AboutPage() {
     <div className="relative">
       <CursorGlow />
       <Nav />
+      <HomeSectionReveal />
       <AboutHero />
       <AboutStory />
       <AboutValues />

@@ -459,16 +459,6 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
         "Live fleet view with severity-ranked events.",
         "FNOL evidence packet builder with multi-camera playback.",
       ],
-      mobile: [
-        "/case-studies/road-devil/mobile-1.png",
-        "/case-studies/road-devil/mobile-2.png",
-        "/case-studies/road-devil/mobile-3.png",
-      ],
-      mobileCaptions: [
-        "Driver app — alerts and trip review.",
-        "Severity-ranked event feed.",
-        "Vehicle health and OBD-II diagnostics.",
-      ],
     },
   },
   {

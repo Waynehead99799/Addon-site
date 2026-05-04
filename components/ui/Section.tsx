@@ -29,6 +29,7 @@ export default function Section({
 }) {
   const padding = tighter ? "py-12 md:py-16 lg:py-20" : "py-14 md:py-20 lg:py-28";
   const border = noBorder ? "" : "border-t border-white/5";
+  const reveal = noBorder ? "" : "section-reveal";
   const body = inner ? (
     <div className="max-w-7xl mx-auto px-6 md:px-8">{children}</div>
   ) : (
@@ -37,7 +38,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`relative ${padding} ${border} ${className}`.trim()}
+      className={`${reveal} relative ${padding} ${border} ${className}`.trim()}
     >
       {body}
     </section>

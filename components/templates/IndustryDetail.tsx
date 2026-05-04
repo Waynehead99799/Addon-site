@@ -22,7 +22,7 @@ export default function IndustryDetail({
   return (
     <>
       {/* STATS */}
-      <section className="relative py-12 md:py-20 border-t border-white/5">
+      <section className="section-reveal relative py-12 md:py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           {stats.map((s, i) => (
             <Reveal
@@ -45,7 +45,7 @@ export default function IndustryDetail({
       </section>
 
       {/* CHALLENGES / SOLUTIONS */}
-      <section className="relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+      <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-6">
             <Reveal y={18}>

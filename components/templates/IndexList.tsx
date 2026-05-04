@@ -143,13 +143,13 @@ export default function IndexList({
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 4 }}
                     transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-                    className="relative w-[320px] lg:w-[380px] aspect-[4/3] rounded-2xl overflow-hidden border border-white/15 bg-black/60 backdrop-blur-md shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]"
+                    className="index-preview relative w-[180px] lg:w-[200px] aspect-square rounded-2xl overflow-hidden"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={activeCover}
                       alt=""
-                      className="absolute inset-0 w-full h-full object-contain p-3"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </motion.div>
                 )}

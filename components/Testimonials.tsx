@@ -213,9 +213,16 @@ export default function Testimonials() {
             <div className="grid grid-cols-1 gap-3">
               {COMPANIES.map((co, i) => {
                 const isActive = active === i;
+                const person = TESTIMONIALS[i];
+                const initials = person.n
+                  .split(" ")
+                  .map((s) => s[0])
+                  .join("")
+                  .slice(0, 2)
+                  .toUpperCase();
                 return (
                   <button
-                    key={co.short}
+                    key={person.n}
                     onMouseEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
                     onClick={() => setActive(i)}
@@ -235,7 +242,7 @@ export default function Testimonials() {
                         border: `1px solid rgba(${co.rgb}, 0.40)`,
                       }}
                     >
-                      {co.short.split(" ").map((s) => s[0]).join("").slice(0, 2)}
+                      {initials}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-[15px] font-semibold truncate">{TESTIMONIALS[i].n}</div>

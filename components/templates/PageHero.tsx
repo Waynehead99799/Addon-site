@@ -41,7 +41,7 @@ export default function PageHero({
   };
 
   return (
-    <section className="relative pt-28 md:pt-36 lg:pt-44 pb-12 md:pb-20 lg:pb-24 overflow-hidden">
+    <section className="section-reveal relative pt-28 md:pt-36 lg:pt-44 pb-12 md:pb-20 lg:pb-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {crumbs && crumbs.length > 0 && (
           <Reveal y={10}>

@@ -499,45 +499,6 @@ html[data-theme="light"] .theme-fab:hover {
   box-shadow: 0 4px 10px rgba(14,12,10,0.08), 0 18px 44px rgba(14,12,10,0.14), 0 0 0 1px rgba(30,168,116,0.22);
 }
 
-/* WhatsApp click-to-chat floating button */
-.whatsapp-fab {
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  color: #ffffff;
-  box-shadow:
-    0 10px 30px rgba(37,211,102,0.35),
-    0 4px 10px rgba(18,140,126,0.25),
-    0 0 0 1px rgba(255,255,255,0.08) inset;
-  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
-  isolation: isolate;
-}
-.whatsapp-fab:hover {
-  transform: translateY(-2px) scale(1.06);
-  box-shadow:
-    0 14px 40px rgba(37,211,102,0.48),
-    0 6px 14px rgba(18,140,126,0.35),
-    0 0 0 1px rgba(255,255,255,0.14) inset;
-}
-.whatsapp-fab:active { transform: translateY(0) scale(0.96); }
-
-/* Ambient pulse ring — signals "online / chat available" */
-.whatsapp-fab-pulse {
-  position: absolute;
-  inset: -4px;
-  border-radius: 9999px;
-  background: rgba(37,211,102,0.45);
-  z-index: 0;
-  animation: whatsapp-pulse 2.4s ease-out infinite;
-  pointer-events: none;
-}
-@keyframes whatsapp-pulse {
-  0%   { transform: scale(0.92); opacity: 0.55; }
-  70%  { transform: scale(1.35); opacity: 0;    }
-  100% { transform: scale(1.35); opacity: 0;    }
-}
-@media (prefers-reduced-motion: reduce) {
-  .whatsapp-fab-pulse { animation: none; opacity: 0; }
-}
-
 html { scroll-behavior: smooth; }
 body { overflow-x: hidden; }
 
@@ -1495,3 +1456,28 @@ html[data-theme="light"] .svc-stack-chip {
 html[data-theme="light"] .svc-card.is-hero {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.58));
 }
+
+/* Testimonial modal */
+.test-modal-card { background: #141210; }
+html[data-theme="light"] .test-modal-card { background: var(--paper) !important; }
+html[data-theme="light"] .test-modal-header { border-color: var(--hairline) !important; }
+html[data-theme="light"] .test-modal-card .border-white\/5 { border-color: var(--hairline) !important; }
+html[data-theme="light"] .test-modal-sidebar-label { color: var(--ink-dim) !important; }
+html[data-theme="light"] .test-read-more { text-decoration-color: var(--ink-dim) !important; color: var(--ink-dim); }
+html[data-theme="light"] .test-read-more:hover { text-decoration-color: var(--ink) !important; color: var(--ink); }
+
+/* Contact modal — light theme overrides */
+html[data-theme="light"] .contact-modal-card {
+  background: var(--paper);
+  border-color: var(--hairline);
+  box-shadow: var(--shadow-elev);
+}
+html[data-theme="light"] .contact-modal-header { border-color: var(--hairline); }
+html[data-theme="light"] .contact-modal-title { color: var(--ink-dim); }
+html[data-theme="light"] .contact-modal-sub { color: var(--ink-dim); }
+html[data-theme="light"] .contact-channel-row:hover { background: rgba(11,18,24,0.05) !important; }
+html[data-theme="light"] .contact-channel-row:active { background: rgba(11,18,24,0.09) !important; }
+html[data-theme="light"] .contact-channel-label { color: var(--ink); }
+html[data-theme="light"] .contact-channel-sublabel { color: var(--ink-dim); }
+html[data-theme="light"] .contact-channel-icon-well { border-color: var(--hairline); background: rgba(11,18,24,0.04); }
+html[data-theme="light"] .contact-channel-icon-svg { color: var(--ink-dim); }

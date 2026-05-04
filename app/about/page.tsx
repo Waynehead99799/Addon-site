@@ -1,7 +1,6 @@
 import CursorGlow from "@/components/CursorGlow";
 import Nav from "@/components/Nav";
 import ThemeToggle from "@/components/ThemeToggle";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import Footer from "@/components/Footer";
 import HomeSectionReveal from "@/components/HomeSectionReveal";
 import AboutHero from "@/components/about/AboutHero";
@@ -23,7 +22,6 @@ export default function AboutPage() {
       <AboutCTA />
       <Footer />
       <ThemeToggle />
-      <WhatsAppButton />
     </div>
   );
 }

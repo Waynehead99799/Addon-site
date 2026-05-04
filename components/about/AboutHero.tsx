@@ -2,7 +2,7 @@ import { Reveal } from "../Reveal";
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-28 md:pt-36 lg:pt-44 pb-14 md:pb-20 lg:pb-28 overflow-hidden">
+    <section className="section-reveal relative pt-28 md:pt-36 lg:pt-44 pb-14 md:pb-20 lg:pb-28 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-8 text-center">
         <Reveal y={14}>
           <div className="eyebrow mb-6">About / Who we are</div>

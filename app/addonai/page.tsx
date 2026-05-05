@@ -3,12 +3,22 @@ import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
 import CTA from "@/components/CTA";
+import JsonLd from "@/components/seo/JsonLd";
 import { AI_SERVICES } from "@/components/pagesData";
+import { itemListSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "AddonAI — Enterprise AI Solutions | Addon Web Solutions",
+  title: "AddonAI — Enterprise AI Solutions",
   description:
-    "Production-grade AI: development, consulting, generative AI, chatbots, agents, machine learning, computer vision, RPA, and RAG.",
+    "Production-grade AI: consulting, generative AI, chatbots, autonomous agents, machine learning, and RAG. Strategy through deployment.",
+  alternates: { canonical: "/addonai" },
+  openGraph: {
+    type: "website",
+    url: "/addonai",
+    title: "AddonAI — Enterprise AI Solutions",
+    description:
+      "Production-grade AI: consulting, generative AI, chatbots, autonomous agents, machine learning, and RAG.",
+  },
 };
 
 export default function AddonAIHub() {
@@ -21,16 +31,33 @@ export default function AddonAIHub() {
 
   return (
     <PageShell>
+      <JsonLd
+        data={itemListSchema({
+          path: "/addonai",
+          title: "AddonAI — Enterprise AI Solutions",
+          items: AI_SERVICES.map((s) => ({
+            name: s.title,
+            url: `/addonai/${s.slug}`,
+            description: s.subtitle,
+          })),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { label: "Home", href: "/" },
+          { label: "AddonAI", href: "/addonai" },
+        ])}
+      />
       <PageHero
         eyebrow="AddonAI / Intelligence at scale"
-        title="Enterprise AI solutions that drive results."
-        italicWord="drive results."
+        title="Enterprise AI Development & Consulting."
+        italicWord="& Consulting."
         subtitle="We design, build, and deploy production-grade artificial intelligence systems that automate operations, generate insights, and create competitive advantages. From strategy to deployment — we handle the complexity so you can focus on growth."
       />
       <IndexList
         eyebrow="01 / AI service lines"
-        kicker="Nine specialisations."
-        title="Nine specialised AI service lines."
+        kicker="Six specialisations."
+        title="Six specialised AI service lines."
         italicWord="AI service lines."
         rows={rows}
       />

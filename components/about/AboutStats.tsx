@@ -13,9 +13,6 @@ export default function AboutStats() {
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
         <div className="col-span-12 md:col-span-3">
           <div className="eyebrow">03 / By the numbers</div>
-          <div className="mt-3 serif-italic text-white/55 text-[15px] leading-snug">
-            Receipts, not promises.
-          </div>
         </div>
 
         <div className="col-span-12 md:col-span-9">

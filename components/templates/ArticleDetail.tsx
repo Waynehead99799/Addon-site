@@ -1,9 +1,26 @@
+import Image from "next/image";
 import { Reveal } from "../Reveal";
 import type { Article } from "../pagesData";
 
 export default function ArticleDetail({ article }: { article: Article }) {
   return (
     <section className="section-reveal relative py-14 md:py-20 lg:py-24 border-t border-white/5">
+      <div className="max-w-4xl mx-auto px-6 md:px-8">
+        {article.cover && (
+          <Reveal y={18}>
+            <figure className="relative aspect-[16/9] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] mb-8 md:mb-12">
+              <Image
+                src={article.cover}
+                alt={article.title}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 900px"
+                className="object-cover"
+              />
+            </figure>
+          </Reveal>
+        )}
+      </div>
       <div className="max-w-3xl mx-auto px-6 md:px-8">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11.5px] sm:text-[12px] font-mono uppercase tracking-[0.18em] text-white/40 mb-8 md:mb-10 pb-6 border-b border-white/10">
           <span>{article.date}</span>

@@ -774,8 +774,17 @@ export type Article = {
   slug: string;
   title: string;
   subtitle: string;
+  /** Human-readable display date, e.g. "March 15, 2026". Shown in UI. */
   date: string;
+  /** ISO-8601 date string, e.g. "2026-03-15". Required by schema.org `Article`
+   *  `datePublished` and OpenGraph `publishedTime`. Falls back to `date` parse
+   *  if omitted, but always set this for clean rich-snippet eligibility. */
+  isoDate?: string;
   readTime: string;
+  /** Hero / cover image used on the article page and the cursor-preview on
+   *  the blog hub. Recommended 2400×1350 (16:9) or 2400×1500 (16:10),
+   *  JPG/WebP ≤ 350 KB. Drop the file at /public/blog/<slug>/cover.png. */
+  cover?: string;
   sections: { heading: string; body: string }[];
 };
 
@@ -785,7 +794,9 @@ export const ARTICLES: Article[] = [
     title: "The Enterprise AI Adoption Playbook for 2026",
     subtitle: "A practical guide to implementing AI across your organisation.",
     date: "March 15, 2026",
+    isoDate: "2026-03-15",
     readTime: "8 min read",
+    cover: "/blog/enterprise-ai-adoption-2026/cover.png",
     sections: [
       { heading: "The AI adoption imperative", body: "In 2026, enterprises that have not begun their AI journey face an existential competitive threat. According to recent industry surveys, 78% of Fortune 500 companies have at least one AI system in production, up from just 35% three years ago. The gap between AI adopters and laggards is widening at an accelerating pace." },
       { heading: "Step 1: Assess your AI readiness", body: "Before investing in AI, organisations must honestly evaluate their data infrastructure, team capabilities, and organisational culture. The three pillars of AI readiness are: data quality and accessibility, technical talent and skills, and executive sponsorship with clear business objectives." },
@@ -799,7 +810,9 @@ export const ARTICLES: Article[] = [
     title: "Why RAG is Replacing Traditional Search",
     subtitle: "How retrieval-augmented generation is transforming enterprise knowledge.",
     date: "March 8, 2026",
+    isoDate: "2026-03-08",
     readTime: "6 min read",
+    cover: "/blog/rag-vs-traditional-search/cover.png",
     sections: [
       { heading: "The limits of traditional search", body: "Keyword-based search has served enterprises well for decades, but it fundamentally breaks down when users need answers rather than links. Traditional search returns documents; RAG returns precise, source-cited answers synthesised from your entire knowledge base." },
       { heading: "How RAG works", body: "Retrieval-Augmented Generation combines two powerful capabilities: semantic retrieval that finds relevant information across thousands of documents, and generative AI that synthesises those sources into coherent, contextual answers. The result is an AI assistant that knows everything your organisation knows." },
@@ -812,7 +825,9 @@ export const ARTICLES: Article[] = [
     title: "Building Scalable Microservices with Node.js",
     subtitle: "Architecture patterns for high-throughput distributed systems.",
     date: "February 28, 2026",
+    isoDate: "2026-02-28",
     readTime: "7 min read",
+    cover: "/blog/scalable-microservices-node/cover.png",
     sections: [
       { heading: "Why microservices at scale", body: "Monolithic architectures become a liability as applications grow. Microservices enable independent deployment, technology diversity, fault isolation, and team autonomy. Node.js, with its event-driven architecture and massive ecosystem, is ideally suited for high-throughput microservices." },
       { heading: "Designing service boundaries", body: "The most critical decision in microservices architecture is defining service boundaries. Domain-Driven Design provides the best framework: identify bounded contexts through event storming, then map each context to a service with its own data store and API contract." },
@@ -825,7 +840,9 @@ export const ARTICLES: Article[] = [
     title: "The Future of Mobile: AI-Native Apps",
     subtitle: "How on-device AI is reshaping the mobile development landscape.",
     date: "February 20, 2026",
+    isoDate: "2026-02-20",
     readTime: "5 min read",
+    cover: "/blog/ai-native-mobile-apps/cover.png",
     sections: [
       { heading: "The on-device AI revolution", body: "With Apple Intelligence, Google Gemini Nano, and Qualcomm AI Engine, mobile devices now run sophisticated AI models locally. This shift enables real-time processing without network latency, offline functionality, and enhanced privacy since data never leaves the device." },
       { heading: "Core ML vs TensorFlow Lite", body: "iOS developers leverage Core ML for seamless model integration with Swift, while Android developers use TensorFlow Lite or ONNX Runtime. Both platforms now support hardware-accelerated inference on neural processing units (NPUs) for near-instant predictions." },
@@ -838,7 +855,9 @@ export const ARTICLES: Article[] = [
     title: "Cloud Cost Optimisation: A Technical Guide",
     subtitle: "Strategies to cut your cloud bill by 40% without sacrificing performance.",
     date: "February 12, 2026",
+    isoDate: "2026-02-12",
     readTime: "6 min read",
+    cover: "/blog/cloud-cost-optimization/cover.png",
     sections: [
       { heading: "The cloud cost crisis", body: "Cloud spending grew 29% year-over-year, with the average enterprise wasting 32% of their cloud budget on idle or over-provisioned resources. Without deliberate optimisation, cloud costs compound rapidly and often exceed the savings from migrating off on-premise infrastructure." },
       { heading: "Right-sizing and reserved capacity", body: "Start with right-sizing: analyse actual CPU, memory, and network utilisation over 30 days. Most instances run under 40% utilisation. Combine right-sizing with Reserved Instances or Savings Plans for predictable workloads to achieve 30–60% cost reductions." },
@@ -851,7 +870,9 @@ export const ARTICLES: Article[] = [
     title: "Computer Vision in Manufacturing QA",
     subtitle: "Automated visual inspection systems that outperform human reviewers.",
     date: "February 5, 2026",
+    isoDate: "2026-02-05",
     readTime: "7 min read",
+    cover: "/blog/computer-vision-manufacturing-qa/cover.png",
     sections: [
       { heading: "The quality control challenge", body: "Manufacturing quality inspection has traditionally relied on human visual inspection — a process that is slow, inconsistent, and prone to fatigue-related errors. With defect rates as low as 0.1%, inspectors must maintain concentration while examining thousands of identical parts per shift." },
       { heading: "How computer vision changes the game", body: "Modern computer vision systems use convolutional neural networks trained on thousands of defect images to detect anomalies at superhuman speed and consistency. These systems inspect every single unit — not just samples — and can detect sub-millimeter defects invisible to the human eye." },

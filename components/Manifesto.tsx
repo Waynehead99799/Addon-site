@@ -6,9 +6,6 @@ export default function Manifesto() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-6 md:gap-10">
         <div className="col-span-12 md:col-span-3">
           <div className="eyebrow">A / Point of view</div>
-          <div className="mt-3 serif-italic text-white/55 text-[15px] leading-snug">
-            On software, shipped.
-          </div>
         </div>
 
         <div className="col-span-12 md:col-span-9">

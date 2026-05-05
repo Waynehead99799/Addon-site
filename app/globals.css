@@ -35,6 +35,26 @@ html, body {
   transition: background-color .4s ease, color .4s ease;
 }
 
+/* ===== Text selection — brand-tinted, flips per theme ===== */
+::selection {
+  background: rgba(52, 203, 150, 0.30); /* accent shamrock @ 30% */
+  color: #ffffff;
+  text-shadow: none;
+}
+::-moz-selection {
+  background: rgba(52, 203, 150, 0.30);
+  color: #ffffff;
+  text-shadow: none;
+}
+html[data-theme="light"] ::selection {
+  background: rgba(30, 168, 116, 0.25);
+  color: #0B1218;
+}
+html[data-theme="light"] ::-moz-selection {
+  background: rgba(30, 168, 116, 0.25);
+  color: #0B1218;
+}
+
 /* ===== Light theme — sky wash ===== */
 html[data-theme="light"] {
   --bg: #E4EDF3;           /* sky wash */

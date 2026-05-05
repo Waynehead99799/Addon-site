@@ -3,12 +3,22 @@ import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
 import CTA from "@/components/CTA";
+import JsonLd from "@/components/seo/JsonLd";
 import { SERVICES_DATA } from "@/components/pagesData";
+import { itemListSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Technology Services | Addon Web Solutions",
+  title: "Technology Services",
   description:
-    "Nine service lines covering every stage of the product lifecycle — mobile, web, IoT, blockchain, cloud, digital transformation, and more.",
+    "Eight service lines covering every stage of the product lifecycle — mobile, web, IoT, cloud, digital transformation, QA, product consulting, and outsourcing.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    type: "website",
+    url: "/services",
+    title: "Technology Services | Addon Web Solutions",
+    description:
+      "Eight service lines covering every stage of the product lifecycle. Deep technical expertise, proven delivery.",
+  },
 };
 
 export default function ServicesHub() {
@@ -21,16 +31,33 @@ export default function ServicesHub() {
 
   return (
     <PageShell>
+      <JsonLd
+        data={itemListSchema({
+          path: "/services",
+          title: "Technology Services",
+          items: SERVICES_DATA.map((s) => ({
+            name: s.title,
+            url: `/services/${s.slug}`,
+            description: s.subtitle,
+          })),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+        ])}
+      />
       <PageHero
         eyebrow="Services / Full-spectrum technology"
-        title="Technology services that scale with you."
-        italicWord="scale with you."
-        subtitle="From mobile-first applications to enterprise cloud infrastructure, our nine service lines cover every stage of the product lifecycle. Deep technical expertise, proven delivery."
+        title="Custom Software Development Services."
+        italicWord="Development Services."
+        subtitle="From mobile-first applications to enterprise cloud infrastructure, our eight service lines cover every stage of the product lifecycle. Deep technical expertise, proven delivery."
       />
       <IndexList
         eyebrow="01 / Service lines"
-        kicker="Nine briefs, one team."
-        title="Nine service lines, one seamless experience."
+        kicker="Eight briefs, one team."
+        title="Eight service lines, one seamless experience."
         italicWord="one seamless experience."
         rows={rows}
       />

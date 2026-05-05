@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { Icon } from "./icons";
-import { AI_SERVICES, SERVICES_DATA, INDUSTRIES } from "./pagesData";
+import { AI_SERVICES, SERVICES_DATA } from "./pagesData";
 
 type NavItem =
   | { label: string; href: string }
@@ -21,12 +21,7 @@ const NAV: NavItem[] = [
     href: "/services",
     children: SERVICES_DATA.map((s) => ({ label: s.title, href: `/services/${s.slug}` })),
   },
-  {
-    label: "Industries",
-    href: "/industries",
-    children: INDUSTRIES.map((i) => ({ label: i.title, href: `/industries/${i.slug}` })),
-  },
-  { label: "Work", href: "/case-studies" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Hire", href: "/hire-dedicated-developers" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },

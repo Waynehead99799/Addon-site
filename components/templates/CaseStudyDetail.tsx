@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "../Reveal";
 import { getFeatureIcon } from "../featureIcons";
 import type { CaseStudyDetail as CS } from "../pagesData";
@@ -54,11 +55,13 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
           <div className="max-w-7xl mx-auto px-6 md:px-8">
             <Reveal y={18}>
               <figure className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={g.hero}
-                  alt={`${cs.title} — cover`}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  alt={g.heroCaption ?? `${cs.title} — product hero`}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
+                  className="object-cover"
                 />
               </figure>
               {g.heroCaption && (
@@ -76,7 +79,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">01 / Overview</div>
-            <div className="mt-3 serif-italic text-white/55 text-[15px]">The brief.</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <p className="text-[18px] sm:text-[20px] md:text-[26px] leading-[1.45] md:leading-[1.4] text-white/85 font-light tracking-[-0.005em] max-w-4xl">
@@ -118,7 +120,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
             <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
               <div className="col-span-12 md:col-span-3">
                 <div className="eyebrow">04 / Showcase · Web</div>
-                <div className="mt-3 serif-italic text-white/55 text-[15px]">In production.</div>
               </div>
               <div className="col-span-12 md:col-span-9">
                 <h2 className="text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-semibold tracking-[-0.02em] leading-[1.06]">
@@ -139,12 +140,16 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
               {g.web.map((src, i) => (
                 <Reveal key={src} delay={i * 80} y={20}>
                   <figure className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={src}
-                      alt={`${cs.title} — web screenshot ${i + 1}`}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover"
+                      alt={
+                        g.webCaptions?.[i]
+                          ? `${cs.title} — ${g.webCaptions[i]}`
+                          : `${cs.title} — desktop interface`
+                      }
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 620px"
+                      className="object-cover"
                     />
                   </figure>
                   {g.webCaptions?.[i] && (
@@ -169,7 +174,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                 <div className="eyebrow">
                   {g?.web?.length ? "05" : "04"} / Showcase · Mobile
                 </div>
-                <div className="mt-3 serif-italic text-white/55 text-[15px]">In the pocket.</div>
               </div>
               <div className="col-span-12 md:col-span-9">
                 <h2 className="text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-semibold tracking-[-0.02em] leading-[1.06]">
@@ -188,12 +192,16 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                   className="w-[200px] sm:w-[240px] md:w-[260px] flex-shrink-0"
                 >
                   <figure className="relative aspect-[9/19.5] rounded-[2.25rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={src}
-                      alt={`${cs.title} — mobile screenshot ${i + 1}`}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover"
+                      alt={
+                        g.mobileCaptions?.[i]
+                          ? `${cs.title} — ${g.mobileCaptions[i]}`
+                          : `${cs.title} — mobile interface`
+                      }
+                      fill
+                      sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 260px"
+                      className="object-cover"
                     />
                   </figure>
                   {g.mobileCaptions?.[i] && (
@@ -221,7 +229,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                   : "04"}{" "}
                 / Build
               </div>
-              <div className="mt-3 serif-italic text-white/55 text-[15px]">What shipped.</div>
             </div>
             <div className="col-span-12 md:col-span-9">
               <h2 className="text-[28px] sm:text-[32px] md:text-[48px] font-semibold tracking-[-0.02em] leading-[1.05]">
@@ -271,7 +278,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                 : "05"}{" "}
               / Stack
             </div>
-            <div className="mt-3 serif-italic text-white/55 text-[15px]">Tools on the bench.</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <div className="flex flex-wrap gap-2">

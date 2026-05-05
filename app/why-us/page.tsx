@@ -6,12 +6,21 @@ import { Reveal } from "@/components/Reveal";
 import { getFeatureIcon } from "@/components/featureIcons";
 
 export const metadata: Metadata = {
-  title: "Why Addon | Differentiators",
-  description: "What sets us apart: a decade of shipping, an in-house team of senior engineers, and a partnership approach across 10+ countries.",
+  title: "Why Addon — What Sets Us Apart",
+  description:
+    "A decade of shipping. 35+ in-house engineers. Partnership over vendor. The six rules we won't bend, and why they matter to your project.",
+  alternates: { canonical: "/why-us" },
+  openGraph: {
+    type: "website",
+    url: "/why-us",
+    title: "Why Addon Web Solutions — What Sets Us Apart",
+    description:
+      "A decade of shipping. 35+ in-house engineers. Partnership over vendor.",
+  },
 };
 
 const DIFFS = [
-  { icon: "Trophy", t: "10+ years shipping", d: "Over a decade of complex software delivery across 10+ countries with a 98% client satisfaction rate." },
+  { icon: "Trophy", t: "15+ years shipping", d: "Shipping production software since 2011 across 10+ countries with a 98% client satisfaction rate." },
   { icon: "People", t: "35+ in-house resources", d: "A dedicated team of senior engineers, data scientists, designers, and strategists — not a freelancer roster." },
   { icon: "Globe", t: "Global delivery", d: "Distributed teams across time zones enabling continuous development cycles and round-the-clock coverage." },
   { icon: "Shield", t: "Enterprise security", d: "SOC 2-aligned processes, GDPR-ready data handling, and ISO 27001 aligned security practices from day one." },
@@ -20,7 +29,7 @@ const DIFFS = [
 ];
 
 const STATS = [
-  { v: "10+", l: "Years in business" },
+  { v: "15+", l: "Years in business" },
   { v: "35+", l: "In-house resources" },
   { v: "10+", l: "Countries served" },
   { v: "5+", l: "Enterprise products" },
@@ -41,7 +50,6 @@ export default function WhyUsPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">01 / Differentiators</div>
-            <div className="mt-3 serif-italic text-white/55 text-[15px]">What separates us.</div>
           </div>
           <div className="col-span-12 md:col-span-9 space-y-8">
             {DIFFS.map((d, i) => {

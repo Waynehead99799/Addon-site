@@ -29,7 +29,7 @@ type CardVariant = "accent" | "plain" | "manifesto";
  * `::before` radial overlay. The CSS lives in [globals.css](../../app/globals.css)
  * under `.svc-card`.
  *
- *   <Card accent={ACCENTS.shamrock} href="/services/ai-development" hero>
+ *   <Card accent={ACCENTS.shamrock} href="/addonai" hero>
  *     <CardHeader>
  *       <CardIcon><BotIcon /></CardIcon>
  *       <CardTag>AI × Automation</CardTag>

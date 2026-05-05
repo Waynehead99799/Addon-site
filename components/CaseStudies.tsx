@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { CASE_STUDIES, type CaseStudy } from "./data";
 import { Icon, ProjectIcon } from "./icons";
@@ -34,9 +35,6 @@ export default function CaseStudies() {
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">Selected work</div>
-            <div className="mt-3 serif-italic text-white/55 text-[15px]">
-              Six worlds, one team.
-            </div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
@@ -220,12 +218,12 @@ function Artwork({ cs }: { cs: CaseStudy }) {
   if (cs.image) {
     return (
       <div className="case-art relative aspect-[16/10] md:h-[420px] lg:h-[500px] md:aspect-auto overflow-hidden bg-white/[0.02]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={cs.image}
           alt={cs.title}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 800px"
+          className="object-cover"
         />
         {/* Theme-aware bottom fade — uses --bg so it ends in the page colour
             on both dark and the sky-wash light theme. No hard-coded blacks. */}

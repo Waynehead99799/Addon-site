@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
@@ -66,7 +67,6 @@ export default function IndexList({
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">{eyebrow}</div>
-            <div className="mt-3 serif-italic text-white/55 text-[15px]">{kicker}</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <h2 className="text-[28px] sm:text-[32px] md:text-[48px] lg:text-[56px] font-semibold tracking-[-0.02em] leading-[1.04]">
@@ -145,11 +145,12 @@ export default function IndexList({
                     transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
                     className="index-preview relative w-[180px] lg:w-[200px] aspect-square rounded-2xl overflow-hidden"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={activeCover}
                       alt=""
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      sizes="200px"
+                      className="object-cover"
                     />
                   </motion.div>
                 )}

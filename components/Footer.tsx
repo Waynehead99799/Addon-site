@@ -30,7 +30,6 @@ export default function Footer() {
       t: "Work",
       l: [
         { label: "Case studies", href: "/case-studies" },
-        { label: "Industries", href: "/industries" },
         { label: "Field notes", href: "/blog" },
       ],
     },

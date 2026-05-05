@@ -41,7 +41,6 @@ export default function ServiceDetail({
           <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-16">
             <div className="col-span-12 md:col-span-3">
               <div className="eyebrow">{featuresEyebrow}</div>
-              <div className="mt-3 serif-italic text-white/55 text-[15px]">{featuresKicker}</div>
             </div>
             <div className="col-span-12 md:col-span-9">
               <h2 className="text-[28px] sm:text-[32px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.02em] leading-[1.04]">
@@ -90,7 +89,6 @@ export default function ServiceDetail({
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">02 / How we deliver</div>
-            <div className="mt-3 serif-italic text-white/55 text-[15px]">Work that compounds.</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">

@@ -159,50 +159,6 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
         </section>
       )}
 
-      {/* Key features */}
-      <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
-            <div className="col-span-12 md:col-span-3">
-              <div className="eyebrow">{g?.web?.length ? "05" : "04"} / Build</div>
-              <div className="mt-3 serif-italic text-white/55 text-[15px]">What shipped.</div>
-            </div>
-            <div className="col-span-12 md:col-span-9">
-              <h2 className="text-[28px] sm:text-[32px] md:text-[48px] font-semibold tracking-[-0.02em] leading-[1.05]">
-                Features that moved{" "}
-                <span className="serif-italic font-normal text-white/70">the metric</span>.
-              </h2>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-white/10">
-            {cs.keyFeatures.map((f, i) => {
-              const IconC = getFeatureIcon(f.icon);
-              return (
-                <Reveal
-                  key={`${f.title}-${i}`}
-                  delay={i * 40}
-                  y={16}
-                  className={`border-b border-white/10 ${
-                    i % 2 === 0 ? "md:border-r md:border-white/10" : ""
-                  } ${i % 4 !== 3 ? "lg:border-r lg:border-white/10" : "lg:border-r-0"}`}
-                >
-                  <div className="p-5 sm:p-6 md:p-7 h-full">
-                    <div className="w-10 h-10 rounded-lg glass-lite grid place-items-center mb-5">
-                      <IconC width={16} height={16} className="text-white/80" />
-                    </div>
-                    <h4 className="text-[16px] font-semibold tracking-tight">
-                      <span className="serif-italic font-normal text-white/90">{f.title}.</span>
-                    </h4>
-                    <p className="mt-2.5 text-[13px] text-white/55 leading-relaxed">{f.desc}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Mobile screenshots gallery — 1080×2340 portrait sources. Renders 1
           phone on small screens, 2 on tablet, 3 on desktop. Wraps if more. */}
       {g?.mobile && g.mobile.length > 0 && (
@@ -211,7 +167,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
             <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
               <div className="col-span-12 md:col-span-3">
                 <div className="eyebrow">
-                  {g?.web?.length ? "06" : "05"} / Showcase · Mobile
+                  {g?.web?.length ? "05" : "04"} / Showcase · Mobile
                 </div>
                 <div className="mt-3 serif-italic text-white/55 text-[15px]">In the pocket.</div>
               </div>
@@ -251,6 +207,57 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
           </div>
         </section>
       )}
+
+      {/* Key features */}
+      <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
+            <div className="col-span-12 md:col-span-3">
+              <div className="eyebrow">
+                {[g?.web?.length, g?.mobile?.length].filter(Boolean).length === 2
+                  ? "06"
+                  : [g?.web?.length, g?.mobile?.length].filter(Boolean).length === 1
+                  ? "05"
+                  : "04"}{" "}
+                / Build
+              </div>
+              <div className="mt-3 serif-italic text-white/55 text-[15px]">What shipped.</div>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h2 className="text-[28px] sm:text-[32px] md:text-[48px] font-semibold tracking-[-0.02em] leading-[1.05]">
+                Features that moved{" "}
+                <span className="serif-italic font-normal text-white/70">the metric</span>.
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-white/10">
+            {cs.keyFeatures.map((f, i) => {
+              const IconC = getFeatureIcon(f.icon);
+              return (
+                <Reveal
+                  key={`${f.title}-${i}`}
+                  delay={i * 40}
+                  y={16}
+                  className={`border-b border-white/10 ${
+                    i % 2 === 0 ? "md:border-r md:border-white/10" : ""
+                  } ${i % 4 !== 3 ? "lg:border-r lg:border-white/10" : "lg:border-r-0"}`}
+                >
+                  <div className="p-5 sm:p-6 md:p-7 h-full">
+                    <div className="w-10 h-10 rounded-lg glass-lite grid place-items-center mb-5">
+                      <IconC width={16} height={16} className="text-white/80" />
+                    </div>
+                    <h4 className="text-[16px] font-semibold tracking-tight">
+                      <span className="serif-italic font-normal text-white/90">{f.title}.</span>
+                    </h4>
+                    <p className="mt-2.5 text-[13px] text-white/55 leading-relaxed">{f.desc}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Tech */}
       <section className="section-reveal relative py-12 md:py-20 border-t border-white/5">

@@ -32,13 +32,13 @@ export type CaseStudy = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    id: "road-devil",
-    slug: "road-devil",
+    id: "vehicle-intelligence",
+    slug: "vehicle-intelligence",
     title: "Vehicle Intelligence Platform",
     tag: "AI · Hardware · IP",
     kpi: "Vertically integrated · trade-mark protected",
     desc: "A vertically integrated vehicle intelligence platform — proprietary AI algorithms, real-time notifications, and owned hardware IP turning video and driver data into action.",
-    image: "/case-studies/road-devil/image.png",
+    image: "/case-studies/vehicle-intelligence/image.png",
     icon: "Camera",
     palette: ["#FF5A36", "#D6FF5C", "#0E0B0A"],
     board: "gauge",

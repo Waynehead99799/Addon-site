@@ -421,12 +421,12 @@ export type CaseStudyDetail = {
 
 export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
   {
-    slug: "road-devil",
+    slug: "vehicle-intelligence",
     title: "Vehicle Intelligence Platform",
     client: "Confidential",
     industry: "AI & Connected Vehicle",
     categories: ["IoT & Telematics", "AI & ML"],
-    profile: "/case-studies/road-devil/profile.png",
+    profile: "/case-studies/vehicle-intelligence/profile.png",
     subtitle: "Vertically integrated vehicle intelligence — proprietary AI, real-time alerts, and owned hardware IP. UK trade-mark protected.",
     overview: "A complete vehicle intelligence stack — from in-vehicle hardware and embedded firmware through proprietary AI inference, real-time event notifications, fleet dashboards, and a managed licensing programme. Owned hardware IP, owned algorithms, owned go-to-market.",
     challenge: "Operators of high-value fleets — cash-in-transit, petroleum carriers, sensitive logistics — needed more than passive black-box recording. They needed cameras that recognised events as they happened, prioritised them by severity, and pushed verifiable evidence to insurers within minutes of an incident. Off-the-shelf telematics hardware shipped with closed firmware, no AI, and reactive workflows that couldn't survive a serious claim cycle.",
@@ -449,11 +449,11 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     ],
     techStack: ["Java", "Python", "ONNX", "Edge inference", "Socket programming", "MySQL", "Azure", "REST APIs", "OBD-II"],
     gallery: {
-      hero: "/case-studies/road-devil/hero.png",
+      hero: "/case-studies/vehicle-intelligence/hero.png",
       heroCaption: "Vehicle intelligence dashboard — owned hardware, owned AI, owned IP.",
       web: [
-        "/case-studies/road-devil/web-1.png",
-        "/case-studies/road-devil/web-2.png",
+        "/case-studies/vehicle-intelligence/web-1.png",
+        "/case-studies/vehicle-intelligence/web-2.png",
       ],
       webCaptions: [
         "Live fleet view with severity-ranked events.",

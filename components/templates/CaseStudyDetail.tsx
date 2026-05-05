@@ -34,7 +34,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                   } ${i < cs.results.length - 2 ? "border-b md:border-b-0 border-white/10" : ""}`}
                 >
                   <div className="p-5 sm:p-6 md:p-8">
-                    <div className="text-[28px] sm:text-[36px] md:text-[48px] font-semibold tracking-[-0.03em] leading-none headline-grad">
+                    <div className="text-[28px] sm:text-[36px] md:text-[48px] font-semibold tracking-[-0.03em] leading-none num-grad">
                       {r.value}
                     </div>
                     <div className="mt-3 text-[11.5px] font-mono uppercase tracking-[0.18em] text-white/50">

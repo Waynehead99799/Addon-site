@@ -32,7 +32,7 @@ export default function IndustryDetail({
               className={`col-span-12 sm:col-span-6 ${spanCls}`}
             >
               <div className="py-6 border-l-2 border-white/10 pl-6">
-                <div className="text-[36px] sm:text-[44px] md:text-[56px] font-semibold tracking-[-0.03em] leading-none headline-grad">
+                <div className="text-[36px] sm:text-[44px] md:text-[56px] font-semibold tracking-[-0.03em] leading-none num-grad">
                   {s.value}
                 </div>
                 <div className="mt-3 text-[12.5px] font-mono uppercase tracking-[0.18em] text-white/50">

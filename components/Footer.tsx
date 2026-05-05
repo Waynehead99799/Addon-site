@@ -124,7 +124,7 @@ export default function Footer() {
 
         <div className="mt-12 md:mt-16 select-none overflow-hidden">
           <div
-            className="font-semibold tracking-[-0.05em] leading-[0.82] headline-grad opacity-[0.08] whitespace-nowrap"
+            className="font-semibold tracking-[-0.05em] leading-[0.82] num-grad opacity-[0.08] whitespace-nowrap"
             style={{ fontSize: "clamp(1.4rem, 7.2vw, 6.5rem)" }}
           >
             Addon Web<span className="serif-italic font-normal"> Solutions.</span>

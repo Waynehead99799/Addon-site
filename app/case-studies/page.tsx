@@ -56,7 +56,7 @@ export default function CaseStudiesHub() {
         subtitle="Real problems, measured outcomes. A selection of recent work across IoT, healthcare, marketplaces, eCommerce, and enterprise CRM."
       />
       <IndexList
-        eyebrow="01 / Case studies"
+        eyebrow="Case studies"
         kicker="The receipts."
         title="Seven projects, measurable outcomes."
         italicWord="measurable outcomes."

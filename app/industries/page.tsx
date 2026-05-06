@@ -55,7 +55,7 @@ export default function IndustriesHub() {
         subtitle="Deep vertical knowledge combined with technical excellence delivers solutions that address real-world industry challenges. Built across twelve verticals and ten-plus countries."
       />
       <IndexList
-        eyebrow="01 / Industries"
+        eyebrow="Industries"
         kicker="Where we work."
         title="Twelve industries, one operating method."
         italicWord="one operating method."

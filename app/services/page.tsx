@@ -55,7 +55,7 @@ export default function ServicesHub() {
         subtitle="From mobile-first applications to enterprise cloud infrastructure, our eight service lines cover every stage of the product lifecycle. Deep technical expertise, proven delivery."
       />
       <IndexList
-        eyebrow="01 / Service lines"
+        eyebrow="Service lines"
         kicker="Eight briefs, one team."
         title="Eight service lines, one seamless experience."
         italicWord="one seamless experience."

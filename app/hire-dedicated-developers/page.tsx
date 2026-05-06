@@ -50,11 +50,6 @@ const FAQS = [
       "Three options: project-based (3–9 months, fixed scope), staff augmentation (monthly retainer, your roadmap), and outcome-based (we own a delivery target). Most clients start project-based and convert to staff augmentation once they trust the team.",
   },
   {
-    question: "What does it cost to hire a dedicated developer?",
-    answer:
-      "Senior engineers (5+ years) range $35–75/hour depending on speciality and location. AI/ML engineers and senior architects sit at the top of that range; frontend and QA at the lower end. We bill monthly, no long-term lock-in, no recruitment fees.",
-  },
-  {
     question: "Who owns the IP and code?",
     answer:
       "You do — fully and exclusively, from the first commit. Standard work-for-hire IP assignment is in every engagement contract. We sign NDAs before any technical conversation if you need them.",
@@ -63,11 +58,6 @@ const FAQS = [
     question: "Can I replace a developer if they aren't a fit?",
     answer:
       "Yes — within the first two weeks of any engagement we replace anyone, no questions asked. After that we honour a fortnight's notice for replacements. We rarely have to invoke this; the curated shortlist exists to prevent bad fits in the first place.",
-  },
-  {
-    question: "What time zones do your developers work in?",
-    answer:
-      "Our team spans India (GMT+5:30), Canada (GMT-5), and the US (GMT-5/-8). We typically guarantee 4 hours of overlap with your working day; many of our engineers work async with daily written standups for clients in different time zones.",
   },
   {
     question: "How do you vet candidates before they reach me?",
@@ -103,7 +93,7 @@ export default function HireDevelopersPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-12">
             <div className="col-span-12 md:col-span-3">
-              <div className="eyebrow">01 / Roles</div>
+              <div className="eyebrow">Roles</div>
             </div>
             <div className="col-span-12 md:col-span-9">
               <h2 className="text-[28px] sm:text-[32px] md:text-[52px] font-semibold tracking-[-0.02em] leading-[1.04]">
@@ -144,7 +134,7 @@ export default function HireDevelopersPage() {
       <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
-            <div className="eyebrow">02 / How it works</div>
+            <div className="eyebrow">How it works</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
@@ -169,7 +159,7 @@ export default function HireDevelopersPage() {
       </section>
 
       <FAQSection
-        eyebrow="03 / FAQ"
+        eyebrow="FAQ"
         title="What founders and CTOs ask before they hire."
         italicWord="before they hire."
         items={FAQS}

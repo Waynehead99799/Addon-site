@@ -49,7 +49,7 @@ export default function IndustryDetail({
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-6">
             <Reveal y={18}>
-              <div className="eyebrow mb-4">01 / Where it hurts</div>
+              <div className="eyebrow mb-4">Where it hurts</div>
               <h2 className="text-[28px] sm:text-[32px] md:text-[44px] font-semibold tracking-[-0.02em] leading-[1.05] mb-6 md:mb-8">
                 Problems <span className="serif-italic font-normal text-white/70">we solve</span>.
               </h2>
@@ -72,7 +72,7 @@ export default function IndustryDetail({
 
           <div className="col-span-12 md:col-span-6 mt-10 md:mt-0 md:border-l md:border-white/10 md:pl-10">
             <Reveal y={18}>
-              <div className="eyebrow mb-4 text-emerald-300/80">02 / How we fix it</div>
+              <div className="eyebrow mb-4 text-emerald-300/80">How we fix it</div>
               <h2 className="text-[28px] sm:text-[32px] md:text-[44px] font-semibold tracking-[-0.02em] leading-[1.05] mb-6 md:mb-8">
                 How <span className="serif-italic font-normal text-white/70">we help</span>.
               </h2>

@@ -19,7 +19,7 @@ export default function AboutTeaser() {
 
           <Reveal delay={120} y={20}>
             <p className="mt-6 md:mt-8 text-[15px] md:text-[18px] text-white/70 leading-[1.7] max-w-[46rem]">
-              Founded in 2011, we&apos;re a team of 35+ engineers across India, Canada, and the USA. We&apos;ve shipped 300+ projects for 150+ clients in 10+ countries — from seed-stage founders to ISO-audited enterprises. AI is the newest tool in our kit. The discipline of making software actually work isn&apos;t.
+              Founded in 2011, we&apos;re a team of 35+ engineers based in Ahmedabad, India. We&apos;ve shipped 300+ projects for 150+ clients in 10+ countries — from seed-stage founders to ISO-audited enterprises. AI is the newest tool in our kit. The discipline of making software actually work isn&apos;t.
             </p>
           </Reveal>
 
@@ -36,8 +36,8 @@ export default function AboutTeaser() {
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-mono mb-3">Reach</div>
-                <div className="text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-none num-grad">3</div>
-                <div className="mt-2 text-[12px] text-white/45 serif-italic">continents · India · Canada · USA</div>
+                <div className="text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-none num-grad">10+</div>
+                <div className="mt-2 text-[12px] text-white/45 serif-italic">countries · across 5 continents</div>
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-[0.22em] text-white/55 font-mono mb-3">Certified</div>

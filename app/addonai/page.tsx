@@ -55,7 +55,7 @@ export default function AddonAIHub() {
         subtitle="We design, build, and deploy production-grade artificial intelligence systems that automate operations, generate insights, and create competitive advantages. From strategy to deployment — we handle the complexity so you can focus on growth."
       />
       <IndexList
-        eyebrow="01 / AI service lines"
+        eyebrow="AI service lines"
         kicker="Six specialisations."
         title="Six specialised AI service lines."
         italicWord="AI service lines."

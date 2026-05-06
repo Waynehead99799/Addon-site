@@ -18,7 +18,7 @@ export default function AboutHero() {
         </Reveal>
         <Reveal delay={180} y={18}>
           <p className="mt-6 md:mt-8 text-[15px] md:text-[18px] text-white/70 max-w-[40rem] leading-[1.55] mx-auto">
-            A custom software &amp; AI agency built by engineers who&apos;ve shipped for founders, operators, and enterprises across three continents — through three framework wars and two hype cycles.
+            A custom software &amp; AI agency built by engineers who&apos;ve shipped for founders, operators, and enterprises across 10+ countries and 5 continents — through three framework wars and two hype cycles.
           </p>
         </Reveal>
       </div>

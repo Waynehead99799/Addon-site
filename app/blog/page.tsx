@@ -56,7 +56,7 @@ export default function BlogHub() {
         subtitle="Thought leadership on AI, technology, and digital transformation from the engineers and strategists doing the work."
       />
       <IndexList
-        eyebrow="01 / Articles"
+        eyebrow="Articles"
         kicker="Long-form."
         title="Recent writing from the team."
         italicWord="from the team."

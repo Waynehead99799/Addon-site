@@ -7,7 +7,7 @@ export default function Process() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-16">
           <div className="col-span-12 md:col-span-3">
-            <div className="eyebrow">05 / Process</div>
+            <div className="eyebrow">Process</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <h2 className="text-[40px] md:text-[56px] lg:text-[68px] font-semibold tracking-[-0.02em] leading-[1.02]">

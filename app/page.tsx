@@ -16,7 +16,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "AI & Custom Software Development Agency",
   description:
-    "Engineers-first AI and custom software agency since 2011. We ship production AI, web, mobile, and cloud platforms for founders, operators, and enterprises across three continents.",
+    "Engineers-first AI and custom software agency since 2011. We ship production AI, web, mobile, and cloud platforms for founders, operators, and enterprises across 10+ countries and 5 continents.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "AI & Custom Software Development Agency",

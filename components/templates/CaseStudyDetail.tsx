@@ -78,7 +78,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
       <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
-            <div className="eyebrow">01 / Overview</div>
+            <div className="eyebrow">Overview</div>
           </div>
           <div className="col-span-12 md:col-span-9">
             <p className="text-[18px] sm:text-[20px] md:text-[26px] leading-[1.45] md:leading-[1.4] text-white/85 font-light tracking-[-0.005em] max-w-4xl">
@@ -92,7 +92,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
       <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
           <Reveal y={18} className="col-span-12 md:col-span-6">
-            <div className="eyebrow mb-5">02 / Challenge</div>
+            <div className="eyebrow mb-5">Challenge</div>
             <h3 className="text-[26px] md:text-[34px] font-semibold tracking-[-0.02em] leading-[1.1] mb-5">
               What <span className="serif-italic font-normal text-white/70">was broken</span>.
             </h3>
@@ -103,7 +103,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
             delay={120}
             className="col-span-12 md:col-span-6 mt-8 md:mt-0 md:border-l md:border-white/10 md:pl-10"
           >
-            <div className="eyebrow mb-5 text-emerald-300/80">03 / Solution</div>
+            <div className="eyebrow mb-5 text-emerald-300/80">Solution</div>
             <h3 className="text-[26px] md:text-[34px] font-semibold tracking-[-0.02em] leading-[1.1] mb-5">
               What <span className="serif-italic font-normal text-white/70">we built</span>.
             </h3>
@@ -119,7 +119,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
           <div className="max-w-7xl mx-auto px-6 md:px-8">
             <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14">
               <div className="col-span-12 md:col-span-3">
-                <div className="eyebrow">04 / Showcase · Web</div>
+                <div className="eyebrow">Showcase · Web</div>
               </div>
               <div className="col-span-12 md:col-span-9">
                 <h2 className="text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-semibold tracking-[-0.02em] leading-[1.06]">

@@ -9,7 +9,6 @@ import Headline from "./Headline";
  * children) in a 12-col grid that collapses to single column on mobile.
  *
  *   <SectionHeader
- *     number={1}
  *     eyebrow="Services"
  *     kicker="The shortlist."
  *     title="One partner, six ways to ship."
@@ -41,10 +40,11 @@ export default function SectionHeader({
   size?: "display" | "section" | "sub";
   className?: string;
 }) {
+  void number;
   return (
     <div className={`grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14 ${className}`.trim()}>
       <div className="col-span-12 md:col-span-3">
-        <Eyebrow number={number}>{eyebrow}</Eyebrow>
+        <Eyebrow>{eyebrow}</Eyebrow>
         {kicker && <Kicker>{kicker}</Kicker>}
       </div>
       <div className="col-span-12 md:col-span-9">

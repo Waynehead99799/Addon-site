@@ -5,13 +5,13 @@ export default function AboutStory() {
     <section className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-12 gap-6 md:gap-10">
         <div className="col-span-12 md:col-span-3">
-          <div className="eyebrow">01 / Our story</div>
+          <div className="eyebrow">Our story</div>
         </div>
 
         <div className="col-span-12 md:col-span-9">
           <Reveal y={24}>
             <p className="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[36px] leading-[1.35] md:leading-[1.25] tracking-[-0.01em] text-white/90">
-              We started with a simple belief: <span className="serif-italic text-white/65">technology should solve real business problems,</span> not create new ones. What began as a small team of engineers in 2011 has grown into a 35+ strong technology partner with offices in Ahmedabad, Toronto, and Atlanta — managing products that serve 150+ clients across 10+ countries.
+              We started with a simple belief: <span className="serif-italic text-white/65">technology should solve real business problems,</span> not create new ones. What began as a small team of engineers in 2011 has grown into a 35+ strong technology partner with an office in Ahmedabad, India — managing products that serve 150+ clients across 10+ countries.
             </p>
           </Reveal>
 
@@ -33,7 +33,7 @@ export default function AboutStory() {
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-[0.22em] text-white/40 font-mono">Offices</div>
-                <div className="text-[16px] md:text-[18px] font-semibold mt-1">India · Canada · USA</div>
+                <div className="text-[16px] md:text-[18px] font-semibold mt-1">Ahmedabad · India</div>
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-[0.22em] text-white/40 font-mono">Certified</div>

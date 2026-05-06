@@ -8,6 +8,7 @@ import { Icon } from "./icons";
 const COMPANIES = [
   { short: "Camera Telematics", color: "#5392df", rgb: "83,146,223", region: "UK & Ireland", tenure: "12+ years" },
   { short: "Nature Checkout",   color: "#5dd5ab", rgb: "93,213,171", region: "USA",          tenure: "App partner" },
+  { short: "Road Devil",        color: "#ff6b5b", rgb: "255,107,91", region: "UK & Ireland", tenure: "Hardware + Platform" },
   { short: "Nyaay AI",          color: "#2dbcd2", rgb: "45,188,210", region: "USA",          tenure: "App partner" },
 ];
 
@@ -25,6 +26,15 @@ const EXTENDED: Record<number, string[]> = {
     "What impressed me most was their reliability, attention to detail, and dedication to meeting business objectives. If you are looking for a trusted development partner that delivers real results, Addon Web Solutions is an excellent choice.",
   ],
   2: [
+    "We came to Addon with a genuinely complex brief. Road Devil operates at the intersection of proprietary hardware, embedded AI, and a multi-tenant SaaS platform — and we needed a technology partner who wouldn't flinch at any layer of that stack.",
+    "On the hardware side, they engineered a purpose-built device architecture that slots perfectly into our commercial vehicle deployment model. It's robust, it's scalable, and critically, it preserves our full IP ownership — something non-negotiable for us as a business built on defensible technology.",
+    "Their PaaS solution was equally impressive. Addon built and deployed a platform that supports our per-vehicle SaaS model, handles structured data ingestion across telematics and fleet ecosystems, and gives us the API-led flexibility to onboard partners — whether that's insurers, OEMs, or fleet operators — without friction.",
+    "The architecture they delivered is clean, well-documented, and built to grow with us.",
+    "Beyond the technical delivery, Addon brought genuine consultative thinking to every stage. They asked the right questions, challenged assumptions where it mattered, and consistently delivered on time. For a company like ours — where the platform is the product — that level of engineering rigour and commercial awareness made all the difference.",
+    "I wouldn't hesitate to recommend Addon Web Solutions to any technology business that needs a partner capable of operating across hardware, infrastructure, and platform delivery simultaneously.",
+    "As our journey continues with Addon, we look forward to future developments with the talented team, who have become friends along the way.",
+  ],
+  3: [
     "Addon Web Solutions delivered exceptional results on my app project. Their team was responsive and supportive throughout the entire process.",
     "Every feature was developed on time and executed flawlessly — they understood the requirements and delivered exactly what was promised. The quality of work and attention to detail was impressive.",
     "The final output exceeded my expectations and works perfectly. I'd highly recommend them to anyone needing reliable app development or customised software development.",

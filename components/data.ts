@@ -136,6 +136,11 @@ export const TESTIMONIALS = [
     r: "CEO, Nature Checkout Inc · USA",
   },
   {
+    q: "Finding a partner who could handle both the hardware and the platform side — without compromise — was the hardest part of scaling Road Devil. Addon Web Solutions solved that.",
+    n: "Mark Stamper",
+    r: "Co-Founder, Road Devil Pvt Ltd · UK & Ireland",
+  },
+  {
     q: "Every feature was developed on time and executed flawlessly. They understood the requirements and delivered exactly what was promised. The output exceeded my expectations.",
     n: "Jerry Gupta",
     r: "Nyaay-AI · USA",

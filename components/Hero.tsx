@@ -64,11 +64,12 @@ export default function Hero() {
             {Array.from({ length: 2 }).flatMap((_, k) =>
               [
                 "Fleet telemetry running since 2016",
-                "AI-driven maternal health · 150K users",
+                "AI-driven Student Campus App · 150K users",
                 "OBD-II diagnostics · 4.8★ App Store",
                 "On-demand cleaning marketplace · 5,000 pros",
                 "Multi-vendor food platform · 12 cities",
-                "Edge BLE firmware in Rust",
+                "AI based 6-Channel Dashcam",
+                "Connected Mobility Apps · 400k+ users",
               ].map((t, idx) => (
                 <span key={`${k}-${idx}`} className="inline-flex items-center gap-3">
                   <span className="font-medium tracking-[-0.005em]">{t}</span>

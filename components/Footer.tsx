@@ -1,8 +1,27 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { SITE } from "@/lib/site";
 
 export default function Footer() {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    const currentTheme = htmlElement.getAttribute("data-theme") || "dark";
+    setTheme(currentTheme);
+
+    const observer = new MutationObserver(() => {
+      const newTheme = htmlElement.getAttribute("data-theme") || "dark";
+      setTheme(newTheme);
+    });
+
+    observer.observe(htmlElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
+
   const cols: { t: string; l: { label: string; href: string }[] }[] = [
     {
       t: "AddonAI",
@@ -49,30 +68,43 @@ export default function Footer() {
     <footer className="relative border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-14 pb-12 md:pb-14">
         <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10">
-          <div className="col-span-2 md:col-span-4">
+          <div className="col-span-2 md:col-span-4 flex flex-col">
             <Link href="/" className="flex items-center gap-2.5">
               <Logo size={36} />
               <span className="flex flex-col leading-none">
                 <span className="font-semibold tracking-[-0.02em] text-lg">Addon Web</span>
                 <span
-                  className="text-[9.5px] font-mono tracking-[0.28em] uppercase mt-1"
+                  className="flex justify-between w-full mt-[5px] text-[10px] font-mono uppercase"
                   style={{ color: "var(--ink-dim)" }}
                 >
-                  solutions · est. 2011
+                  {"SOLUTIONS".split("").map((c, i) => (
+                    <span key={i}>{c}</span>
+                  ))}
                 </span>
               </span>
             </Link>
-            <p className="mt-5 text-[14px] text-white/55 max-w-xs leading-relaxed">
-              Engineering intelligent digital products.{" "}
-              <span className="serif-italic text-white/75">Shipping since 2011.</span>
-            </p>
-            <div className="mt-6 space-y-3 text-[12.5px] text-white/45 font-mono">
+            <div className="mt-4 space-y-3 text-[12.5px] text-white/45 font-mono mb-2">
               <a href={`mailto:${SITE.email}`} className="block hover:text-white/75 transition">
                 {SITE.email}
               </a>
               <address className="not-italic leading-relaxed max-w-sm">
                 {SITE.address.formatted}
               </address>
+            </div>
+            <div className="rounded-lg overflow-hidden border border-white/10 h-fit">
+              <iframe
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.formatted)}&z=15&output=embed`}
+                width="100%"
+                height="140"
+                style={{
+                  border: 0,
+                  display: 'block',
+                  filter: theme === 'dark' ? 'invert(0.9) hue-rotate(200deg)' : 'none'
+                }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
           {cols.map((c) => (

@@ -236,10 +236,10 @@ function CompactRail() {
           <Link
             key={service.slug}
             href={hrefFor(service)}
-            className="group grid grid-cols-12 gap-4 md:gap-6 p-5 md:p-6 border-b border-white/10 last:border-b-0 transition-[background-color,padding-left] duration-300 hover:bg-white/[0.035] hover:md:pl-8"
+            className="group grid grid-cols-12 gap-4 md:gap-6 p-5 md:p-6 border-b border-white/10 last:border-b-0 transition-colors duration-300 hover:bg-white/[0.035]"
             style={{ ["--svc" as string]: accent.hex, ["--svc-rgb" as string]: accent.rgb }}
           >
-            <div className="col-span-12 md:col-span-4 flex items-center gap-3">
+            <div className="col-span-12 md:col-span-4 flex items-center gap-3 transition-[padding-left] duration-300 ease-out group-hover:md:pl-3">
               <ServiceIcon service={service} />
               <div>
                 <div className="text-[18px] md:text-[22px] font-semibold tracking-[-0.02em] leading-tight transition-colors group-hover:text-white">
@@ -275,65 +275,66 @@ function CompactRail() {
 
 function SpotlightDeck() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-start">
       {SERVICES_DATA.map((service, i) => {
         const accent = accentFor(service);
         return (
-          <Link
-            key={service.slug}
-            href={hrefFor(service)}
-            className="group relative min-h-[360px] rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden p-5 md:p-6 transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-1 hover:bg-white/[0.045]"
-            style={{
-              ["--svc" as string]: accent.hex,
-              ["--svc-rgb" as string]: accent.rgb,
-              boxShadow: `0 0 0 0 rgba(${accent.rgb}, 0)`,
-            }}
-          >
-            <div
-              className="absolute inset-x-0 top-0 h-1 opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-              style={{ background: `linear-gradient(90deg, transparent, ${accent.hex}, transparent)` }}
-            />
-            <div
-              className="absolute -right-20 -top-20 w-48 h-48 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-30"
-              style={{ background: accent.hex }}
-            />
-            <div className="relative flex items-start justify-between gap-4">
-              <ServiceIcon service={service} />
-              <span className="text-[11px] font-mono text-white/35">0{i + 1}</span>
-            </div>
-            <div className="relative mt-10">
-              <div className="text-[24px] md:text-[28px] font-semibold tracking-[-0.02em] leading-[1.02]">
-                {service.title.split(" ").slice(0, -1).join(" ")}{" "}
-                <span className="serif-italic font-normal text-white/70">
-                  {service.title.split(" ").slice(-1)}
-                </span>
-              </div>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-white/55">{service.subtitle}</p>
-            </div>
-            <div className="relative mt-6 max-h-0 overflow-hidden opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100">
-              <div className="eyebrow text-white/35">Reveals on hover</div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {service.features.slice(0, 3).map((feature) => (
-                  <span
-                    key={feature.title}
-                    className="text-[10.5px] px-2 py-1 rounded-full bg-white/[0.04] text-white/55 border border-white/10 font-mono"
-                  >
-                    {feature.title}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="absolute left-5 right-5 bottom-5 flex items-center justify-between gap-4">
-              <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-white/35 truncate">
-                {service.eyebrow}
-              </span>
-              <Icon.ArrowUpRight
-                width={17}
-                height={17}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+          <div key={service.slug} className="relative min-h-[440px] self-start">
+            <Link
+              href={hrefFor(service)}
+              className="group absolute inset-x-0 top-0 z-0 min-h-[360px] rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden p-5 md:p-6 transition-[transform,border-color,background-color,box-shadow,z-index] duration-300 hover:z-20 hover:-translate-y-1 hover:bg-white/[0.045] focus-visible:z-20"
+              style={{
+                ["--svc" as string]: accent.hex,
+                ["--svc-rgb" as string]: accent.rgb,
+                boxShadow: `0 0 0 0 rgba(${accent.rgb}, 0)`,
+              }}
+            >
+              <div
+                className="absolute inset-x-0 top-0 h-1 opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: `linear-gradient(90deg, transparent, ${accent.hex}, transparent)` }}
               />
-            </div>
-          </Link>
+              <div
+                className="absolute -right-20 -top-20 w-48 h-48 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-30"
+                style={{ background: accent.hex }}
+              />
+              <div className="relative flex items-start justify-between gap-4">
+                <ServiceIcon service={service} />
+                <span className="text-[11px] font-mono text-white/35">0{i + 1}</span>
+              </div>
+              <div className="relative mt-10">
+                <div className="text-[24px] md:text-[28px] font-semibold tracking-[-0.02em] leading-[1.02]">
+                  {service.title.split(" ").slice(0, -1).join(" ")}{" "}
+                  <span className="serif-italic font-normal text-white/70">
+                    {service.title.split(" ").slice(-1)}
+                  </span>
+                </div>
+                <p className="mt-3 text-[13.5px] leading-relaxed text-white/55">{service.subtitle}</p>
+              </div>
+              <div className="relative mt-6 max-h-0 overflow-hidden opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100">
+                <div className="eyebrow text-white/35">Reveals on hover</div>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {service.features.slice(0, 3).map((feature) => (
+                    <span
+                      key={feature.title}
+                      className="text-[10.5px] px-2 py-1 rounded-full bg-white/[0.04] text-white/55 border border-white/10 font-mono"
+                    >
+                      {feature.title}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute left-5 right-5 bottom-5 flex items-center justify-between gap-4">
+                <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-white/35 truncate">
+                  {service.eyebrow}
+                </span>
+                <Icon.ArrowUpRight
+                  width={17}
+                  height={17}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+              </div>
+            </Link>
+          </div>
         );
       })}
     </div>

@@ -70,14 +70,14 @@ function serviceTitle(title: string) {
 
 function SpotlightDeck() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-start">
       {SERVICES_DATA.map((service, i) => {
         const accent = serviceAccent(service);
         return (
-          <Reveal key={service.slug} delay={i * 45} y={18}>
+          <Reveal key={service.slug} delay={i * 45} y={18} className="relative min-h-[440px] self-start">
             <Link
               href={`/services/${service.slug}`}
-              className="group relative flex min-h-[360px] h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6 transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.045] hover:shadow-[0_24px_70px_-32px_rgba(var(--svc-rgb),0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+              className="group absolute inset-x-0 top-0 z-0 flex min-h-[360px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6 transition-[transform,border-color,background-color,box-shadow,z-index] duration-300 hover:z-20 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.045] hover:shadow-[0_24px_70px_-32px_rgba(var(--svc-rgb),0.65)] focus-visible:z-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
               style={{
                 ["--svc" as string]: accent.hex,
                 ["--svc-rgb" as string]: accent.rgb,

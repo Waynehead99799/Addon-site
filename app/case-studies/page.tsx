@@ -61,7 +61,7 @@ function CaseStudyImage({
   study,
   sizes,
   priority = false,
-  fit = "cover",
+  fit = "contain",
 }: {
   study: CaseStudyDetail;
   sizes: string;
@@ -133,7 +133,7 @@ export default function CaseStudiesHub() {
               padding=""
               className="md:grid md:grid-cols-12 md:min-h-[440px]"
             >
-              <div className="relative min-h-[260px] sm:min-h-[340px] md:col-span-7 md:min-h-full overflow-hidden bg-white/[0.03]">
+              <div className="relative min-h-[260px] sm:min-h-[340px] md:col-span-7 md:min-h-full overflow-hidden bg-[#090909]">
                 <CaseStudyImage
                   study={featured}
                   priority
@@ -199,7 +199,7 @@ export default function CaseStudiesHub() {
                   padding=""
                   className="min-h-full"
                 >
-                  <div className="relative aspect-[16/9] overflow-hidden bg-white/[0.03]">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-[#090909]">
                     <CaseStudyImage
                       study={study}
                       sizes="(min-width: 768px) 50vw, 100vw"

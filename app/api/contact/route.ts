@@ -110,12 +110,18 @@ export async function POST(req: NextRequest) {
     }
 
     if (!verifyJson.success) {
-      console.warn(
-        "[contact] reCAPTCHA rejected token:",
-        verifyJson["error-codes"]
-      );
+      const codes = verifyJson["error-codes"] ?? [];
+      console.warn("[contact] reCAPTCHA rejected token:", codes);
       return NextResponse.json(
-        { error: "Captcha check failed — please reload and try again." },
+        {
+          error: "Captcha check failed — please reload and try again.",
+          // Public Google error codes (e.g. "invalid-input-response",
+          // "missing-input-secret"). Documented at
+          // https://developers.google.com/recaptcha/docs/verify#error_code_reference
+          // — surfacing helps debug domain whitelist / key mismatches without
+          // having to dig through server logs.
+          recaptchaErrorCodes: codes,
+        },
         { status: 403 }
       );
     }
@@ -133,7 +139,13 @@ export async function POST(req: NextRequest) {
         RECAPTCHA_EXPECTED_ACTION
       );
       return NextResponse.json(
-        { error: "Captcha check failed — please reload and try again." },
+        {
+          error: "Captcha check failed — please reload and try again.",
+          recaptchaActionMismatch: {
+            got: verifyJson.action,
+            expected: RECAPTCHA_EXPECTED_ACTION,
+          },
+        },
         { status: 403 }
       );
     }

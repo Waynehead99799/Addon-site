@@ -1,6 +1,5 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import Script from "next/script";
 import { Icon } from "./icons";
 import { Field, SelectField, TextAreaField } from "./cta-form-variants/Fields";
 import { SITE } from "@/lib/site";
@@ -14,46 +13,6 @@ const STATS = [
   { l: "Discovery to kickoff", v: "7 days" },
   { l: "First working build", v: "2 weeks" },
 ];
-
-// Google reCAPTCHA v3 site key. When unset (typical for local dev without
-// keys), the script + verification are both skipped end-to-end so the form
-// keeps working — the API route applies the same NEXT_PUBLIC_/SECRET_ pairing.
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-// Action label sent with the token; the API route asserts this matches so a
-// token leaked from one form can't be replayed against another endpoint.
-const RECAPTCHA_ACTION = "contact";
-
-type Grecaptcha = {
-  ready: (cb: () => void) => void;
-  execute: (siteKey: string, options: { action: string }) => Promise<string>;
-};
-
-/** Wait for grecaptcha to load (script may still be in flight) and execute
- *  a v3 challenge for the given action, resolving with the resulting token. */
-function getRecaptchaToken(siteKey: string, action: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    if (typeof window === "undefined") {
-      reject(new Error("not in browser"));
-      return;
-    }
-    const start = Date.now();
-    const tick = () => {
-      const g = (window as unknown as { grecaptcha?: Grecaptcha }).grecaptcha;
-      if (g && typeof g.execute === "function") {
-        g.ready(() => {
-          g.execute(siteKey, { action }).then(resolve).catch(reject);
-        });
-        return;
-      }
-      if (Date.now() - start > 8000) {
-        reject(new Error("recaptcha-load-timeout"));
-        return;
-      }
-      setTimeout(tick, 120);
-    };
-    tick();
-  });
-}
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -71,20 +30,6 @@ export default function CTA() {
     setStatus("submitting");
     setError(null);
 
-    // v3 reCAPTCHA: fetch a fresh token for this submission. No widget; the
-    // script scores user behaviour silently and returns a token we hand to
-    // the API for siteverify (the score check happens server-side).
-    let recaptchaToken = "";
-    if (RECAPTCHA_SITE_KEY) {
-      try {
-        recaptchaToken = await getRecaptchaToken(RECAPTCHA_SITE_KEY, RECAPTCHA_ACTION);
-      } catch {
-        setStatus("error");
-        setError("Couldn't load the captcha service — please reload and try again.");
-        return;
-      }
-    }
-
     const payload = {
       // Honeypot — must be empty. Bots fill every input they see.
       website: fd.get("website") ?? "",
@@ -95,7 +40,6 @@ export default function CTA() {
       engagement: fd.get("engagement") ?? "",
       timeline: fd.get("timeline") ?? "",
       message: fd.get("message") ?? "",
-      recaptchaToken,
     };
 
     try {
@@ -124,16 +68,6 @@ export default function CTA() {
       id="contact"
       className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5"
     >
-      {/* Google reCAPTCHA v3 script — only loads when a site key is configured.
-          v3 has no widget; loading with `?render=<siteKey>` registers grecaptcha
-          and starts the silent behaviour scoring used by `grecaptcha.execute`. */}
-      {RECAPTCHA_SITE_KEY && (
-        <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
-          strategy="afterInteractive"
-        />
-      )}
-
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
           <div className="col-span-12 md:col-span-3">
@@ -221,34 +155,6 @@ export default function CTA() {
                 />
               </div>
             </div>
-
-            {/* reCAPTCHA v3 disclosure — required by Google's terms when the
-                badge is hidden via CSS. The script also drops a floating badge
-                in the bottom-right corner; this inline note covers the case
-                where someone has hidden it and keeps the legal bases covered. */}
-            {RECAPTCHA_SITE_KEY && (
-              <p className="mt-5 text-[11.5px] text-white/40 leading-relaxed">
-                This site is protected by reCAPTCHA and the Google{" "}
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-white/20 hover:text-white/65 transition"
-                >
-                  Privacy Policy
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://policies.google.com/terms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-white/20 hover:text-white/65 transition"
-                >
-                  Terms of Service
-                </a>{" "}
-                apply.
-              </p>
-            )}
 
             <div className="mt-7 flex items-center justify-between gap-4 flex-wrap">
               <p className="text-[12.5px] text-white/45 max-w-xs">

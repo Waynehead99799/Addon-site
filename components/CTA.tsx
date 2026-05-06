@@ -271,7 +271,7 @@ export default function CTA() {
                       </div>
                       <div className="text-[11.5px] font-mono text-white/45">{o.time}</div>
                     </div>
-                    <address className="mt-2 max-w-md text-[12.5px] leading-relaxed text-white/50 not-italic">
+                    <address className="mt-2 w-[48ch] max-w-full text-[12.5px] leading-relaxed text-white/50 not-italic">
                       {SITE.address.formatted}
                     </address>
                   </li>

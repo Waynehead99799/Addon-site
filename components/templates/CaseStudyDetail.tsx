@@ -54,14 +54,14 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
         <section className="section-reveal relative pt-2 pb-10 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 md:px-8">
             <Reveal y={18}>
-              <figure className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02]">
+              <figure className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 bg-[#090909]">
                 <Image
                   src={g.hero}
                   alt={g.heroCaption ?? `${cs.title} — product hero`}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </figure>
               {g.heroCaption && (
@@ -139,7 +139,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
             >
               {g.web.map((src, i) => (
                 <Reveal key={src} delay={i * 80} y={20}>
-                  <figure className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                  <figure className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-[#090909]">
                     <Image
                       src={src}
                       alt={
@@ -149,7 +149,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                       }
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 620px"
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </figure>
                   {g.webCaptions?.[i] && (
@@ -191,7 +191,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                   y={24}
                   className="w-[200px] sm:w-[240px] md:w-[260px] flex-shrink-0"
                 >
-                  <figure className="relative aspect-[9/19.5] rounded-[2.25rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+                  <figure className="relative aspect-[9/19.5] rounded-[2.25rem] overflow-hidden border border-white/10 bg-[#090909] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
                     <Image
                       src={src}
                       alt={
@@ -201,7 +201,7 @@ export default function CaseStudyDetail({ cs }: { cs: CS }) {
                       }
                       fill
                       sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 260px"
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </figure>
                   {g.mobileCaptions?.[i] && (

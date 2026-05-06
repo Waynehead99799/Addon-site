@@ -36,6 +36,14 @@ const CHANNELS = [
     scroll: false,
   },
   {
+    id: "office",
+    label: "Our office",
+    sub: SITE.address.formatted,
+    href: OFFICE_MAPS_HREF,
+    external: true,
+    scroll: false,
+  },
+  {
     id: "form",
     label: "Send a message",
     sub: "Use our contact form — we reply within 24 h",

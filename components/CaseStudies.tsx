@@ -217,7 +217,7 @@ function Artwork({ cs }: { cs: CaseStudy }) {
   // Real screenshot path — drop the cover image at /case-studies/<slug>/<file>
   if (cs.image) {
     return (
-      <div className="case-art relative aspect-[16/10] md:h-[420px] lg:h-[500px] md:aspect-auto overflow-hidden bg-white/[0.02]">
+      <div className="case-art relative aspect-[16/10] md:h-[380px] lg:h-[380px] md:aspect-auto overflow-hidden bg-[#090909]">
         <Image
           src={cs.image}
           alt={cs.title}
@@ -247,7 +247,7 @@ function Artwork({ cs }: { cs: CaseStudy }) {
   // Fallback synthetic gradient — used while a project's screenshots are pending
   return (
     <div
-      className="case-art relative aspect-[16/10] md:h-[420px] lg:h-[500px] md:aspect-auto overflow-hidden"
+      className="case-art relative aspect-[16/10] md:h-[280px] lg:h-[320px] md:aspect-auto overflow-hidden"
       style={{ background: c3 }}
     >
       <div

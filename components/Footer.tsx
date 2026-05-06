@@ -83,15 +83,15 @@ export default function Footer() {
                 </span>
               </span>
             </Link>
-            <div className="mt-4 space-y-3 text-[12.5px] text-white/45 font-mono mb-2">
+            <div className="mt-4 space-y-3 text-[12.5px] text-white/45 font-mono mb-2 w-[48ch] max-w-full">
               <a href={`mailto:${SITE.email}`} className="block hover:text-white/75 transition">
                 {SITE.email}
               </a>
-              <address className="not-italic leading-relaxed max-w-sm">
+              <address className="not-italic leading-relaxed">
                 {SITE.address.formatted}
               </address>
             </div>
-            <div className="rounded-lg overflow-hidden border border-white/10 h-fit">
+            <div className="w-[48ch] max-w-full rounded-lg overflow-hidden border border-white/10 h-fit">
               <iframe
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.formatted)}&z=15&output=embed`}
                 width="100%"

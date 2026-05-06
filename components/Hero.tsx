@@ -46,7 +46,7 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delay={180} y={18}>
-          <p className="mt-5 md:mt-8 text-[15px] md:text-[18px] text-white/70 max-w-[36rem] leading-[1.55] mx-auto">
+          <p className="mt-5 md:mt-8 text-[15px] md:text-[18px] text-white/70 max-w-[32rem] md:max-w-[36rem] leading-[1.55] mx-auto px-2">
             Custom software with AI at the core — built to run, built to last.
           </p>
         </Reveal>
@@ -60,7 +60,7 @@ export default function Hero() {
       {/* bottom ticker — brand gradient wash, pinned to the foot of the hero */}
       <div className="relative z-20 ticker-band">
         <div className="overflow-hidden marquee-mask py-3">
-          <div className="flex items-center gap-6 md:gap-10 ticker w-max whitespace-nowrap text-white/90 text-[12px] md:text-[13.5px]">
+          <div className="flex items-center gap-4 sm:gap-6 md:gap-10 ticker w-max whitespace-nowrap text-white/90 text-[12px] sm:text-[13px] md:text-[13.5px]">
             {Array.from({ length: 2 }).flatMap((_, k) =>
               [
                 "Fleet telemetry running since 2016",

@@ -184,7 +184,7 @@ export default function Nav() {
 
         {/* mobile + tablet drawer */}
         {open && (
-          <div className="lg:hidden mt-2 glass rounded-2xl p-3 flex flex-col gap-0.5 max-h-[80vh] overflow-y-auto">
+          <div className="lg:hidden mt-2 glass rounded-2xl p-3 flex flex-col gap-0.5 max-h-[70vh] sm:max-h-[80vh] overflow-y-auto">
             {NAV.map((n) => {
               const hasChildren = "children" in n;
               const isOpen = mobileOpen === n.label;
@@ -229,7 +229,7 @@ export default function Nav() {
                           key={c.href}
                           href={c.href}
                           onClick={() => setOpen(false)}
-                          className="block px-3 py-2.5 rounded-lg text-[14px] text-white/55 hover:text-white hover:bg-white/5"
+                          className="block px-3 py-2.5 rounded-lg text-[13px] sm:text-[14px] text-white/55 hover:text-white hover:bg-white/5 truncate"
                         >
                           {c.label}
                         </Link>
@@ -245,7 +245,7 @@ export default function Nav() {
               className="nav-cta mt-2 rounded-xl accent-grad p-[1.5px]"
             >
               <span
-                className="nav-cta-inner block rounded-[10px] px-3 py-3 text-[15px] font-medium text-center"
+                className="nav-cta-inner block rounded-[10px] px-3 py-3 text-[14px] sm:text-[15px] font-medium text-center"
                 style={{ background: "var(--bg)", color: "var(--ink)" }}
               >
                 Start a project

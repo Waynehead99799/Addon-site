@@ -1,0 +1,30 @@
+
+> addon-web-solutions@0.1.0 dev
+> next dev -p 3010
+
+  ▲ Next.js 14.2.15
+  - Local:        http://localhost:3010
+
+ ✓ Starting...
+ ✓ Ready in 1279ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.9s (1429 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 4001ms
+ GET /_next/static/webpack/724e78e8233a5bb2.webpack.hot-update.json 404 in 4081ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 25ms
+ GET /_next/static/webpack/724e78e8233a5bb2.webpack.hot-update.json 404 in 71ms
+ GET / 200 in 103ms
+ GET / 200 in 33ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 38ms
+ GET /_next/static/chunks/app/LayoutGroupContext.mjs.map 404 in 14ms
+ GET / 200 in 35ms
+ GET / 200 in 99ms
+ ✓ Compiled /privacy in 463ms (1406 modules)
+ ✓ Compiled /terms in 185ms (1394 modules)
+ ✓ Compiled /addonai in 417ms (1403 modules)
+ GET /addonai 200 in 611ms
+ ✓ Compiled /services in 475ms (1420 modules)
+ ✓ Compiled /case-studies in 283ms (1435 modules)
+ GET / 200 in 899ms

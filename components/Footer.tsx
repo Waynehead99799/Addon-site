@@ -67,14 +67,14 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-14 pb-12 md:pb-14">
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10">
-          <div className="col-span-2 md:col-span-4 flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-10">
+          <div className="col-span-1 md:col-span-4 flex flex-col">
             <Link href="/" className="flex items-center gap-2.5">
               <Logo size={36} />
               <span className="flex flex-col leading-none">
                 <span className="font-semibold tracking-[-0.02em] text-lg">Addon Web</span>
                 <span
-                  className="flex justify-between w-full mt-[5px] text-[10px] font-mono uppercase"
+                  className="flex justify-between w-full mt-[5px] text-[9px] sm:text-[10px] font-mono uppercase"
                   style={{ color: "var(--ink-dim)" }}
                 >
                   {"SOLUTIONS".split("").map((c, i) => (
@@ -115,7 +115,7 @@ export default function Footer() {
                   <li key={i.href}>
                     <Link
                       href={i.href}
-                      className="text-[13.5px] text-white/65 hover:text-white transition"
+                      className="text-[13px] sm:text-[13.5px] text-white/65 hover:text-white transition"
                     >
                       {i.label}
                     </Link>
@@ -126,9 +126,18 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 md:mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="mt-12 md:mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="text-[12px] text-white/40 font-mono">
             © 2026 Addon Web Solutions · All rights reserved
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-white/45">
+            <Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link>
+            <span className="text-white/20">·</span>
+            <Link href="/terms" className="hover:text-white transition">Terms of Service</Link>
+            <span className="text-white/20">·</span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> All systems operational
+            </span>
           </div>
         </div>
 

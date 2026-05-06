@@ -14,9 +14,6 @@ interface ContactModalProps {
 const WHATSAPP_HREF = `https://wa.me/919879003017?text=${encodeURIComponent(
   "Hi, I'd like to talk about a project."
 )}`;
-const OFFICE_MAPS_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  SITE.address.formatted
-)}`;
 
 const CHANNELS = [
   {
@@ -153,17 +150,17 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-            className="fixed bottom-0 left-0 right-0 z-[100]
+            className="fixed bottom-0 left-0 right-0 z-[100] mx-3 rounded-t-2xl sm:mx-0
                        md:bottom-auto md:top-1/2 md:left-1/2
                        md:-translate-x-1/2 md:-translate-y-1/2
-                       md:w-full md:max-w-sm"
+                       md:w-full md:max-w-sm md:mx-0 md:rounded-t-2xl"
           >
             <div className="contact-modal-card bg-[#141210] border border-white/10 rounded-t-2xl md:rounded-2xl overflow-hidden">
               {/* Header */}
-              <div className="contact-modal-header flex items-start justify-between px-5 pt-5 pb-4 border-b border-white/5">
+              <div className="contact-modal-header flex items-start justify-between px-5 sm:px-6 pt-5 pb-4 border-b border-white/5">
                 <div>
-                  <p className="contact-modal-title text-[13px] font-semibold tracking-[0.12em] uppercase text-white/40">Get in touch</p>
-                  <p className="contact-modal-sub text-[13px] text-white/50 mt-1 leading-snug">Choose how you'd like to reach us.</p>
+                  <p className="contact-modal-title text-[12px] sm:text-[13px] font-semibold tracking-[0.08em] sm:tracking-[0.12em] uppercase text-white/40">Get in touch</p>
+                  <p className="contact-modal-sub text-[13px] sm:text-[14px] text-white/50 mt-1 leading-snug">Choose how you'd like to reach us.</p>
                 </div>
                 <button
                   onClick={onClose}
@@ -190,12 +187,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     </span>
 
                     <div className="flex-1 min-w-0">
-                      <p className="contact-channel-label text-[14px] font-medium text-white/90 leading-none">{ch.label}</p>
-                      <p
-                        className={`contact-channel-sublabel text-[12px] text-white/40 mt-1.5 ${
-                          ch.id === "office" ? "leading-snug" : "leading-none truncate"
-                        }`}
-                      >
+                      <p className="contact-channel-label text-[13px] sm:text-[14px] font-medium text-white/90 leading-none">{ch.label}</p>
+                      <p className="contact-channel-sublabel text-[12px] sm:text-[13px] text-white/40 mt-1.5 leading-relaxed sm:leading-none truncate">
                         {ch.sub}
                       </p>
                     </div>

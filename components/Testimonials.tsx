@@ -205,7 +205,7 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-12">
+        <div className="grid grid-cols-12 gap-6 sm:gap-8 md:gap-10 mb-10 md:mb-12">
           <div className="col-span-12 md:col-span-3">
             <div className="eyebrow">Trusted</div>
           </div>
@@ -255,8 +255,8 @@ export default function Testimonials() {
                       {initials}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[15px] font-semibold truncate">{TESTIMONIALS[i].n}</div>
-                      <div className="text-[12px] text-white/55 mt-0.5 truncate">{co.short}</div>
+                      <div className="text-[14px] sm:text-[15px] font-semibold truncate">{TESTIMONIALS[i].n}</div>
+                      <div className="text-[12px] sm:text-[13px] text-white/55 mt-0.5 truncate">{co.short}</div>
                     </div>
                     <span className="test-tile-arrow text-white/35 flex-shrink-0">→</span>
                   </button>
@@ -273,13 +273,13 @@ export default function Testimonials() {
               style={{ borderColor: `rgba(${c.rgb}, 0.30)` }}
             >
               <span
-                className="test-quote-mark serif-italic text-[48px] sm:text-[60px] md:text-[80px] leading-none mb-2"
+                className="test-quote-mark serif-italic text-[32px] sm:text-[48px] md:text-[80px] leading-none mb-2"
                 style={{ color: `rgba(${c.rgb}, 0.35)` }}
                 aria-hidden
               >
                 &ldquo;
               </span>
-              <blockquote className="test-quote serif-italic text-[20px] sm:text-[24px] md:text-[34px] leading-[1.22] md:leading-[1.18] tracking-[-0.01em] text-white/90 -mt-4">
+              <blockquote className="test-quote serif-italic text-[20px] sm:text-[24px] md:text-[34px] leading-[1.35] sm:leading-[1.28] md:leading-[1.18] tracking-[-0.01em] text-white/90 -mt-4">
                 {t.q}
               </blockquote>
               <div className="test-cite mt-7 flex items-center gap-3">

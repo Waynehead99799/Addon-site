@@ -467,7 +467,6 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     client: "Confidential",
     industry: "Education & Health",
     categories: ["Healthcare", "Education & Fitness"],
-    profile: "/case-studies/pe-assessment-platform/profile.png",
     subtitle: "The only platform that turns mandatory PE testing into student growth — national fitness protocols, presidential standards, and district tests, all in one place.",
     overview: "Ditch paper grids. Ditch the spreadsheet that lives on the gym teacher's laptop. The platform digitises national fitness testing, presidential youth-fitness programmes, and district-level tests, then converts the raw scores into personalised goals, SEL journals, and standards-based workouts — generating clear growth reports that admins and parents can read at a glance, without the burnout.",
     challenge: "Physical education teachers across the US still administer mandatory fitness testing on paper. Scores get re-entered into spreadsheets weeks later, longitudinal tracking across multiple academic years is essentially impossible, parents see nothing, and growth — the actual signal that should drive curriculum — gets lost in the administrative noise. The same teacher who designed thoughtful lessons spent half their week on data entry instead of teaching.",

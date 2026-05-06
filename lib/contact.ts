@@ -1,6 +1,6 @@
 /**
  * Contact-form delivery. Used by `app/api/contact/route.ts` after the
- * payload has cleared honeypot + Turnstile checks.
+ * payload has cleared honeypot + reCAPTCHA checks.
  *
  * Email path:
  *   - If `RESEND_API_KEY` is set → POST to Resend's REST API.

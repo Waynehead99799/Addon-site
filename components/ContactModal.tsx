@@ -14,6 +14,9 @@ interface ContactModalProps {
 const WHATSAPP_HREF = `https://wa.me/919879003017?text=${encodeURIComponent(
   "Hi, I'd like to talk about a project."
 )}`;
+const OFFICE_MAPS_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  SITE.address.formatted
+)}`;
 
 const CHANNELS = [
   {

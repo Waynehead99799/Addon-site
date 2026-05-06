@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import Script from "next/script";
 import { Icon } from "./icons";
 import { Field, SelectField, TextAreaField } from "./cta-form-variants/Fields";
+import { SITE } from "@/lib/site";
 
 const OFFICES = [
   { city: "Ahmedabad", region: "India · HQ", time: "GMT+5:30" },
@@ -261,13 +262,18 @@ export default function CTA() {
                 {OFFICES.map((o) => (
                   <li
                     key={o.city}
-                    className="flex items-baseline justify-between border-b border-white/10 pb-2.5"
+                    className="border-b border-white/10 pb-3"
                   >
-                    <div>
-                      <div className="text-[15px] font-medium">{o.city}</div>
-                      <div className="text-[12px] text-white/55 serif-italic">{o.region}</div>
+                    <div className="flex items-baseline justify-between gap-4">
+                      <div>
+                        <div className="text-[15px] font-medium">{o.city}</div>
+                        <div className="text-[12px] text-white/55 serif-italic">{o.region}</div>
+                      </div>
+                      <div className="text-[11.5px] font-mono text-white/45">{o.time}</div>
                     </div>
-                    <div className="text-[11.5px] font-mono text-white/45">{o.time}</div>
+                    <address className="mt-2 max-w-md text-[12.5px] leading-relaxed text-white/50 not-italic">
+                      {SITE.address.formatted}
+                    </address>
                   </li>
                 ))}
               </ul>

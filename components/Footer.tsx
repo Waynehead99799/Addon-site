@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { SITE } from "@/lib/site";
 
 export default function Footer() {
   const cols: { t: string; l: { label: string; href: string }[] }[] = [
@@ -65,7 +66,14 @@ export default function Footer() {
               Engineering intelligent digital products.{" "}
               <span className="serif-italic text-white/75">Shipping since 2011.</span>
             </p>
-            <div className="mt-6 text-[12.5px] text-white/45 font-mono">sales@addonwebsolutions.com</div>
+            <div className="mt-6 space-y-3 text-[12.5px] text-white/45 font-mono">
+              <a href={`mailto:${SITE.email}`} className="block hover:text-white/75 transition">
+                {SITE.email}
+              </a>
+              <address className="not-italic leading-relaxed max-w-sm">
+                {SITE.address.formatted}
+              </address>
+            </div>
           </div>
           {cols.map((c) => (
             <div key={c.t} className="col-span-1 md:col-span-2">
@@ -94,30 +102,6 @@ export default function Footer() {
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> All systems operational
             </span>
-            <a
-              href="https://x.com/addonwebsol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              X / Twitter
-            </a>
-            <a
-              href="https://www.linkedin.com/company/addon-web-solutions/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/addonwebsolutions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              GitHub
-            </a>
           </div>
         </div>
 

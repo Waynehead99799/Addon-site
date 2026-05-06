@@ -15,6 +15,7 @@ const PREVIEW_ROUTES = [
   "/cta-form-preview",
   "/font-preview",
   "/images-preview",
+  "/service-list-preview",
   "/stats-preview",
   "/case-study-stats-preview",
   "/testimonial-preview",

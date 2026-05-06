@@ -4,6 +4,7 @@ import { useEffect, useCallback, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "./icons";
+import { SITE } from "@/lib/site";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -12,6 +13,9 @@ interface ContactModalProps {
 
 const WHATSAPP_HREF = `https://wa.me/919879003017?text=${encodeURIComponent(
   "Hi, I'd like to talk about a project."
+)}`;
+const OFFICE_MAPS_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  SITE.address.formatted
 )}`;
 
 const CHANNELS = [
@@ -32,6 +36,14 @@ const CHANNELS = [
     scroll: false,
   },
   {
+    id: "office",
+    label: "Our office",
+    sub: SITE.address.formatted,
+    href: OFFICE_MAPS_HREF,
+    external: true,
+    scroll: false,
+  },
+  {
     id: "form",
     label: "Send a message",
     sub: "Use our contact form — we reply within 24 h",
@@ -41,9 +53,9 @@ const CHANNELS = [
   },
   {
     id: "call",
-    label: "Book a 15-min call",
+    label: "Book a quick call",
     sub: "Pick a slot that works for you",
-    href: "https://calendly.com/addonwebsolutions",
+    href: "https://calendly.com/addonwebsolutions-ai/30min",
     external: true,
     scroll: false,
   },
@@ -70,6 +82,14 @@ function ChannelIcon({ id }: { id: string }) {
       <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" className="contact-channel-icon-svg">
         <path d="M22 2 11 13" />
         <path d="M22 2 15 22l-4-9-9-4 20-7Z" />
+      </svg>
+    );
+
+  if (id === "office")
+    return (
+      <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" className="contact-channel-icon-svg">
+        <path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11Z" />
+        <circle cx={12} cy={10} r={2.5} />
       </svg>
     );
 
@@ -171,7 +191,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                     <div className="flex-1 min-w-0">
                       <p className="contact-channel-label text-[14px] font-medium text-white/90 leading-none">{ch.label}</p>
-                      <p className="contact-channel-sublabel text-[12px] text-white/40 mt-1.5 leading-none truncate">{ch.sub}</p>
+                      <p
+                        className={`contact-channel-sublabel text-[12px] text-white/40 mt-1.5 ${
+                          ch.id === "office" ? "leading-snug" : "leading-none truncate"
+                        }`}
+                      >
+                        {ch.sub}
+                      </p>
                     </div>
 
                     <Icon.ArrowUpRight

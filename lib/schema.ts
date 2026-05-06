@@ -29,8 +29,10 @@ export function organizationSchema() {
     telephone: SITE.phone,
     address: {
       "@type": "PostalAddress",
+      streetAddress: SITE.address.streetAddress,
       addressLocality: SITE.address.locality,
       addressRegion: SITE.address.region,
+      postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.country,
     },
     sameAs: [
@@ -77,8 +79,10 @@ export function localBusinessSchema() {
     priceRange: "$$$",
     address: {
       "@type": "PostalAddress",
+      streetAddress: SITE.address.streetAddress,
       addressLocality: SITE.address.locality,
       addressRegion: SITE.address.region,
+      postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.country,
     },
   };

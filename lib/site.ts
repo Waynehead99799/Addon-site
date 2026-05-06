@@ -39,9 +39,13 @@ export const SITE = {
   email: "sales@addonwebsolutions.com",
   phone: "+91 98790 03017",
   address: {
-    streetAddress: "",
+    formatted:
+      "B-1001, Sankalp Iconic Tower, Near Iskon BRTS bus stand, Iskon, Ambli Rd, Sanidhya, Ahmedabad, Gujarat 380058",
+    streetAddress:
+      "B-1001, Sankalp Iconic Tower, Near Iskon BRTS bus stand, Iskon, Ambli Rd, Sanidhya",
     locality: "Ahmedabad",
     region: "Gujarat",
+    postalCode: "380058",
     country: "IN",
   },
   social: {

@@ -165,6 +165,16 @@ html[data-theme="light"] .cursor-glow {
   mix-blend-mode: normal;
   filter: blur(24px);
 }
+html[data-theme="light"] .cursor-glow::before {
+  border-color: rgba(11,18,24,0.22);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.75) inset,
+    0 0 18px rgba(30,168,116,0.20);
+}
+html[data-theme="light"] .cursor-glow::after {
+  background: #0B1218;
+  box-shadow: 0 0 14px rgba(30,168,116,0.28);
+}
 
 /* Glow-brand chip + dash preview — softer */
 html[data-theme="light"] .glow-brand { box-shadow: 0 0 24px rgba(30,168,116,0.22), 0 0 56px rgba(31,95,174,0.14); }
@@ -661,6 +671,35 @@ body { overflow-x: hidden; }
   transition: opacity .3s ease;
   mix-blend-mode: screen;
   will-change: transform;
+}
+.cursor-glow::before,
+.cursor-glow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.cursor-glow::before {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  border: 1px solid rgba(245,239,230,0.28);
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(135deg, var(--g1), var(--g2), var(--g3)) border-box;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 0 18px rgba(52,203,150,0.16);
+  opacity: 0.9;
+}
+.cursor-glow::after {
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--accent);
+  box-shadow: 0 0 14px rgba(52,203,150,0.55);
 }
 @media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
 

@@ -50,7 +50,7 @@ export default function Footer() {
       t: "Work",
       l: [
         { label: "Case studies", href: "/case-studies" },
-        { label: "Field notes", href: "/blog" },
+        { label: "Blogs", href: "/blog" },
       ],
     },
     {
@@ -91,7 +91,7 @@ export default function Footer() {
                 {SITE.address.formatted}
               </address>
             </div>
-            <div className="w-[48ch] max-w-full rounded-lg overflow-hidden border border-white/10 h-fit">
+            <div className="w-[34ch] max-w-full rounded-lg overflow-hidden border border-white/10 h-fit">
               <iframe
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.formatted)}&z=15&output=embed`}
                 width="100%"
@@ -129,11 +129,6 @@ export default function Footer() {
         <div className="mt-12 md:mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="text-[12px] text-white/40 font-mono">
             © 2026 Addon Web Solutions · All rights reserved
-          </div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-white/45">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> All systems operational
-            </span>
           </div>
         </div>
 

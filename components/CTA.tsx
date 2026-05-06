@@ -15,10 +15,45 @@ const STATS = [
   { l: "First working build", v: "2 weeks" },
 ];
 
-// Cloudflare Turnstile site key. When unset (typical for local dev without
-// keys), the widget + verification are both skipped end-to-end so the form
+// Google reCAPTCHA v3 site key. When unset (typical for local dev without
+// keys), the script + verification are both skipped end-to-end so the form
 // keeps working — the API route applies the same NEXT_PUBLIC_/SECRET_ pairing.
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+// Action label sent with the token; the API route asserts this matches so a
+// token leaked from one form can't be replayed against another endpoint.
+const RECAPTCHA_ACTION = "contact";
+
+type Grecaptcha = {
+  ready: (cb: () => void) => void;
+  execute: (siteKey: string, options: { action: string }) => Promise<string>;
+};
+
+/** Wait for grecaptcha to load (script may still be in flight) and execute
+ *  a v3 challenge for the given action, resolving with the resulting token. */
+function getRecaptchaToken(siteKey: string, action: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === "undefined") {
+      reject(new Error("not in browser"));
+      return;
+    }
+    const start = Date.now();
+    const tick = () => {
+      const g = (window as unknown as { grecaptcha?: Grecaptcha }).grecaptcha;
+      if (g && typeof g.execute === "function") {
+        g.ready(() => {
+          g.execute(siteKey, { action }).then(resolve).catch(reject);
+        });
+        return;
+      }
+      if (Date.now() - start > 8000) {
+        reject(new Error("recaptcha-load-timeout"));
+        return;
+      }
+      setTimeout(tick, 120);
+    };
+    tick();
+  });
+}
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -36,6 +71,20 @@ export default function CTA() {
     setStatus("submitting");
     setError(null);
 
+    // v3 reCAPTCHA: fetch a fresh token for this submission. No widget; the
+    // script scores user behaviour silently and returns a token we hand to
+    // the API for siteverify (the score check happens server-side).
+    let recaptchaToken = "";
+    if (RECAPTCHA_SITE_KEY) {
+      try {
+        recaptchaToken = await getRecaptchaToken(RECAPTCHA_SITE_KEY, RECAPTCHA_ACTION);
+      } catch {
+        setStatus("error");
+        setError("Couldn't load the captcha service — please reload and try again.");
+        return;
+      }
+    }
+
     const payload = {
       // Honeypot — must be empty. Bots fill every input they see.
       website: fd.get("website") ?? "",
@@ -46,9 +95,7 @@ export default function CTA() {
       engagement: fd.get("engagement") ?? "",
       timeline: fd.get("timeline") ?? "",
       message: fd.get("message") ?? "",
-      // Turnstile auto-injects this hidden field into the form when the
-      // widget is rendered. Empty when no widget (no site key).
-      turnstileToken: fd.get("cf-turnstile-response") ?? "",
+      recaptchaToken,
     };
 
     try {
@@ -66,11 +113,6 @@ export default function CTA() {
       }
       setStatus("success");
       form.reset();
-      // Reset the Turnstile widget so a second submit gets a fresh token.
-      // `window.turnstile` is provided by the Cloudflare script.
-      if (typeof window !== "undefined" && (window as unknown as { turnstile?: { reset: () => void } }).turnstile) {
-        (window as unknown as { turnstile: { reset: () => void } }).turnstile.reset();
-      }
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -82,13 +124,13 @@ export default function CTA() {
       id="contact"
       className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5"
     >
-      {/* Cloudflare Turnstile script — only loads when a site key is configured */}
-      {TURNSTILE_SITE_KEY && (
+      {/* Google reCAPTCHA v3 script — only loads when a site key is configured.
+          v3 has no widget; loading with `?render=<siteKey>` registers grecaptcha
+          and starts the silent behaviour scoring used by `grecaptcha.execute`. */}
+      {RECAPTCHA_SITE_KEY && (
         <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          strategy="lazyOnload"
-          async
-          defer
+          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          strategy="afterInteractive"
         />
       )}
 
@@ -98,10 +140,6 @@ export default function CTA() {
             <div className="eyebrow">Enquire</div>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-lite text-[11.5px] text-white/70 mb-5">
-              <span className="relative w-1.5 h-1.5 rounded-full bg-emerald-400 dot-pulse" />
-              Accepting engagements — Q3 2026 · two slots remaining
-            </div>
             <h2 className="text-[36px] sm:text-[44px] md:text-[68px] lg:text-[84px] font-semibold tracking-[-0.02em] leading-[0.98]">
               Let&apos;s build<br />
               <span className="serif-italic font-normal text-white/80">something worth shipping.</span>
@@ -184,18 +222,32 @@ export default function CTA() {
               </div>
             </div>
 
-            {/* Turnstile widget — only renders when a site key is configured.
-                Auto-injects a hidden `cf-turnstile-response` input into the form,
-                which the submit handler reads via FormData. */}
-            {TURNSTILE_SITE_KEY && (
-              <div className="mt-5 flex">
-                <div
-                  className="cf-turnstile"
-                  data-sitekey={TURNSTILE_SITE_KEY}
-                  data-theme="dark"
-                  data-size="flexible"
-                />
-              </div>
+            {/* reCAPTCHA v3 disclosure — required by Google's terms when the
+                badge is hidden via CSS. The script also drops a floating badge
+                in the bottom-right corner; this inline note covers the case
+                where someone has hidden it and keeps the legal bases covered. */}
+            {RECAPTCHA_SITE_KEY && (
+              <p className="mt-5 text-[11.5px] text-white/40 leading-relaxed">
+                This site is protected by reCAPTCHA and the Google{" "}
+                <a
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-white/20 hover:text-white/65 transition"
+                >
+                  Privacy Policy
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://policies.google.com/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-white/20 hover:text-white/65 transition"
+                >
+                  Terms of Service
+                </a>{" "}
+                apply.
+              </p>
             )}
 
             <div className="mt-7 flex items-center justify-between gap-4 flex-wrap">

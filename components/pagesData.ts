@@ -605,12 +605,12 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     },
   },
   {
-    slug: "camera-telematics",
+    slug: "fleet-telematics",
     title: "Fleet Telematics & Asset Safety",
     client: "Confidential",
     industry: "IoT & Telematics",
     categories: ["IoT & Telematics", "Enterprise & CRM"],
-    profile: "/case-studies/camera-telematics/profile.png",
+    profile: "/case-studies/fleet-telematics/profile.png",
     subtitle: "Forty years of camera engineering, applied to fleet safety. Solutions safeguarding assets across seaports, airports, roadside maintenance, haulage, and motor fleets.",
     overview: "A long-established camera-systems specialist needed to evolve from a hardware-only business into a complete software platform. We built the modern software stack that pairs with their hardware — multi-tenant fleet dashboards, role-based admin, real-time vehicle tracking with OpenStreetMap, OBD-II vehicle diagnostics, driver scoring, and a complete REST API suite for vendor integrations. Running in production across thousands of vehicles since 2016.",
     challenge: "The client needed to evolve from a hardware-only business into a full software platform without disrupting their existing customer base. They needed to handle real-time video streaming from thousands of in-vehicle units, process 150M+ daily GPS data points, integrate OBD-II diagnostics over Bluetooth, surface configurable driver-behaviour scoring, and let vendors embed the system inside their own platforms via APIs — all while keeping the hardware-software pairing rock-solid.",
@@ -633,20 +633,20 @@ export const CASE_STUDIES_DATA: CaseStudyDetail[] = [
     ],
     techStack: ["Java", "Hibernate", "Socket programming", "Jersey", "Swift", "MySQL", "Azure", "OpenStreetMap", "REST APIs"],
     gallery: {
-      hero: "/case-studies/camera-telematics/hero.png",
+      hero: "/case-studies/fleet-telematics/hero.png",
       heroCaption: "Live fleet operations dashboard — real-time tracking, video evidence, driver scoring.",
       web: [
-        "/case-studies/camera-telematics/web-1.png",
-        "/case-studies/camera-telematics/web-2.png",
+        "/case-studies/fleet-telematics/web-1.png",
+        "/case-studies/fleet-telematics/web-2.png",
       ],
       webCaptions: [
         "Map-led tracking with route playback and FNOL evidence.",
         "Driver scoring and event review across the fleet.",
       ],
       mobile: [
-        "/case-studies/camera-telematics/mobile-1.png",
-        "/case-studies/camera-telematics/mobile-2.png",
-        "/case-studies/camera-telematics/mobile-3.png",
+        "/case-studies/fleet-telematics/mobile-1.png",
+        "/case-studies/fleet-telematics/mobile-2.png",
+        "/case-studies/fleet-telematics/mobile-3.png",
       ],
       mobileCaptions: [
         "Driver dashboard — events and trends at a glance.",

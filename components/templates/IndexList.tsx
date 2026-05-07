@@ -1,8 +1,4 @@
-"use client";
-import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { Icon } from "../icons";
 import { Reveal } from "../Reveal";
 
@@ -11,8 +7,7 @@ export type IndexRow = {
   title: string;
   desc: string;
   tags?: string[];
-  meta?: string; // right-side meta (e.g. "4.8 · App store")
-  cover?: string; // optional image shown floating with the cursor on hover
+  meta?: string; // right-side meta (e.g. "March 15, 2026 · 7 min read")
 };
 
 export default function IndexList({
@@ -42,25 +37,6 @@ export default function IndexList({
     return title;
   };
 
-  const hasCovers = rows.some((r) => r.cover);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
-
-  // Cursor position relative to the rows container — sprung for a soft trailing feel.
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 220, damping: 28, mass: 0.6 });
-  const sy = useSpring(y, { stiffness: 220, damping: 28, mass: 0.6 });
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    x.set(e.clientX - rect.left);
-    y.set(e.clientY - rect.top);
-  };
-
-  const activeCover = activeIdx != null ? rows[activeIdx]?.cover : undefined;
-
   return (
     <section className="section-reveal relative py-14 md:py-20 lg:py-24 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -75,18 +51,11 @@ export default function IndexList({
           </div>
         </div>
 
-        <div
-          ref={containerRef}
-          onMouseMove={hasCovers ? onMove : undefined}
-          onMouseLeave={hasCovers ? () => setActiveIdx(null) : undefined}
-          className="relative border-t border-white/10"
-        >
+        <div className="relative border-t border-white/10">
           {rows.map((r, i) => (
             <Reveal key={r.href} delay={i * 30} y={14}>
               <Link
                 href={r.href}
-                onMouseEnter={() => r.cover && setActiveIdx(i)}
-                onMouseLeave={() => setActiveIdx((cur) => (cur === i ? null : cur))}
                 className="index-row group block border-b border-white/10 px-2 md:px-4 py-6 md:py-7"
               >
                 <div className="grid grid-cols-12 gap-4 md:gap-8 items-start md:items-center">
@@ -95,9 +64,17 @@ export default function IndexList({
                   </div>
                   <div className="col-span-10 md:col-span-4">
                     <h3 className="text-[22px] md:text-[28px] lg:text-[32px] font-semibold tracking-[-0.02em] leading-[1.1]">
-                      {r.title.split(" ").slice(0, -1).join(" ")}{" "}
-                      <span className="serif-italic font-normal text-white/75">
-                        {r.title.split(" ").slice(-1)}
+                      <span className="relative inline-block">
+                        <span className="relative z-10">
+                          {r.title.split(" ").slice(0, -1).join(" ")}{" "}
+                          <span className="serif-italic font-normal text-white/75">
+                            {r.title.split(" ").slice(-1)}
+                          </span>
+                        </span>
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute left-0 right-0 -bottom-1 h-[2px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] accent-grad rounded-full"
+                        />
                       </span>
                     </h3>
                   </div>
@@ -128,35 +105,6 @@ export default function IndexList({
               </Link>
             </Reveal>
           ))}
-
-          {hasCovers && (
-            <motion.div
-              aria-hidden
-              className="hidden md:block pointer-events-none absolute top-0 left-0 z-20 -translate-x-1/2 -translate-y-1/2 will-change-transform"
-              style={{ x: sx, y: sy }}
-            >
-              <AnimatePresence mode="wait">
-                {activeCover && (
-                  <motion.div
-                    key={activeCover}
-                    initial={{ opacity: 0, scale: 0.92, y: 8 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: 4 }}
-                    transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-                    className="index-preview relative w-[180px] lg:w-[200px] aspect-square rounded-2xl overflow-hidden"
-                  >
-                    <Image
-                      src={activeCover}
-                      alt=""
-                      fill
-                      sizes="200px"
-                      className="object-cover"
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          )}
         </div>
       </div>
     </section>

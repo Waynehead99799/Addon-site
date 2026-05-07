@@ -27,7 +27,6 @@ export default function BlogHub() {
     title: a.title,
     desc: a.subtitle,
     meta: `${a.date} · ${a.readTime}`,
-    cover: a.cover ?? `/blog/${a.slug}/cover.png`,
   }));
 
   return (

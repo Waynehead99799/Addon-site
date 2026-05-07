@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
 import HomeSectionReveal from "@/components/HomeSectionReveal";
+import ScrollCue from "@/components/ScrollCue";
 import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import AboutValues from "@/components/about/AboutValues";
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="relative">
+      <ScrollCue />
       <CursorGlow />
       <Nav />
       <HomeSectionReveal />

@@ -9,3 +9,5 @@ screenshots-light-audit
 screenshots-after
 
 .env
+public/.htaccess
+next.config.mjs

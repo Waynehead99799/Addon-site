@@ -3,6 +3,7 @@ import Image from "next/image";
 import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import CTA from "@/components/CTA";
+import ScrollCue from "@/components/ScrollCue";
 import JsonLd from "@/components/seo/JsonLd";
 import { CASE_STUDIES_DATA, type CaseStudyDetail } from "@/components/pagesData";
 import { itemListSchema, breadcrumbSchema } from "@/lib/schema";
@@ -86,7 +87,9 @@ export default function CaseStudiesHub() {
   const [featured, ...rest] = CASE_STUDIES_DATA;
 
   return (
-    <PageShell>
+    <>
+      <ScrollCue />
+      <PageShell>
       <JsonLd
         data={itemListSchema({
           path: "/case-studies",
@@ -245,6 +248,7 @@ export default function CaseStudiesHub() {
         </div>
       </Section>
       <CTA />
-    </PageShell>
+      </PageShell>
+    </>
   );
 }

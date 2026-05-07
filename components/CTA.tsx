@@ -16,10 +16,50 @@ const STATS = [
 ];
 
 type Status = "idle" | "submitting" | "success" | "error";
+type FieldErrors = Partial<
+  Record<"name" | "email" | "company" | "role" | "message", string>
+>;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validate(fd: FormData): FieldErrors {
+  const get = (k: string) => String(fd.get(k) ?? "").trim();
+  const errs: FieldErrors = {};
+
+  const name = get("name");
+  if (!name) errs.name = "Please enter your name.";
+  else if (name.length > 200) errs.name = "Name is too long (max 200 characters).";
+
+  const email = get("email");
+  if (!email) errs.email = "Please enter your email.";
+  else if (!EMAIL_RE.test(email)) errs.email = "That doesn't look like a valid email.";
+  else if (email.length > 320) errs.email = "Email is too long.";
+
+  const message = get("message");
+  if (!message) errs.message = "Tell us briefly what you're building.";
+  else if (message.length < 10) errs.message = "A little more detail, please (at least 10 characters).";
+  else if (message.length > 5000) errs.message = "Message is too long (max 5000 characters).";
+
+  if (get("company").length > 200) errs.company = "Company name is too long.";
+  if (get("role").length > 200) errs.role = "Role is too long.";
+
+  return errs;
+}
 
 export default function CTA() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  function clearFieldError(name?: string) {
+    if (!name) return;
+    setFieldErrors((prev) => {
+      if (!(name in prev)) return prev;
+      const next = { ...prev };
+      delete next[name as keyof FieldErrors];
+      return next;
+    });
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -35,6 +75,19 @@ export default function CTA() {
       return;
     }
 
+    const errs = validate(fd);
+    if (Object.keys(errs).length) {
+      setFieldErrors(errs);
+      setStatus("error");
+      setError(null);
+      // Focus the first invalid field for keyboard users / screen readers.
+      const firstErr = Object.keys(errs)[0];
+      const el = form.elements.namedItem(firstErr) as HTMLElement | null;
+      if (el && "focus" in el) (el as HTMLInputElement).focus();
+      return;
+    }
+    setFieldErrors({});
+
     const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
     if (!accessKey) {
       setStatus("error");
@@ -45,9 +98,9 @@ export default function CTA() {
     setStatus("submitting");
     setError(null);
 
-    const name = String(fd.get("name") ?? "");
-    const email = String(fd.get("email") ?? "");
-    const company = String(fd.get("company") ?? "");
+    const name = String(fd.get("name") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const company = String(fd.get("company") ?? "").trim();
 
     const w3 = new FormData();
     w3.append("access_key", accessKey);
@@ -206,6 +259,10 @@ export default function CTA() {
           /* Form (compact 2-col) */
           <form
             onSubmit={onSubmit}
+            onInput={(e) => {
+              const t = e.target as HTMLInputElement;
+              if (t?.name) clearFieldError(t.name);
+            }}
             noValidate
             className="col-span-12 md:col-span-7 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-7 md:p-8"
           >
@@ -230,6 +287,7 @@ export default function CTA() {
                 required
                 placeholder="Your name"
                 autoComplete="name"
+                error={fieldErrors.name}
               />
               <Field
                 label="Email"
@@ -238,18 +296,21 @@ export default function CTA() {
                 required
                 placeholder="you@company.com"
                 autoComplete="email"
+                error={fieldErrors.email}
               />
               <Field
                 label="Company"
                 name="company"
                 placeholder="Optional"
                 autoComplete="organization"
+                error={fieldErrors.company}
               />
               <Field
                 label="Role"
                 name="role"
                 placeholder="Founder · CTO · Head of product…"
                 autoComplete="organization-title"
+                error={fieldErrors.role}
               />
               <SelectField
                 label="Engagement"
@@ -273,6 +334,7 @@ export default function CTA() {
                   required
                   placeholder="One paragraph is plenty."
                   rows={4}
+                  error={fieldErrors.message}
                 />
               </div>
             </div>

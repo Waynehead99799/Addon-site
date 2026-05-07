@@ -1,7 +1,27 @@
 // Shared form-control primitives used across CTA form variants.
 // Plain markup — no event handlers — so they're safe in server components.
 // Each variant wires its own state where needed; supplying `name` makes the
-// field FormData-serialisable so the canonical CTA can POST to /api/contact.
+// field FormData-serialisable so the canonical CTA can POST to Web3Forms.
+
+const errClass = "border-red-400/60 focus:border-red-400/80";
+const okClass = "border-white/10 focus:border-white/30";
+
+function HelperOrError({ name, helper, error }: { name?: string; helper?: string; error?: string }) {
+  if (error) {
+    return (
+      <span
+        id={name ? `${name}-error` : undefined}
+        className="block mt-1.5 text-[11.5px] text-red-300/90"
+      >
+        {error}
+      </span>
+    );
+  }
+  if (helper) {
+    return <span className="block mt-1.5 text-[11.5px] text-white/45">{helper}</span>;
+  }
+  return null;
+}
 
 export function Field({
   label,
@@ -12,6 +32,7 @@ export function Field({
   name,
   required,
   autoComplete,
+  error,
 }: {
   label: string;
   placeholder?: string;
@@ -21,8 +42,10 @@ export function Field({
   name?: string;
   required?: boolean;
   autoComplete?: string;
+  error?: string;
 }) {
   const padding = size === "lg" ? "px-4 py-3.5 text-[16px] md:text-[15px]" : "px-3.5 py-3 text-[16px] md:py-2.5 md:text-[14px]";
+  const border = error ? errClass : okClass;
   return (
     <label className="block">
       <span className="block text-[10.5px] uppercase tracking-[0.18em] text-white/45 font-mono mb-1.5">{label}</span>
@@ -32,9 +55,11 @@ export function Field({
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}
-        className={`w-full ${padding} rounded-lg bg-white/[0.04] border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-white/30 transition`}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error && name ? `${name}-error` : undefined}
+        className={`w-full ${padding} rounded-lg bg-white/[0.04] border ${border} text-white placeholder-white/30 focus:outline-none transition`}
       />
-      {helper && <span className="block mt-1.5 text-[11.5px] text-white/45">{helper}</span>}
+      <HelperOrError name={name} helper={helper} error={error} />
     </label>
   );
 }
@@ -46,6 +71,7 @@ export function SelectField({
   size = "default",
   name,
   required,
+  error,
 }: {
   label: string;
   options: string[];
@@ -53,8 +79,10 @@ export function SelectField({
   size?: "default" | "lg";
   name?: string;
   required?: boolean;
+  error?: string;
 }) {
   const padding = size === "lg" ? "px-4 py-3.5 text-[16px] md:text-[15px]" : "px-3.5 py-3 text-[16px] md:py-2.5 md:text-[14px]";
+  const border = error ? errClass : okClass;
   return (
     <label className="block">
       <span className="block text-[10.5px] uppercase tracking-[0.18em] text-white/45 font-mono mb-1.5">{label}</span>
@@ -62,7 +90,9 @@ export function SelectField({
         name={name}
         required={required}
         defaultValue=""
-        className={`w-full ${padding} rounded-lg bg-white/[0.04] border border-white/10 text-white focus:outline-none focus:border-white/30 transition`}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error && name ? `${name}-error` : undefined}
+        className={`w-full ${padding} rounded-lg bg-white/[0.04] border ${border} text-white focus:outline-none transition`}
       >
         <option value="" disabled style={{ background: "var(--bg)", color: "var(--ink)" }}>
           Select…
@@ -77,7 +107,7 @@ export function SelectField({
           </option>
         ))}
       </select>
-      {helper && <span className="block mt-1.5 text-[11.5px] text-white/45">{helper}</span>}
+      <HelperOrError name={name} helper={helper} error={error} />
     </label>
   );
 }
@@ -89,6 +119,7 @@ export function TextAreaField({
   rows = 4,
   name,
   required,
+  error,
 }: {
   label: string;
   placeholder?: string;
@@ -96,7 +127,9 @@ export function TextAreaField({
   rows?: number;
   name?: string;
   required?: boolean;
+  error?: string;
 }) {
+  const border = error ? errClass : okClass;
   return (
     <label className="block">
       <span className="block text-[10.5px] uppercase tracking-[0.18em] text-white/45 font-mono mb-1.5">{label}</span>
@@ -105,9 +138,11 @@ export function TextAreaField({
         name={name}
         required={required}
         placeholder={placeholder}
-        className="w-full px-3.5 py-3 md:py-2.5 rounded-lg bg-white/[0.04] border border-white/10 text-[16px] md:text-[14px] text-white placeholder-white/30 focus:outline-none focus:border-white/30 transition resize-none"
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error && name ? `${name}-error` : undefined}
+        className={`w-full px-3.5 py-3 md:py-2.5 rounded-lg bg-white/[0.04] border ${border} text-[16px] md:text-[14px] text-white placeholder-white/30 focus:outline-none transition resize-none`}
       />
-      {helper && <span className="block mt-1.5 text-[11.5px] text-white/45">{helper}</span>}
+      <HelperOrError name={name} helper={helper} error={error} />
     </label>
   );
 }

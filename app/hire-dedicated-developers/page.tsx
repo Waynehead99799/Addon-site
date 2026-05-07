@@ -3,6 +3,7 @@ import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import CTA from "@/components/CTA";
 import FAQSection from "@/components/templates/FAQSection";
+import ScrollCue from "@/components/ScrollCue";
 import JsonLd from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { getFeatureIcon } from "@/components/featureIcons";
@@ -73,7 +74,9 @@ const FAQS = [
 
 export default function HireDevelopersPage() {
   return (
-    <PageShell>
+    <>
+      <ScrollCue />
+      <PageShell>
       <JsonLd data={faqSchema(FAQS)} />
       <JsonLd
         data={breadcrumbSchema([
@@ -166,6 +169,7 @@ export default function HireDevelopersPage() {
       />
 
       <CTA />
-    </PageShell>
+      </PageShell>
+    </>
   );
 }

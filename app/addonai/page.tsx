@@ -4,6 +4,7 @@ import PageHero from "@/components/templates/PageHero";
 import IndexList from "@/components/templates/IndexList";
 import CTA from "@/components/CTA";
 import JsonLd from "@/components/seo/JsonLd";
+import ScrollCue from "@/components/ScrollCue";
 import { AI_SERVICES } from "@/components/pagesData";
 import { itemListSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -30,7 +31,9 @@ export default function AddonAIHub() {
   }));
 
   return (
-    <PageShell>
+    <>
+      <ScrollCue />
+      <PageShell>
       <JsonLd
         data={itemListSchema({
           path: "/addonai",
@@ -62,6 +65,7 @@ export default function AddonAIHub() {
         rows={rows}
       />
       <CTA />
-    </PageShell>
+      </PageShell>
+    </>
   );
 }

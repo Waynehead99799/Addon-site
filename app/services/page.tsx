@@ -4,6 +4,7 @@ import PageShell from "@/components/templates/PageShell";
 import PageHero from "@/components/templates/PageHero";
 import CTA from "@/components/CTA";
 import JsonLd from "@/components/seo/JsonLd";
+import ScrollCue from "@/components/ScrollCue";
 import { SERVICES_DATA, type Service } from "@/components/pagesData";
 import { itemListSchema, breadcrumbSchema } from "@/lib/schema";
 import { Reveal } from "@/components/Reveal";
@@ -140,7 +141,9 @@ function SpotlightDeck() {
 
 export default function ServicesHub() {
   return (
-    <PageShell>
+    <>
+      <ScrollCue />
+      <PageShell>
       <JsonLd
         data={itemListSchema({
           path: "/services",
@@ -181,6 +184,7 @@ export default function ServicesHub() {
         <SpotlightDeck />
       </Section>
       <CTA />
-    </PageShell>
+      </PageShell>
+    </>
   );
 }

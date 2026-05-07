@@ -1,5 +1,6 @@
 "use client";
 import { useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
 import { Icon } from "./icons";
 import { Field, SelectField, TextAreaField } from "./cta-form-variants/Fields";
 import { SITE } from "@/lib/site";
@@ -101,7 +102,108 @@ export default function CTA() {
         </div>
 
         <div className="grid grid-cols-12 gap-6 md:gap-10 border-t border-white/10 pt-10">
-          {/* Form (compact 2-col) */}
+          {status === "success" ? (
+            <motion.div
+              key="thanks"
+              initial={{ opacity: 0, scale: 0.96, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 220, damping: 24 }}
+              role="status"
+              aria-live="polite"
+              className="col-span-12 md:col-span-7 rounded-2xl border border-emerald-300/15 bg-gradient-to-br from-emerald-500/[0.06] via-white/[0.02] to-white/[0.02] p-8 sm:p-12 md:p-14 min-h-[420px] flex flex-col items-center justify-center text-center relative overflow-hidden"
+            >
+              {/* Soft radial glow behind the check */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(40% 50% at 50% 35%, rgba(93,213,171,0.12) 0%, transparent 70%)",
+                }}
+              />
+
+              {/* Animated check medallion */}
+              <motion.div
+                initial={{ scale: 0, rotate: -10 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.05 }}
+                className="relative w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full accent-grad grid place-items-center mb-7 shadow-[0_10px_40px_-10px_rgba(93,213,171,0.55)]"
+              >
+                <motion.svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="sm:w-[34px] sm:h-[34px]"
+                >
+                  <motion.path
+                    d="M5 12.5 L10 17.5 L19 7.5"
+                    stroke="white"
+                    strokeWidth={2.6}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.45, delay: 0.28, ease: "easeOut" }}
+                  />
+                </motion.svg>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.42, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="eyebrow mb-4"
+              >
+                Brief received
+              </motion.div>
+
+              <motion.h3
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[30px] sm:text-[38px] md:text-[44px] font-semibold tracking-[-0.02em] leading-[1.05] max-w-[18ch]"
+              >
+                Thanks — your enquiry{" "}
+                <span className="serif-italic font-normal text-white/80">is in.</span>
+              </motion.h3>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-5 max-w-md text-[14.5px] sm:text-[15.5px] leading-relaxed text-white/65"
+              >
+                We&apos;ll reply within 24 hours. For anything urgent, ping us on{" "}
+                <a
+                  href="https://wa.me/919879003017"
+                  className="text-white/85 underline underline-offset-4 decoration-white/30 hover:decoration-white/70 transition"
+                >
+                  WhatsApp
+                </a>
+                .
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-8 flex items-center gap-5 flex-wrap justify-center"
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStatus("idle");
+                    setError(null);
+                  }}
+                  className="text-[13.5px] text-white/65 hover:text-white/95 transition underline-offset-4 hover:underline"
+                >
+                  Send another brief →
+                </button>
+              </motion.div>
+            </motion.div>
+          ) : (
+          /* Form (compact 2-col) */
           <form
             onSubmit={onSubmit}
             noValidate
@@ -195,16 +297,6 @@ export default function CTA() {
               </button>
             </div>
 
-            {/* Status messages — sit below the actions, role=status so screen
-                readers announce the outcome. */}
-            {status === "success" && (
-              <p
-                role="status"
-                className="mt-5 text-[13.5px] text-emerald-300/90 border-t border-emerald-300/20 pt-4"
-              >
-                Thanks — your enquiry is in. We&apos;ll reply within 24 hours.
-              </p>
-            )}
             {status === "error" && error && (
               <p
                 role="alert"
@@ -214,6 +306,7 @@ export default function CTA() {
               </p>
             )}
           </form>
+          )}
 
           {/* Contact sidebar */}
           <aside className="col-span-12 md:col-span-5 space-y-8 md:pl-2">

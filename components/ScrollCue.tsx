@@ -15,7 +15,7 @@ export default function ScrollCue() {
     <motion.div
       aria-hidden
       style={{ opacity }}
-      className="pointer-events-none fixed bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3"
+      className="pointer-events-none fixed bottom-12 sm:bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3"
     >
       <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/45">
         Scroll

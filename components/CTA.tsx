@@ -27,33 +27,52 @@ export default function CTA() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
+    // Honeypot — silently swallow bot submissions so they don't learn they were caught.
+    if (typeof fd.get("website") === "string" && (fd.get("website") as string).trim()) {
+      setStatus("success");
+      form.reset();
+      return;
+    }
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      setStatus("error");
+      setError("Form is not configured. Please email sales@addonwebsolutions.com.");
+      return;
+    }
+
     setStatus("submitting");
     setError(null);
 
-    const payload = {
-      // Honeypot — must be empty. Bots fill every input they see.
-      website: fd.get("website") ?? "",
-      name: fd.get("name") ?? "",
-      email: fd.get("email") ?? "",
-      company: fd.get("company") ?? "",
-      role: fd.get("role") ?? "",
-      engagement: fd.get("engagement") ?? "",
-      timeline: fd.get("timeline") ?? "",
-      message: fd.get("message") ?? "",
-    };
+    const name = String(fd.get("name") ?? "");
+    const email = String(fd.get("email") ?? "");
+    const company = String(fd.get("company") ?? "");
+
+    const w3 = new FormData();
+    w3.append("access_key", accessKey);
+    w3.append("subject", `New enquiry — ${name}${company ? ` (${company})` : ""}`);
+    w3.append("from_name", "Addon Web Solutions — Enquire form");
+    w3.append("replyto", email);
+    w3.append("name", name);
+    w3.append("email", email);
+    w3.append("company", company);
+    w3.append("role", String(fd.get("role") ?? ""));
+    w3.append("engagement", String(fd.get("engagement") ?? ""));
+    w3.append("timeline", String(fd.get("timeline") ?? ""));
+    w3.append("message", String(fd.get("message") ?? ""));
+    w3.append("botcheck", "");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: w3,
       });
       const data = (await res.json().catch(() => ({}))) as {
-        ok?: boolean;
-        error?: string;
+        success?: boolean;
+        message?: string;
       };
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || `Something went wrong (HTTP ${res.status}).`);
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || `Something went wrong (HTTP ${res.status}).`);
       }
       setStatus("success");
       form.reset();

@@ -1,9 +1,22 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { Icon } from "./icons";
 import { Field, SelectField, TextAreaField } from "./cta-form-variants/Fields";
 import { SITE } from "@/lib/site";
+
+// Minimum time a real human takes to fill the form. Anything submitted in
+// less than this is almost certainly a bot.
+const MIN_FILL_MS = 2500;
+
+declare global {
+  interface Window {
+    hcaptcha?: {
+      execute: (id?: string, opts?: { async: boolean }) => Promise<{ response: string }>;
+    };
+  }
+}
 
 const OFFICES = [
   { city: "Ahmedabad", region: "India · HQ", time: "GMT+5:30" },
@@ -21,6 +34,24 @@ type FieldErrors = Partial<
 >;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function JsOnlyHoneypot() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+  return (
+    <label>
+      Preferred contact method
+      <input
+        type="text"
+        name="contact_method"
+        tabIndex={-1}
+        autoComplete="off"
+        defaultValue=""
+      />
+    </label>
+  );
+}
 
 function validate(fd: FormData): FieldErrors {
   const get = (k: string) => String(fd.get(k) ?? "").trim();
@@ -51,6 +82,16 @@ export default function CTA() {
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
+  // Time-to-submit gate — record the moment the form is mounted in the user's
+  // browser. If the submission arrives faster than MIN_FILL_MS, treat it as a
+  // bot regardless of what else passes.
+  const mountedAt = useRef<number>(0);
+  useEffect(() => {
+    mountedAt.current = Date.now();
+  }, []);
+
+  const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+
   function clearFieldError(name?: string) {
     if (!name) return;
     setFieldErrors((prev) => {
@@ -68,19 +109,39 @@ export default function CTA() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // Honeypot — silently swallow bot submissions so they don't learn they were caught.
+    // --- Bot defences (silent: never reveal why we rejected) -------------
+
+    // 1. Visible honeypot — bots fill every input they see.
     if (typeof fd.get("website") === "string" && (fd.get("website") as string).trim()) {
       setStatus("success");
       form.reset();
       return;
     }
 
+    // 2. JS-only honeypot — a field added dynamically after mount. Bots that
+    //    scrape the static HTML never see it; bots that fill *everything* will
+    //    fill it. Either way, presence of a value here = bot.
+    if (typeof fd.get("contact_method") === "string" && (fd.get("contact_method") as string).trim()) {
+      setStatus("success");
+      form.reset();
+      return;
+    }
+
+    // 3. Time-to-submit gate — humans take >2.5s. Bots fill instantly.
+    const dwell = Date.now() - mountedAt.current;
+    if (mountedAt.current === 0 || dwell < MIN_FILL_MS) {
+      setStatus("success"); // silent rejection
+      form.reset();
+      return;
+    }
+
+    // --- Validation ------------------------------------------------------
+
     const errs = validate(fd);
     if (Object.keys(errs).length) {
       setFieldErrors(errs);
       setStatus("error");
       setError(null);
-      // Focus the first invalid field for keyboard users / screen readers.
       const firstErr = Object.keys(errs)[0];
       const el = form.elements.namedItem(firstErr) as HTMLElement | null;
       if (el && "focus" in el) (el as HTMLInputElement).focus();
@@ -97,6 +158,19 @@ export default function CTA() {
 
     setStatus("submitting");
     setError(null);
+
+    // --- hCaptcha (server-side verified by Web3Forms) --------------------
+    let hcaptchaToken: string | undefined;
+    if (hcaptchaSiteKey && window.hcaptcha) {
+      try {
+        const result = await window.hcaptcha.execute(undefined, { async: true });
+        hcaptchaToken = result.response;
+      } catch {
+        setStatus("error");
+        setError("Couldn't verify you as human — please try again.");
+        return;
+      }
+    }
 
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
@@ -115,6 +189,7 @@ export default function CTA() {
     w3.append("timeline", String(fd.get("timeline") ?? ""));
     w3.append("message", String(fd.get("message") ?? ""));
     w3.append("botcheck", "");
+    if (hcaptchaToken) w3.append("h-captcha-response", hcaptchaToken);
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -141,6 +216,21 @@ export default function CTA() {
       id="contact"
       className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5"
     >
+      {hcaptchaSiteKey && (
+        <>
+          <Script
+            src="https://js.hcaptcha.com/1/api.js?render=invisible&hl=en"
+            strategy="afterInteractive"
+            async
+            defer
+          />
+          <div
+            className="h-captcha"
+            data-sitekey={hcaptchaSiteKey}
+            data-size="invisible"
+          />
+        </>
+      )}
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
           <div className="col-span-12 md:col-span-3">
@@ -278,6 +368,9 @@ export default function CTA() {
                   defaultValue=""
                 />
               </label>
+              {/* JS-only honeypot — only appears in the DOM after hydration,
+                  so naive bots scraping the static HTML never see it. */}
+              <JsOnlyHoneypot />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">

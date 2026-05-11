@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Spectral } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import JsonLd from "@/components/seo/JsonLd";
+import Analytics from "@/components/Analytics";
 import {
   organizationSchema,
   websiteSchema,
@@ -119,6 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} font-sans`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );

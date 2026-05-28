@@ -39,12 +39,12 @@ export default function CaseStudies() {
           <div className="col-span-12 md:col-span-9">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
               <h2 className="text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-semibold tracking-[-0.02em] leading-[1.04]">
-                Six shipped products,{" "}
+                Eight shipped products,{" "}
                 <span
                   className="serif-italic font-normal case-headline-accent case-accent-text"
                   style={{ ["--accent-raw" as string]: c1 }}
                 >
-                  six different worlds
+                  eight different worlds
                 </span>
                 .
               </h2>

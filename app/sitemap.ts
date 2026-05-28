@@ -28,6 +28,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/addonai"),                        changeFrequency: "monthly",  priority: 0.9,  lastModified: now },
     { url: url("/case-studies"),                   changeFrequency: "weekly",   priority: 0.9,  lastModified: now },
     { url: url("/blog"),                           changeFrequency: "weekly",   priority: 0.8,  lastModified: now },
+    { url: url("/industries"),                     changeFrequency: "monthly",  priority: 0.7,  lastModified: now },
+    { url: url("/privacy"),                        changeFrequency: "yearly",   priority: 0.5,  lastModified: now },
+    { url: url("/terms"),                          changeFrequency: "yearly",   priority: 0.5,  lastModified: now },
   ];
 
   const aiServiceRoutes: MetadataRoute.Sitemap = AI_SERVICES.map((s) => ({

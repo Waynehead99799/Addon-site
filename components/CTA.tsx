@@ -10,10 +10,22 @@ import { SITE } from "@/lib/site";
 // less than this is almost certainly a bot.
 const MIN_FILL_MS = 2500;
 
+// Web3Forms' public shared hCaptcha sitekey (from their docs). Free-plan
+// submissions are verified using Web3Forms' matching secret on their server,
+// so we can render the widget directly with this sitekey instead of going
+// through their helper script — that lets us use INVISIBLE mode (less
+// intrusive UX) instead of the visible checkbox the helper hard-codes.
+const W3F_HCAPTCHA_SITEKEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+
 declare global {
   interface Window {
     hcaptcha?: {
-      execute: (id?: string, opts?: { async: boolean }) => Promise<{ response: string }>;
+      execute: (id: string, opts?: { async: boolean }) => Promise<{ response: string }>;
+      render: (
+        container: string | HTMLElement,
+        opts: { sitekey: string; size?: "normal" | "compact" | "invisible"; theme?: string; callback?: () => void }
+      ) => string;
+      reset: (id?: string) => void;
     };
   }
 }
@@ -90,7 +102,29 @@ export default function CTA() {
     mountedAt.current = Date.now();
   }, []);
 
-  const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+  // Toggle: when this env var is set, render hCaptcha in invisible mode.
+  // Web3Forms uses *their* hCaptcha keys under the hood on the free plan, so
+  // the value itself is just a flag — set it to anything truthy to enable.
+  const captchaEnabled = !!process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+
+  // hCaptcha widget instance (only created when captchaEnabled).
+  const captchaContainerRef = useRef<HTMLDivElement>(null);
+  const captchaWidgetId = useRef<string | null>(null);
+  const renderCaptcha = () => {
+    if (
+      !captchaEnabled ||
+      typeof window === "undefined" ||
+      !window.hcaptcha ||
+      !captchaContainerRef.current ||
+      captchaWidgetId.current
+    )
+      return;
+    captchaWidgetId.current = window.hcaptcha.render(captchaContainerRef.current, {
+      sitekey: W3F_HCAPTCHA_SITEKEY,
+      size: "invisible",
+      theme: "dark",
+    });
+  };
 
   function clearFieldError(name?: string) {
     if (!name) return;
@@ -159,15 +193,28 @@ export default function CTA() {
     setStatus("submitting");
     setError(null);
 
-    // --- hCaptcha (server-side verified by Web3Forms) --------------------
+    // --- hCaptcha invisible (server-side verified by Web3Forms) ----------
+    // Most visitors never see a challenge — hCaptcha only shows a puzzle if
+    // it scores the request as high-risk. The token is issued silently for
+    // everyone else.
     let hcaptchaToken: string | undefined;
-    if (hcaptchaSiteKey && window.hcaptcha) {
+    if (captchaEnabled) {
+      if (!window.hcaptcha || !captchaWidgetId.current) {
+        setStatus("error");
+        setError("Verification is still loading — please try again in a moment.");
+        return;
+      }
       try {
-        const result = await window.hcaptcha.execute(undefined, { async: true });
-        hcaptchaToken = result.response;
+        const { response } = await window.hcaptcha.execute(captchaWidgetId.current, {
+          async: true,
+        });
+        hcaptchaToken = response;
       } catch {
         setStatus("error");
         setError("Couldn't verify you as human — please try again.");
+        if (window.hcaptcha && captchaWidgetId.current) {
+          window.hcaptcha.reset(captchaWidgetId.current);
+        }
         return;
       }
     }
@@ -216,20 +263,15 @@ export default function CTA() {
       id="contact"
       className="section-reveal relative py-14 md:py-20 lg:py-28 border-t border-white/5"
     >
-      {hcaptchaSiteKey && (
-        <>
-          <Script
-            src="https://js.hcaptcha.com/1/api.js?render=invisible&hl=en"
-            strategy="afterInteractive"
-            async
-            defer
-          />
-          <div
-            className="h-captcha"
-            data-sitekey={hcaptchaSiteKey}
-            data-size="invisible"
-          />
-        </>
+      {captchaEnabled && (
+        <Script
+          src="https://js.hcaptcha.com/1/api.js?render=explicit&hl=en"
+          strategy="afterInteractive"
+          onLoad={renderCaptcha}
+          onReady={renderCaptcha}
+          async
+          defer
+        />
       )}
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-12 gap-6 md:gap-10 mb-12 md:mb-14">
@@ -431,6 +473,10 @@ export default function CTA() {
                 />
               </div>
             </div>
+
+            {/* Invisible hCaptcha container — widget renders here but is
+                hidden until/unless hCaptcha decides to show a challenge. */}
+            {captchaEnabled && <div ref={captchaContainerRef} />}
 
             <div className="mt-7 flex items-center justify-between gap-4 flex-wrap">
               <p className="text-[12.5px] text-white/45 max-w-xs">
